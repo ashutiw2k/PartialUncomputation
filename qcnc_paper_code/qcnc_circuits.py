@@ -135,7 +135,12 @@ def basic_circuit_with_sub_uncomp(dir='qcnc_paper_code/'):
     return circuit, dir+'qcnc_paper_figures/basic_circuit_with_sub_uncomp'
 
 def multi_cnot_simple(dir='qcnc_paper_code/'):
-    circuit = QuantumCircuit(4)
+    c0 = QuantumRegister(1, 'c0')
+    c1 = QuantumRegister(1, 'c1')
+    c2 = QuantumRegister(1, 'c2')
+    o = QuantumRegister(1, 'o')
+    
+    circuit = QuantumCircuit(c0,c1,c2,o)
     circuit.x(range(3))
     circuit.mcx([0,1,2], 3)
     circuit.draw('mpl', initial_state=True, plot_barriers=False, idle_wires=False, filename=dir+'qcnc_paper_figures/multi_cnot_simple')
@@ -144,17 +149,20 @@ def multi_cnot_simple(dir='qcnc_paper_code/'):
     return circuit, dir+'qcnc_paper_figures/multi_cnot_simple'
 
 def multi_cnot_with_ancilla(dir='qcnc_paper_code/'):
-    input_q = QuantumRegister(4, 'q')
-    # input_c = ClassicalRegister(4, 'qc')
-    ancilla_q = QuantumRegister(1, 'a')
-    # ancilla_c = ClassicalRegister(1, 'ac')
+    c0 = QuantumRegister(1, 'c0')
+    c1 = QuantumRegister(1, 'c1')
+    c2 = QuantumRegister(1, 'c2')
+    o = QuantumRegister(1, 'o')
+    a = QuantumRegister(1, 'a')
+    
+    circuit = QuantumCircuit(c0,c1,c2,o, a)
 
-    circuit = QuantumCircuit(input_q, ancilla_q)
+    # circuit = QuantumCircuit(input_q, ancilla_q)
 
     circuit.x(range(3))
     circuit.ccx(0,1,4)
     circuit.ccx(2,4,3)
-    circuit.ccx(0,1,4)
+    # circuit.ccx(0,1,4)
     
     # Drawing before measurement to not have the measurement features show up
     circuit.draw('mpl', initial_state=True, plot_barriers=False, idle_wires=False, filename=dir+'qcnc_paper_figures/multi_cnot_with_ancilla')
@@ -163,9 +171,33 @@ def multi_cnot_with_ancilla(dir='qcnc_paper_code/'):
 
     return circuit, dir+'qcnc_paper_figures/multi_cnot_with_ancilla'
 
+def multi_cnot_with_ancilla_and_uncomp(dir='qcnc_paper_code/'):
+    c0 = QuantumRegister(1, 'c0')
+    c1 = QuantumRegister(1, 'c1')
+    c2 = QuantumRegister(1, 'c2')
+    o = QuantumRegister(1, 'o')
+    a = QuantumRegister(1, 'a')
+    
+    circuit = QuantumCircuit(c0,c1,c2,o, a)
+
+    # circuit = QuantumCircuit(input_q, ancilla_q)
+
+    circuit.x(range(3))
+    circuit.ccx(0,1,4)
+    circuit.ccx(2,4,3)
+    circuit.ccx(0,1,4)
+    
+    # Drawing before measurement to not have the measurement features show up
+    circuit.draw('mpl', initial_state=True, plot_barriers=False, idle_wires=False, filename=dir+'qcnc_paper_figures/multi_cnot_with_ancilla_and_uncomp')
+    
+    circuit.measure_all()
+
+    return circuit, dir+'qcnc_paper_figures/multi_cnot_with_ancilla_and_uncomp'
+
 # print(os.)
 run_measurements(basic_circuit())
 run_measurements(basic_circuit_with_uncomp())
 run_measurements(basic_circuit_with_sub_uncomp())
 run_measurements(multi_cnot_simple())
 run_measurements(multi_cnot_with_ancilla())
+run_measurements(multi_cnot_with_ancilla_and_uncomp())
