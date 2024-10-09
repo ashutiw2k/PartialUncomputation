@@ -34,8 +34,8 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
         qubit_type = INPUT if qubit_dict['wire'] < ANCILLA_START else ANCILLA
         init_node = CGNode(qubit_dict, qubit_type=qubit_type, node_type=INIT)
         index = circuit_graph.add_node(init_node)
-        circuit_graph.nodes()[index].set_index(index)
-        circuit_graph.nodes()[index].set_nodenum(0)
+        circuit_graph.get_node_data(index).set_index(index)
+        circuit_graph.get_node_data(index).set_nodenum(0)
         last_node_index[init_node.label] = index
 
     # print(circuit_graph.nodes())
@@ -61,9 +61,9 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
         qubit_type = INPUT if qubit_dict_all[-1]['wire'] < ANCILLA_START else ANCILLA
         opnode = CGNode(qubit_dict_all[-1], qubit_type=qubit_type, node_type=COMP, opname=opname)
         opnode_index = circuit_graph.add_child(prev_node_index, opnode, TARGET)
-        circuit_graph.nodes()[opnode_index].set_index(opnode_index)
-        circuit_graph.nodes()[opnode_index].set_nodenum(
-            circuit_graph.nodes()[prev_node_index].get_nodenum() + 1
+        circuit_graph.get_node_data(opnode_index).set_index(opnode_index)
+        circuit_graph.get_node_data(opnode_index).set_nodenum(
+            circuit_graph.get_node_data(prev_node_index).get_nodenum() + 1
         )
         last_node_index[opnode.label] = opnode_index
 
@@ -128,8 +128,8 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
         print('------------------------------------------------')
         if node_prev_idx is None:
             continue
-        prev_node = circuit_graph.nodes()[node_prev_idx]
-        control_nodes = [circuit_graph.nodes()[idx] for idx in node_controls_idx]
+        prev_node = circuit_graph.get_node_data(node_prev_idx)
+        control_nodes = [circuit_graph.get_node_data(idx) for idx in node_controls_idx]
         opname = node.opname
         if opname == 'ccx':
             assert len(control_nodes) == 2
