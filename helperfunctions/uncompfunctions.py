@@ -1,6 +1,7 @@
 import collections
 import copy
 from itertools import chain, combinations
+from typing import List
 import rustworkx
 
 from .constants import StringConstants, ListConstants
@@ -80,14 +81,14 @@ def add_uncomputation_step(circuit_graph: rustworkx.PyDiGraph, idx):
 
     return circuit_graph
 
-def add_uncomputation(circuit_graph: rustworkx.PyDiGraph):
+def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[int]):
 
     uncomp_circuit_graph = copy.deepcopy(circuit_graph)
     graph_nodes_reverse = list(rustworkx.topological_sort(copy.deepcopy(circuit_graph)))
     graph_nodes_reverse.reverse()
     print(graph_nodes_reverse)
     for idx in graph_nodes_reverse:
-        if circuit_graph.nodes()[idx].qubit_type is ANCILLA and circuit_graph.nodes()[idx].node_type is COMP:
+        if circuit_graph.nodes()[idx].qubit_wire in ancillas and circuit_graph.nodes()[idx].node_type is COMP: #and circuit_graph.nodes()[idx].qubit_type is ANCILLA and circuit_graph.nodes()[idx].node_type is COMP:
             add_uncomputation_step(uncomp_circuit_graph, idx)
 
     return uncomp_circuit_graph

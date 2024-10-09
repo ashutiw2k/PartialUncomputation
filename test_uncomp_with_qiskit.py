@@ -61,6 +61,7 @@ def main():
     nq=3
     na=1
     print('Creating Circuit:')
+    # circuit = paper_adder_circuit()
     circuit = paper_adder_circuit()
     circuit.draw(output='mpl', filename="ComputationCircuit.png")
 
@@ -69,7 +70,7 @@ def main():
     graphviz_draw(circuit_graph, filename='ComputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
     
     print('Adding Uncomputation:')
-    uncomp_circuit_graph = add_uncomputation(circuit_graph)
+    uncomp_circuit_graph = add_uncomputation(circuit_graph, range(nq,nq+na))
     graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
     print('Building Uncomp Circuit from Uncomp Graph:')
