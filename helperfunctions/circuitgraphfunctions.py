@@ -67,20 +67,30 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
         )
         last_node_index[opnode.label] = opnode_index
 
-        # Adding the control edges
+        # Adding the control edges and Antidep between controls
         for qubit_index in qubit_indicies:
-            circuit_graph.add_edge(qubit_index, opnode_index, CONTROL)
+            circuit_graph.add_edge(qubit_index, opnode_index, CONTROL)        
+            
+            controls_adj = circuit_graph.adj(qubit_index)
+            try:
+                controls_target_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == TARGET and x[0] > qubit_index and not circuit_graph.has_edge(x[0], opnode_index), list(controls_adj.items())))))
+            except IndexError:
+                controls_target_idx = []
+
+            for idx in controls_target_idx:
+                circuit_graph.add_edge(opnode_index, idx, ANTIDEP)
 
         # Adding AntiDep Edges (Opnode to OTHER controlled nodes)
         prev_node_adj = circuit_graph.adj(prev_node_index)
         print(prev_node_adj)
         try:
-            prev_node_controlled_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL and x[0] > prev_node_index, list(prev_node_adj.items())))))
+            prev_node_controlled_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL and not circuit_graph.has_edge(x[0], opnode_index), list(prev_node_adj.items())))))
         except IndexError:
             prev_node_controlled_idx = []
 
         for idx in prev_node_controlled_idx:
             circuit_graph.add_edge(idx, opnode_index, ANTIDEP)
+            
 
         # print(circuit_graph.adj(opnode_index))
 

@@ -6,7 +6,7 @@ from helperfunctions.graphhelper import edge_attr, node_attr
 
 from rustworkx.visualization import graphviz_draw
 
-from helperfunctions.uncompfunctions import add_uncomputation
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding
 
 def paper_adder_circuit():
     adder_circuit = QuantumCircuit(4)
@@ -42,6 +42,16 @@ def generate_cx_random_circuit(num_qubits, num_ancilla, num_gates):
 
     return circuit
 
+def simple_circuit_with_a2_uncomputable():
+    circuit = QuantumCircuit(6)
+
+    for i in range(3):
+        circuit.cx(i,i+3)
+
+    circuit.cx(4,1)
+
+    return circuit
+
 def complex_circuit():
     circuit = QuantumCircuit(6)
     return circuit
@@ -58,11 +68,21 @@ def main():
     #     except:
     #         continue
     #     circ_gen = True
-    nq=3
-    na=1
     print('Creating Circuit:')
+    
+    
+    # nq=3
+    # na=1
     # circuit = paper_adder_circuit()
-    circuit = paper_adder_circuit()
+    
+    # nq=2
+    # na=2
+    # circuit = cyclic_circuit()
+
+    nq=3
+    na=3
+    circuit = simple_circuit_with_a2_uncomputable()
+
     circuit.draw(output='mpl', filename="ComputationCircuit.png")
 
     print('Building Circuit Graph:')
@@ -70,11 +90,29 @@ def main():
     graphviz_draw(circuit_graph, filename='ComputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
     
     print('Adding Uncomputation:')
-    uncomp_circuit_graph = add_uncomputation(circuit_graph, range(nq,nq+na))
+    uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, range(nq,nq+na))
     graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
-    print('Building Uncomp Circuit from Uncomp Graph:')
-    uncomp_circuit = get_uncomp_circuit(uncomp_circuit_graph)
-    uncomp_circuit.draw(output='mpl', filename='UncomputationCircuit.png')
+    if not has_cycle:
+        print('Building Uncomp Circuit from Uncomp Graph:')
+        uncomp_circuit = get_uncomp_circuit(uncomp_circuit_graph)
+        uncomp_circuit.draw(output='mpl', filename='UncomputationCircuit.png')
+    else:
+        print("=======================================================")
+        print('Uncomp Circuit Graph has cycle, can not uncompute all')
+        print('Trying Exhaustive Uncomp')
+        largest_set = exhaustive_uncomputation_adding(circuit_graph, nq, na)
+        print(F'Largest set of ancilla we can uncompute is {largest_set}')
+        uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, list(largest_set))
+        graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        print('Building Uncomp Circuit from Uncomp Graph:')
+        uncomp_circuit = get_uncomp_circuit(uncomp_circuit_graph)
+        uncomp_circuit.draw(output='mpl', filename='UncomputationCircuit.png')
+
+        print("=======================================================")
+        
+
+        # QuantumCircuit(nq+na).draw(output='mpl', filename='UncomputationCircuit.png')
+
 if __name__ == '__main__':
     main()
