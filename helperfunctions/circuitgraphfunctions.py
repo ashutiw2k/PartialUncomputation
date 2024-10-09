@@ -101,14 +101,16 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
 
 
 def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
+    
     sorted_circuit_graph = rustworkx.topological_sort(copy.deepcopy(circuit_graph))
     print(sorted_circuit_graph)
 
     uncomp_circuit = qiskit.QuantumCircuit(len(list(filter(lambda x: x.node_type == INIT, circuit_graph.nodes()))))
 
     for idx in sorted_circuit_graph:
-        print(circuit_graph.nodes()[idx])
-        node = circuit_graph.nodes()[idx]
+        # print(circuit_graph.nodes()[idx])
+        node = circuit_graph.get_node_data(idx) 
+        print(node)
         node_adj = circuit_graph.adj(idx)
         try:
             node_prev_idx = list(filter(lambda x: x[1] == TARGET and x[0] < node.get_index(), list(node_adj.items()))).pop()[0]

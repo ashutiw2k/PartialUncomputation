@@ -6,7 +6,7 @@ from helperfunctions.graphhelper import edge_attr, node_attr
 
 from rustworkx.visualization import graphviz_draw
 
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, exhaustive_uncomputation_removing, remove_uncomputation
 
 def paper_adder_circuit():
     adder_circuit = QuantumCircuit(4)
@@ -102,7 +102,9 @@ def main():
         print('Uncomp Circuit Graph has cycle, can not uncompute all')
         print('Trying Exhaustive Uncomp')
         largest_set = exhaustive_uncomputation_adding(circuit_graph, nq, na)
+        print("=======================================================")
         print(F'Largest set of ancilla we can uncompute is {largest_set}')
+        print("=======================================================")
         uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, list(largest_set))
         graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
         print('Building Uncomp Circuit from Uncomp Graph:')
@@ -111,6 +113,23 @@ def main():
 
         print("=======================================================")
         
+        print('Trying Exhaustive Removal Uncomp')
+        smallest_set = exhaustive_uncomputation_removing(circuit_graph, nq, na)
+        print("=======================================================")
+        print(F'Smallest set of ancilla to remove is {smallest_set}')
+        print("=======================================================")
+        cyclic_uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, range(nq,na+nq), allow_cycle=True)
+        
+        graphviz_draw(cyclic_uncomp_circuit_graph, filename='CyclicUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        reduced_uncomp_circuit_graph = remove_uncomputation(cyclic_uncomp_circuit_graph, smallest_set)
+        graphviz_draw(reduced_uncomp_circuit_graph, filename='ReducedUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        
+
+        print('Building Uncomp Circuit from Uncomp Graph:')
+        reduced_uncomp_circuit = get_uncomp_circuit(reduced_uncomp_circuit_graph)
+        reduced_uncomp_circuit.draw(output='mpl', filename='ReducedUncomputationCircuit.png')
+
+        print("=======================================================")
 
         # QuantumCircuit(nq+na).draw(output='mpl', filename='UncomputationCircuit.png')
 

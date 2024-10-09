@@ -26,6 +26,12 @@ def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
             return node.get_index()
     return node_index
 
+def get_comp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
+    for node in circuit_graph.nodes():
+        if node.node_type is COMP and node.get_nodenum() == circuit_graph.nodes()[node_index].get_nodenum:
+            return node.get_index()
+    return node_index
+
 def add_uncomputation_step(circuit_graph: rustworkx.PyDiGraph, idx):
 
     node = circuit_graph.nodes()[idx]
@@ -127,6 +133,71 @@ def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, num_qubi
             largest_uncomputable = ancilla_set
 
     return largest_uncomputable
+    
+
+def remove_uncomputation_step(uncomp_circuit_graph: rustworkx.PyDiGraph, idx):
+    comp_node_index = get_comp_node_index(uncomp_circuit_graph, idx)
+
+    adj_nodes = uncomp_circuit_graph.adj_direction(idx, False) # Get all outbound edges
+    print(adj_nodes)
+
+    try:
+        controlled_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL, list(adj_nodes.items())))))
+    except IndexError:
+        controlled_idx = []
+
+    print(controlled_idx)
+
+    uncomp_circuit_graph.remove_node(idx)
+    for idx in controlled_idx:
+        uncomp_circuit_graph.add_edge(comp_node_index, idx, CONTROL)
+
+
+    # print(uncomp_circuit_graph.nodes())
+    # print(uncomp_circuit_graph.edges())
+    # print(uncomp_circuit_graph.edge_list())
+    # a,b = map(list, zip(*uncomp_circuit_graph.edge_list()))
+
+    # new_uncomp_circuit_graph = rustworkx.PyDiGraph()
+    # new_uncomp_circuit_graph.add_nodes_from(uncomp_circuit_graph.nodes())
+    # new_uncomp_circuit_graph.add_edges_from(list(zip(a,b,uncomp_circuit_graph.edges())))
+
+    # return new_uncomp_circuit_graph
+
+
+def remove_uncomputation(uncomp_circuit_graph:rustworkx.PyDiGraph, ancillas):
+    circuit_graph = copy.deepcopy(uncomp_circuit_graph)
+    graph_nodes_reverse = circuit_graph.nodes()
+    graph_nodes_reverse.reverse()
+    print(graph_nodes_reverse)
+    for node in graph_nodes_reverse:
+        if node.qubit_wire in ancillas and node.node_type is UNCOMP:
+            remove_uncomputation_step(circuit_graph, node.index)
+
+    
+    return circuit_graph
+
+
+def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+    
+    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    ancillas_power_set = chain.from_iterable(combinations(ancillas, r) for r in range(len(ancillas)+1))
+    smallest_removable = ancillas
+    
+    uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+
+    # if not has_cycle:
+    #     return ancillas
+
+    for ancilla_set in ancillas_power_set:
+        reduced_uncomp_circuit_graph = remove_uncomputation(uncomp_circuit_graph, ancilla_set)
+        cycle = rustworkx.digraph_find_cycle(reduced_uncomp_circuit_graph)
+
+        if len(cycle) == 0 and len(ancilla_set) < len(smallest_removable):
+            smallest_removable = ancilla_set
+
+
+    return smallest_removable
     
     
 
