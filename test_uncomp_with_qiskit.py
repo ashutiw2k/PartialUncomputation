@@ -69,6 +69,19 @@ def complex_circuit_with_ancilla_in_multi_states():
 
     return circuit
 
+def simple_circuit_with_ancilla_in_multi_states():
+    circuit = QuantumCircuit(4)
+
+    circuit.cx(0,3)
+    circuit.cx(3,2)
+    circuit.cx(0,3)
+    
+    circuit.cx(0,2)
+    circuit.ccx(2,3,1)
+    
+
+    return circuit
+
 def complex_circuit():
     circuit = QuantumCircuit(6)
     return circuit
@@ -96,10 +109,14 @@ def main():
     # na=2
     # circuit = cyclic_circuit()
 
-    nq=3
-    na=3
-    circuit = simple_circuit_with_a2_uncomputable()    
+    # nq=3
+    # na=3
+    # circuit = simple_circuit_with_a2_uncomputable()    
      
+    nq=2
+    na=2
+    circuit = simple_circuit_with_ancilla_in_multi_states()
+
     # nq=3
     # na=3
     # circuit = complex_circuit_with_ancilla_in_multi_states()

@@ -39,12 +39,12 @@ def add_uncomputation_step(circuit_graph: rustworkx.PyDiGraph, idx):
     '''
 
     node = circuit_graph.get_node_data(idx)
-    node_adj = circuit_graph.adj(idx)
+    node_adj = circuit_graph.adj_direction(idx, True)
 
     assert node.opname not in NON_QFREE
 
     try:
-        node_controls_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL and x[0] < node.get_index(), list(node_adj.items())))))
+        node_controls_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL, list(node_adj.items())))))
     except IndexError:
         node_controls_idx = []
 
