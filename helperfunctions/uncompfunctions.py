@@ -22,13 +22,19 @@ NON_QFREE = ListConstants.NON_QFREE.value
 
 def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():
-        if node.node_type is UNCOMP and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
+        if node.node_type is UNCOMP \
+            and node.qubit_wire == circuit_graph.get_node_data(node_index).qubit_wire \
+            and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
+            
             return node.get_index()
     return node_index
 
 def get_comp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():
-        if node.node_type is COMP and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
+        if node.node_type is COMP \
+            and node.qubit_wire == circuit_graph.get_node_data(node_index).qubit_wire \
+            and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
+
             return node.get_index()
     return node_index
 
