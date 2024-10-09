@@ -113,13 +113,13 @@ def main():
     # na=3
     # circuit = simple_circuit_with_a2_uncomputable()    
      
-    nq=2
-    na=2
-    circuit = simple_circuit_with_ancilla_in_multi_states()
+    # nq=2
+    # na=2
+    # circuit = simple_circuit_with_ancilla_in_multi_states()
 
-    # nq=3
-    # na=3
-    # circuit = complex_circuit_with_ancilla_in_multi_states()
+    nq=3
+    na=3
+    circuit = complex_circuit_with_ancilla_in_multi_states()
 
     circuit.draw(output='mpl', filename="ComputationCircuit.png")
 
