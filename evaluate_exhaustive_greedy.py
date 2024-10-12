@@ -4,6 +4,7 @@ import random
 import sys
 
 from qiskit import QuantumCircuit
+import rustworkx
 
 from helperfunctions.randomcircuit import random_quantum_circuit
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation
@@ -55,6 +56,14 @@ def eval_main_func(num_circuits):
                       node_attr_fn=node_attr,
                       edge_attr_fn=edge_attr,
                       filename=f'evaluation_folder/comp_circuit_graph/{name_str}.png')
+        
+        if rustworkx.digraph_find_cycle(_circuit_graph):
+            print(f'Computation Graph has cycles !!!!')
+            logger.error(f'Computation Circuit Graph for circuit {name_str} has cycles!!')
+            for cycle in rustworkx.simple_cycles(_circuit_graph):
+                print(cycle)
+                logger.error(f'Cycle in {name_str} : {cycle}')
+
         
         _regular_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, range(num_q,num_q+num_a))
 

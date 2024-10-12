@@ -33,7 +33,7 @@ def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
 
 def get_comp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():
-        if node.node_type is COMP \
+        if node.node_type is not UNCOMP \
             and node.qubit_wire == circuit_graph.get_node_data(node_index).qubit_wire \
             and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
 
@@ -206,24 +206,32 @@ def greedy_uncomputation(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_anci
     ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
 
-    cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
-    while len(cycle) > 0:
-        cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+    cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+    while len(cycle_check) > 0:
+        uncomp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+        comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
 
         simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
         for cycle in simple_cycles:
             # print(cycle)
             for idx in cycle:
                 node = uncomp_circuit_graph.get_node_data(idx)
-                if node.qubit_type is ANCILLA:
-                    cycle_counter[node.qubit_wire] +=1
+                if node.qubit_type is ANCILLA: 
+                    if node.node_type is UNCOMP:
+                        uncomp_cycle_counter[node.qubit_wire] +=1
+                    else:
+                        comp_cycle_counter[node.qubit_wire] +=1
 
-        qubit, num_cycles = cycle_counter.most_common(1)[0]
+        if comp_cycle_counter.total() > 0:
+            print(f'Warning, removing uncomputation introduced cycles with computation nodes')
+            print(comp_cycle_counter)
+
+        qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
         print(qubit, num_cycles)
 
         uncomp_circuit_graph = remove_uncomputation(uncomp_circuit_graph, [qubit])
 
-        cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+        cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
     return uncomp_circuit_graph
 
