@@ -17,8 +17,6 @@ class StringConstants(Enum):
     ANTIDEP = 'anti-dependence'
 
 
-
-
 class ListConstants(Enum):
 
     NON_QFREE = ['h']

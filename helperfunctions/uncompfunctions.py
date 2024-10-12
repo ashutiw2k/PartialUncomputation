@@ -168,7 +168,7 @@ def remove_uncomputation(uncomp_circuit_graph:rustworkx.PyDiGraph, ancillas):
     circuit_graph = copy.deepcopy(uncomp_circuit_graph)
     graph_nodes_reverse = circuit_graph.nodes()
     graph_nodes_reverse.reverse()
-    print(graph_nodes_reverse)
+    # print(graph_nodes_reverse)
     for node in graph_nodes_reverse:
         if node.qubit_wire in ancillas and node.node_type is UNCOMP:
             remove_uncomputation_step(circuit_graph, node.index)
@@ -199,6 +199,32 @@ def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, num_qu
     return smallest_removable
     
     
+def greedy_uncomputation(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+    
+    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+
+    has_cycle = True
+    while has_cycle:
+        cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+
+        simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
+        for cycle in simple_cycles:
+            print(cycle)
+            for idx in cycle:
+                node = uncomp_circuit_graph.get_node_data(idx)
+                if node.qubit_type is ANCILLA:
+                    cycle_counter[node.qubit_wire] +=1
+
+        qubit, num_cycles = cycle_counter.most_common(1)[0]
+        print(qubit, num_cycles)
+
+        uncomp_circuit_graph = remove_uncomputation(uncomp_circuit_graph, [qubit])
+
+        has_cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+
+    return uncomp_circuit_graph
+
 
 
 
