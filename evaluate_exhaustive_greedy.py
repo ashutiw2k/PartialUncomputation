@@ -106,6 +106,8 @@ def eval_main_func(num_circuits):
 
 if __name__ == '__main__':
     
+    print(sys.argv)
+    logger.info(f'CMD Args - {sys.argv}')
     num_circuits = 1
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         num_circuits = int(sys.argv[1])

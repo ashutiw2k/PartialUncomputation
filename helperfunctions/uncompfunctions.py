@@ -206,13 +206,13 @@ def greedy_uncomputation(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_anci
     ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
 
-    has_cycle = True
-    while has_cycle:
+    cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+    while len(cycle) > 0:
         cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
 
         simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
         for cycle in simple_cycles:
-            print(cycle)
+            # print(cycle)
             for idx in cycle:
                 node = uncomp_circuit_graph.get_node_data(idx)
                 if node.qubit_type is ANCILLA:
@@ -223,7 +223,7 @@ def greedy_uncomputation(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_anci
 
         uncomp_circuit_graph = remove_uncomputation(uncomp_circuit_graph, [qubit])
 
-        has_cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+        cycle = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
     return uncomp_circuit_graph
 
