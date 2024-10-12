@@ -2,6 +2,7 @@ import collections
 import copy
 from itertools import chain, combinations
 from typing import List
+import logging
 import rustworkx
 
 from .constants import StringConstants, ListConstants
@@ -19,6 +20,7 @@ ANTIDEP = StringConstants.ANTIDEP.value
 
 NON_QFREE = ListConstants.NON_QFREE.value
 
+logger = logging.getLogger(__name__)
 
 def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():

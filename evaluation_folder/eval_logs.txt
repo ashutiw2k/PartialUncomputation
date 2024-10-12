@@ -245,3 +245,115 @@ INFO:root:Starting Evaluation with 10 random quantum circuits
 2024-10-11 22:04:09,994 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_4
 2024-10-11 22:04:10,013 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_4
 2024-10-11 22:04:10,198 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_4
+2024-10-11 22:10:41,569 - eval_main_func - 17 - INFO - Starting Evaluation with 5 random quantum circuits
+2024-10-11 22:10:41,570 - eval_main_func - 24 - INFO - Generating Random Circuit 0 with 4 input, 7 ancilla and 11 gates
+2024-10-11 22:10:41,578 - random_quantum_circuit - 54 - INFO - Built circuit with 4 input, 7 ancilla and 11 gates.
+2024-10-11 22:10:47,833 - eval_main_func - 32 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-11 22:10:47,953 - eval_main_func - 43 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-11 22:10:47,953 - eval_main_func - 45 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-11 22:10:48,113 - eval_main_func - 47 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is (4, 5, 6, 8, 9, 10)
+2024-10-11 22:10:48,115 - eval_main_func - 52 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:10:48,324 - eval_main_func - 58 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-11 22:10:48,686 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-11 22:10:48,690 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:10:48,902 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_0
+2024-10-11 22:10:49,307 - eval_main_func - 24 - INFO - Generating Random Circuit 1 with 5 input, 4 ancilla and 19 gates
+2024-10-11 22:10:49,310 - random_quantum_circuit - 54 - INFO - Built circuit with 5 input, 4 ancilla and 19 gates.
+2024-10-11 22:10:49,816 - eval_main_func - 32 - INFO - Creating Circuit Graph of circuit Circuit_1
+2024-10-11 22:10:50,066 - eval_main_func - 43 - WARNING - Trying to uncompute circuit Circuit_1 produces a cycle
+2024-10-11 22:10:50,066 - eval_main_func - 45 - INFO - Attempting to run exhaustive uncomp on Circuit_1
+2024-10-11 22:10:50,096 - eval_main_func - 47 - INFO - Largest Set of ancilla for Circuit_1 that can be uncomputed is (5,)
+2024-10-11 22:10:50,098 - eval_main_func - 52 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:10:50,330 - eval_main_func - 58 - INFO - Building Exhaustive Uncomp Circuit for Circuit_1
+2024-10-11 22:10:50,553 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_1
+2024-10-11 22:10:50,583 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:10:50,855 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_1
+2024-10-11 22:10:51,141 - eval_main_func - 24 - INFO - Generating Random Circuit 2 with 5 input, 5 ancilla and 18 gates
+2024-10-11 22:10:51,144 - random_quantum_circuit - 54 - INFO - Built circuit with 5 input, 5 ancilla and 18 gates.
+2024-10-11 22:10:51,594 - eval_main_func - 32 - INFO - Creating Circuit Graph of circuit Circuit_2
+2024-10-11 22:10:51,795 - eval_main_func - 43 - WARNING - Trying to uncompute circuit Circuit_2 produces a cycle
+2024-10-11 22:10:51,795 - eval_main_func - 45 - INFO - Attempting to run exhaustive uncomp on Circuit_2
+2024-10-11 22:10:51,852 - eval_main_func - 47 - INFO - Largest Set of ancilla for Circuit_2 that can be uncomputed is (6, 7, 8)
+2024-10-11 22:10:51,856 - eval_main_func - 52 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_2
+2024-10-11 22:10:52,146 - eval_main_func - 58 - INFO - Building Exhaustive Uncomp Circuit for Circuit_2
+2024-10-11 22:10:52,536 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_2
+2024-10-11 22:10:53,035 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_2
+2024-10-11 22:10:53,310 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_2
+2024-10-11 22:10:53,652 - eval_main_func - 24 - INFO - Generating Random Circuit 3 with 3 input, 6 ancilla and 9 gates
+2024-10-11 22:10:53,655 - random_quantum_circuit - 54 - INFO - Built circuit with 3 input, 6 ancilla and 9 gates.
+2024-10-11 22:10:53,995 - eval_main_func - 32 - INFO - Creating Circuit Graph of circuit Circuit_3
+2024-10-11 22:10:54,099 - eval_main_func - 43 - WARNING - Trying to uncompute circuit Circuit_3 produces a cycle
+2024-10-11 22:10:54,100 - eval_main_func - 45 - INFO - Attempting to run exhaustive uncomp on Circuit_3
+2024-10-11 22:10:54,219 - eval_main_func - 47 - INFO - Largest Set of ancilla for Circuit_3 that can be uncomputed is (4, 5, 6, 7, 8)
+2024-10-11 22:10:54,221 - eval_main_func - 52 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_3
+2024-10-11 22:10:54,388 - eval_main_func - 58 - INFO - Building Exhaustive Uncomp Circuit for Circuit_3
+2024-10-11 22:10:54,763 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_3
+2024-10-11 22:10:54,767 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_3
+2024-10-11 22:10:54,936 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_3
+2024-10-11 22:10:55,277 - eval_main_func - 24 - INFO - Generating Random Circuit 4 with 6 input, 5 ancilla and 16 gates
+2024-10-11 22:10:55,282 - random_quantum_circuit - 54 - INFO - Built circuit with 6 input, 5 ancilla and 16 gates.
+2024-10-11 22:10:56,056 - eval_main_func - 32 - INFO - Creating Circuit Graph of circuit Circuit_4
+2024-10-11 22:10:56,289 - eval_main_func - 43 - WARNING - Trying to uncompute circuit Circuit_4 produces a cycle
+2024-10-11 22:10:56,290 - eval_main_func - 45 - INFO - Attempting to run exhaustive uncomp on Circuit_4
+2024-10-11 22:10:56,339 - eval_main_func - 47 - INFO - Largest Set of ancilla for Circuit_4 that can be uncomputed is (6, 9)
+2024-10-11 22:10:56,341 - eval_main_func - 52 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_4
+2024-10-11 22:10:56,596 - eval_main_func - 58 - INFO - Building Exhaustive Uncomp Circuit for Circuit_4
+2024-10-11 22:10:56,896 - eval_main_func - 63 - INFO - Attempting to run greedy uncomp on Circuit_4
+2024-10-11 22:10:56,904 - eval_main_func - 66 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_4
+2024-10-11 22:10:57,202 - eval_main_func - 72 - INFO - Building Greedy Uncomp Circuit for Circuit_4
+2024-10-11 22:29:12,988 - eval_main_func - 30 - INFO - Starting Evaluation with 1 random quantum circuits
+2024-10-11 22:29:15,823 - eval_main_func - 51 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-11 22:29:15,956 - eval_main_func - 62 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-11 22:29:15,957 - eval_main_func - 64 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-11 22:29:15,963 - eval_main_func - 66 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is (3, 5)
+2024-10-11 22:29:15,964 - eval_main_func - 71 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:29:16,011 - eval_main_func - 77 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-11 22:29:16,274 - eval_main_func - 82 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-11 22:29:16,276 - eval_main_func - 85 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:29:16,323 - eval_main_func - 91 - INFO - Building Greedy Uncomp Circuit for Circuit_0
+2024-10-11 22:36:54,714 - eval_main_func - 30 - INFO - Starting Evaluation with 2 random quantum circuits
+2024-10-11 22:36:54,714 - eval_main_func - 38 - INFO - Generating Random Circuit 0 with 3 input, 8 ancilla and 12 gates
+2024-10-11 22:36:54,719 - random_quantum_circuit - 54 - INFO - Built circuit with 3 input, 8 ancilla and 12 gates.
+2024-10-11 22:37:00,831 - eval_main_func - 51 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-11 22:37:00,961 - eval_main_func - 62 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-11 22:37:00,961 - eval_main_func - 64 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-11 22:37:01,258 - eval_main_func - 66 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is (5, 6, 7, 8, 9)
+2024-10-11 22:37:01,260 - eval_main_func - 71 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:37:01,434 - eval_main_func - 77 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-11 22:37:01,845 - eval_main_func - 82 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-11 22:37:01,852 - eval_main_func - 85 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:37:02,034 - eval_main_func - 91 - INFO - Building Greedy Uncomp Circuit for Circuit_0
+2024-10-11 22:37:02,484 - eval_main_func - 38 - INFO - Generating Random Circuit 1 with 6 input, 4 ancilla and 8 gates
+2024-10-11 22:37:02,486 - random_quantum_circuit - 54 - INFO - Built circuit with 6 input, 4 ancilla and 8 gates.
+2024-10-11 22:37:02,900 - eval_main_func - 51 - INFO - Creating Circuit Graph of circuit Circuit_1
+2024-10-11 22:37:03,021 - eval_main_func - 62 - WARNING - Trying to uncompute circuit Circuit_1 produces a cycle
+2024-10-11 22:37:03,022 - eval_main_func - 64 - INFO - Attempting to run exhaustive uncomp on Circuit_1
+2024-10-11 22:37:03,047 - eval_main_func - 66 - INFO - Largest Set of ancilla for Circuit_1 that can be uncomputed is (8,)
+2024-10-11 22:37:03,049 - eval_main_func - 71 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:37:03,159 - eval_main_func - 77 - INFO - Building Exhaustive Uncomp Circuit for Circuit_1
+2024-10-11 22:37:03,438 - eval_main_func - 82 - INFO - Attempting to run greedy uncomp on Circuit_1
+2024-10-11 22:37:03,445 - eval_main_func - 85 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:37:03,528 - eval_main_func - 91 - INFO - Building Greedy Uncomp Circuit for Circuit_1
+2024-10-11 22:44:39,402 - eval_main_func - 30 - INFO - Starting Evaluation with 2 random quantum circuits
+2024-10-11 22:44:39,403 - eval_main_func - 38 - INFO - Generating Random Circuit 0 with 6 input, 6 ancilla and 8 gates
+2024-10-11 22:44:39,406 - random_quantum_circuit - 54 - INFO - Built circuit with 6 input, 6 ancilla and 8 gates.
+2024-10-11 22:44:42,227 - eval_main_func - 51 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-11 22:44:42,381 - eval_main_func - 62 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-11 22:44:42,382 - eval_main_func - 64 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-11 22:44:42,459 - eval_main_func - 66 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is (7, 9, 10, 11)
+2024-10-11 22:44:42,461 - eval_main_func - 71 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:44:42,621 - eval_main_func - 77 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-11 22:44:43,146 - eval_main_func - 82 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-11 22:44:43,151 - eval_main_func - 85 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_0
+2024-10-11 22:44:43,325 - eval_main_func - 91 - INFO - Building Greedy Uncomp Circuit for Circuit_0
+2024-10-11 22:44:43,849 - eval_main_func - 38 - INFO - Generating Random Circuit 1 with 6 input, 3 ancilla and 18 gates
+2024-10-11 22:44:43,853 - random_quantum_circuit - 54 - INFO - Built circuit with 6 input, 3 ancilla and 18 gates.
+2024-10-11 22:44:44,403 - eval_main_func - 51 - INFO - Creating Circuit Graph of circuit Circuit_1
+2024-10-11 22:44:44,726 - eval_main_func - 62 - WARNING - Trying to uncompute circuit Circuit_1 produces a cycle
+2024-10-11 22:44:44,727 - eval_main_func - 64 - INFO - Attempting to run exhaustive uncomp on Circuit_1
+2024-10-11 22:44:44,742 - eval_main_func - 66 - INFO - Largest Set of ancilla for Circuit_1 that can be uncomputed is ()
+2024-10-11 22:44:44,744 - eval_main_func - 71 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:44:45,101 - eval_main_func - 77 - INFO - Building Exhaustive Uncomp Circuit for Circuit_1
+2024-10-11 22:44:45,529 - eval_main_func - 82 - INFO - Attempting to run greedy uncomp on Circuit_1
+2024-10-11 22:44:46,618 - eval_main_func - 85 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_1
+2024-10-11 22:44:46,968 - eval_main_func - 91 - INFO - Building Greedy Uncomp Circuit for Circuit_1

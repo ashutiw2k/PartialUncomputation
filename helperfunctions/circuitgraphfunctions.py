@@ -131,6 +131,9 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
         prev_node = circuit_graph.get_node_data(node_prev_idx)
         control_nodes = [circuit_graph.get_node_data(idx) for idx in node_controls_idx]
         opname = node.opname
+        if opname == 'mcx':
+            controls = [control_nodes[i].qubit_wire for i in range(len(control_nodes))]
+            uncomp_circuit.mcx(controls, prev_node.qubit_wire)
         if opname == 'ccx':
             assert len(control_nodes) == 2
             uncomp_circuit.ccx(control_nodes[0].qubit_wire, control_nodes[1].qubit_wire, prev_node.qubit_wire)

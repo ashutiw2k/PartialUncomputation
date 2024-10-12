@@ -121,20 +121,20 @@ def main():
     na=3
     circuit = complex_circuit_with_ancilla_in_multi_states()
 
-    circuit.draw(output='mpl', filename="ComputationCircuit.png")
+    circuit.draw(output='mpl', filename="test_figures/ComputationCircuit.png")
 
     print('Building Circuit Graph:')
     circuit_graph = get_computation_graph(circuit, nq)
-    graphviz_draw(circuit_graph, filename='ComputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+    graphviz_draw(circuit_graph, filename='test_figures/ComputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
     
     print('Adding Uncomputation:')
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, range(nq,nq+na))
-    graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+    graphviz_draw(uncomp_circuit_graph, filename='test_figures/UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
     if not has_cycle:
         print('Building Uncomp Circuit from Uncomp Graph:')
         uncomp_circuit = get_uncomp_circuit(uncomp_circuit_graph)
-        uncomp_circuit.draw(output='mpl', filename='UncomputationCircuit.png')
+        uncomp_circuit.draw(output='mpl', filename='test_figures/UncomputationCircuit.png')
     else:
         print("=======================================================")
         print('Uncomp Circuit Graph has cycle, can not uncompute all')
@@ -144,10 +144,10 @@ def main():
         print(F'Largest set of ancilla we can uncompute is {largest_set}')
         print("=======================================================")
         uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, list(largest_set))
-        graphviz_draw(uncomp_circuit_graph, filename='UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        graphviz_draw(uncomp_circuit_graph, filename='test_figures/UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
         print('Building Uncomp Circuit from Uncomp Graph:')
         uncomp_circuit = get_uncomp_circuit(uncomp_circuit_graph)
-        uncomp_circuit.draw(output='mpl', filename='UncomputationCircuit.png')
+        uncomp_circuit.draw(output='mpl', filename='test_figures/UncomputationCircuit.png')
 
         print("=======================================================")
         
@@ -158,14 +158,14 @@ def main():
         print("=======================================================")
         cyclic_uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, range(nq,na+nq), allow_cycle=True)
         
-        graphviz_draw(cyclic_uncomp_circuit_graph, filename='CyclicUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        graphviz_draw(cyclic_uncomp_circuit_graph, filename='test_figures/CyclicUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
         reduced_uncomp_circuit_graph = remove_uncomputation(cyclic_uncomp_circuit_graph, smallest_set)
-        graphviz_draw(reduced_uncomp_circuit_graph, filename='ReducedUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+        graphviz_draw(reduced_uncomp_circuit_graph, filename='test_figures/ReducedUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
         
 
         print('Building Uncomp Circuit from Uncomp Graph:')
         reduced_uncomp_circuit = get_uncomp_circuit(reduced_uncomp_circuit_graph)
-        reduced_uncomp_circuit.draw(output='mpl', filename='ReducedUncomputationCircuit.png')
+        reduced_uncomp_circuit.draw(output='mpl', filename='test_figures/ReducedUncomputationCircuit.png')
 
         print("=======================================================")
 
