@@ -15,9 +15,29 @@ def simple_circuit_with_a2_uncomputable():
 
     return circuit
 
-circuit = simple_circuit_with_a2_uncomputable()
-comp_graph = get_computation_graph(circuit, 3)
-uncomp_graph = greedy_uncomputation(comp_graph, 3,3)
+def complex_circuit_failing_greedy_uncomp():
+    circuit = QuantumCircuit(8)
+    circuit.mcx([5,6,7], 0)
+    circuit.mcx([0,2], 6)
+    circuit.mcx([7,5], 1)
+    circuit.mcx([0],6)
+    circuit.mcx([0,3],6)
+    circuit.mcx([5,6,7], 3)
+    circuit.mcx([5,6], 4)
+    circuit.mcx([0,2,3,4], 7)
+    circuit.mcx([5,6,7], 0)
+    circuit.mcx([5,6], 3)
+    circuit.mcx([2,3,4], 6)
+    circuit.mcx([6],0)
+    circuit.mcx([0,1,2,3], 5)
+    circuit.mcx([0,1,2,3], 5)
+    circuit.mcx([5,6,7], 2)
+
+    return circuit    
+
+circuit = complex_circuit_failing_greedy_uncomp()
+comp_graph = get_computation_graph(circuit, 5)
+uncomp_graph = greedy_uncomputation(comp_graph, 5,3)
 
 
 graphviz_draw(uncomp_graph, filename='GreedyUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
