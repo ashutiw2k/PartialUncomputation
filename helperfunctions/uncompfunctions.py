@@ -161,32 +161,6 @@ def remove_uncomputation_step(uncomp_circuit_graph: rustworkx.PyDiGraph, idx):
 
     print(controlled_idx)
 
-    '''
-    for control_idx in node_controls_idx_uncomp:
-        circuit_graph.add_edge(control_idx, uncomp_node_index, CONTROL)
-
-        controls_adj = circuit_graph.adj_direction(control_idx, False)
-        try:
-            controls_target_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == TARGET and not circuit_graph.has_edge(x[0], uncomp_node_index), list(controls_adj.items())))))
-        except IndexError:
-            controls_target_idx = []
-
-        for idx in controls_target_idx:
-            circuit_graph.add_edge(uncomp_node_index, idx, ANTIDEP)
-
-
-    prev_node_adj = circuit_graph.adj_direction(prev_node_index, False)
-    print(prev_node_adj)
-    try:
-        prev_node_controlled_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL and not circuit_graph.has_edge(x[0], uncomp_node_index), list(prev_node_adj.items())))))
-    except IndexError:
-        prev_node_controlled_idx = []
-
-    for idx in prev_node_controlled_idx:
-        circuit_graph.add_edge(idx, uncomp_node_index, ANTIDEP)
-
-    '''
-
     uncomp_circuit_graph.remove_node(idx)
     
     for idx in controlled_idx:
@@ -300,7 +274,7 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
 
     target_path.sort(reverse=True)
 
-    print(f'nodes_in_cycle: {nodes_in_cycle}')
+    # print(f'nodes_in_cycle: {nodes_in_cycle}')
     print(f'target_path: {target_path}')
     print(f'cycles_per_nodes: {cycles_per_nodes}')
     print(f'uncomp_nodes_part_of_cycle: {uncomp_nodes_part_of_cycle}')
@@ -313,7 +287,7 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
             # controls_ancilla = False
             idx_adj_nodes = circuit_graph.adj_direction(idx, False)
             controls = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and circuit_graph.get_node_data(x).node_type is UNCOMP, 
-                                   adj_nodes.keys()))
+                                   idx_adj_nodes.keys()))
             idx_cycles = qubit_node_cycles[idx]
             # print(f'{idx} : {idx_cycles}')
 
