@@ -248,17 +248,17 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, num_qubit, num
 
 
 
-def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancilla: int, nodes_in_cycle:List[int], qubit_node_cycles:Dict):
+def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancilla: int, nodes_in_cycle:List[int]):
     circuit_graph = copy.deepcopy(uncomp_circuit_graph)
     graph_nodes_reverse = circuit_graph.nodes()
     graph_nodes_reverse.reverse()
     # print(graph_nodes_reverse)
     # Initialize node for this will have same index as ancilla
 
-    first_node = circuit_graph.get_node_data(ancilla)
+    # first_node = circuit_graph.get_node_data(ancilla)
     adj_nodes = circuit_graph.adj_direction(ancilla, False)
     target_path = [ancilla]
-    cycles_per_nodes = collections.Counter(nodes_in_cycle)
+    # cycles_per_nodes = collections.Counter(nodes_in_cycle)
     uncomp_nodes_part_of_cycle = set(nodes_in_cycle)
 
     while len(adj_nodes) > 0:
@@ -269,16 +269,16 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
 
         # print(target_node)
         target_path.append(target_node)
-        node = circuit_graph.get_node_data(target_node)
+        # node = circuit_graph.get_node_data(target_node)
         adj_nodes = circuit_graph.adj_direction(target_node, False)
 
     target_path.sort(reverse=True)
 
     # print(f'nodes_in_cycle: {nodes_in_cycle}')
-    print(f'target_path: {target_path}')
-    print(f'cycles_per_nodes: {cycles_per_nodes}')
-    print(f'uncomp_nodes_part_of_cycle: {uncomp_nodes_part_of_cycle}')
-    print(f'qubit_node_cycles: {qubit_node_cycles}')
+    # print(f'target_path: {target_path}')
+    # print(f'cycles_per_nodes: {cycles_per_nodes}')
+    # print(f'uncomp_nodes_part_of_cycle: {uncomp_nodes_part_of_cycle}')
+    # print(f'qubit_node_cycles: {qubit_node_cycles}')
     
     # exit(0) 
 
@@ -288,7 +288,7 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
             idx_adj_nodes = circuit_graph.adj_direction(idx, False)
             controls = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and circuit_graph.get_node_data(x).node_type is UNCOMP, 
                                    idx_adj_nodes.keys()))
-            idx_cycles = qubit_node_cycles[idx]
+            # idx_cycles = qubit_node_cycles[idx]
             # print(f'{idx} : {idx_cycles}')
 
 
@@ -338,12 +338,12 @@ def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, num_qubit, 
             logger.warning(comp_cycle_counter)
 
         qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
-        qubit_nodes_cycles = {i:node_cycle_dict.get(i) for i in set(uncomp_cycle_nodes[qubit])}
+        # qubit_nodes_cycles = {i:node_cycle_dict.get(i) for i in set(uncomp_cycle_nodes[qubit])}
         print(qubit, num_cycles)
 
 
 
-        uncomp_circuit_graph = remove_uncomputation_partial(uncomp_circuit_graph, qubit, uncomp_cycle_nodes[qubit], qubit_nodes_cycles)
+        uncomp_circuit_graph = remove_uncomputation_partial(uncomp_circuit_graph, qubit, uncomp_cycle_nodes[qubit])
 
         cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 

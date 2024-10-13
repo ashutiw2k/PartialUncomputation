@@ -7,7 +7,7 @@ from qiskit import QuantumCircuit
 import rustworkx
 
 from helperfunctions.randomcircuit import random_quantum_circuit
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
@@ -33,9 +33,9 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     print('****************************************************************************')
     for i in range(num_circuits):
         if num_circuits > 1:
-            num_q = random.randint(5,15)
-            num_a = random.randint(5,15)
-            num_g = random.randint(50,100)
+            num_q = random.randint(3,10)
+            num_a = random.randint(3,10)
+            num_g = random.randint(5,15)
 
             logger.info(f'Generating Random Circuit {i} with {num_q} input, {num_a} ancilla and {num_g} gates')
             _circuit = random_quantum_circuit(num_q,num_a,num_g)
@@ -101,7 +101,20 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             logger.info(f'Building Greedy Uncomp Circuit for {name_str}')
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
             _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
+#**************************************************************************************************************#
+            logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
+            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, num_q, num_a)
+            
+            logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
+            graphviz_draw(_greedy_partial_uncomp_circuit_graph,
+                      node_attr_fn=node_attr,
+                      edge_attr_fn=edge_attr,
+                      filename=f'{eval_dir}/greedy_partial_uncomp_graph/{name_str}.png')
 
+            logger.info(f'Building Greedy Partial Uncomp Circuit for {name_str}')
+            _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
+            _greedy_partial_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
+#**************************************************************************************************************#
         else:
             logger.info(f'Drawing Regular Uncomp Circuit Graph for {name_str}')
             graphviz_draw(_regular_uncomp_circuit_graph,
