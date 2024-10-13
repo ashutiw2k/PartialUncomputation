@@ -6,7 +6,7 @@ from helperfunctions.graphhelper import edge_attr, node_attr
 
 from rustworkx.visualization import graphviz_draw
 
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, exhaustive_uncomputation_removing, remove_uncomputation
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, exhaustive_uncomputation_removing, remove_uncomputation_full
 
 def paper_adder_circuit():
     adder_circuit = QuantumCircuit(4)
@@ -159,7 +159,7 @@ def main():
         cyclic_uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, range(nq,na+nq), allow_cycle=True)
         
         graphviz_draw(cyclic_uncomp_circuit_graph, filename='test_figures/CyclicUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
-        reduced_uncomp_circuit_graph = remove_uncomputation(cyclic_uncomp_circuit_graph, smallest_set)
+        reduced_uncomp_circuit_graph = remove_uncomputation_full(cyclic_uncomp_circuit_graph, smallest_set)
         graphviz_draw(reduced_uncomp_circuit_graph, filename='test_figures/ReducedUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
         
 

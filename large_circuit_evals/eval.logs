@@ -1,0 +1,10 @@
+2024-10-12 11:03:52,466 - eval_main_func - 32 - INFO - Starting Evaluation with 10 random quantum circuits
+2024-10-12 11:03:52,467 - eval_main_func - 40 - INFO - Generating Random Circuit 0 with 12 input, 7 ancilla and 85 gates
+2024-10-12 11:03:52,479 - random_quantum_circuit - 54 - INFO - Built circuit with 12 input, 7 ancilla and 85 gates.
+2024-10-12 11:03:56,983 - eval_main_func - 53 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-12 11:07:25,314 - eval_main_func - 72 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-12 11:07:25,316 - eval_main_func - 74 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-12 11:07:26,142 - eval_main_func - 76 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is ()
+2024-10-12 11:07:26,150 - eval_main_func - 81 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
+2024-10-12 11:11:12,430 - eval_main_func - 87 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-12 11:11:14,996 - eval_main_func - 92 - INFO - Attempting to run greedy uncomp on Circuit_0

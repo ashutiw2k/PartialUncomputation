@@ -1,6 +1,6 @@
 from qiskit import QuantumCircuit
 import rustworkx
-from helperfunctions.uncompfunctions import greedy_uncomputation
+from helperfunctions.uncompfunctions import greedy_uncomputation_full
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 
 from helperfunctions.graphhelper import edge_attr, node_attr
@@ -48,7 +48,7 @@ if rustworkx.digraph_find_cycle(comp_graph):
     for cycle in rustworkx.simple_cycles(comp_graph):
         print(cycle)
     
-uncomp_graph = greedy_uncomputation(comp_graph, 5,3)
+uncomp_graph = greedy_uncomputation_full(comp_graph, 5,3)
 
 
 graphviz_draw(uncomp_graph, filename='test_figures/GreedyUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')

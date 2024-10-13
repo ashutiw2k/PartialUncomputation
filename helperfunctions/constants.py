@@ -20,3 +20,13 @@ class StringConstants(Enum):
 class ListConstants(Enum):
 
     NON_QFREE = ['h']
+
+EVAL_DIRS = ['comp_circuit', 
+             'comp_circuit_graph', 
+             'exhaustive_uncomp_circuit',
+             'exhaustive_uncomp_graph',
+             'greedy_uncomp_circuit',
+             'greedy_uncomp_graph',
+             'regular_uncomp_circuit',
+             'regular_uncomp_graph'
+             ]
