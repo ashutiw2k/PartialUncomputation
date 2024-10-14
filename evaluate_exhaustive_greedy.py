@@ -6,7 +6,7 @@ import sys
 from qiskit import QuantumCircuit
 import rustworkx
 
-from helperfunctions.randomcircuit import random_quantum_circuit
+from helperfunctions.randomcircuit import random_quantum_circuit_basic
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
@@ -38,7 +38,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             num_g = random.randint(5,15)
 
             logger.info(f'Generating Random Circuit {i} with {num_q} input, {num_a} ancilla and {num_g} gates')
-            _circuit = random_quantum_circuit(num_q,num_a,num_g)
+            _circuit = random_quantum_circuit_basic(num_q,num_a,num_g)
 
         else:
             _circuit = simple_circuit_with_a2_uncomputable()

@@ -1,5 +1,7 @@
+import random
 from qiskit import QuantumCircuit
 import rustworkx
+from helperfunctions.randomcircuit import random_quantum_circuit_for_partial
 from helperfunctions.uncompfunctions import greedy_uncomputation_partial, add_uncomputation
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 
@@ -29,7 +31,12 @@ def test_circuit():
 
     return circuit,3,3
 
-circuit,num_q,num_a = test_circuit()
+# circuit,num_q,num_a = test_circuit()
+num_q = random.randint(3,5)
+num_a = random.randint(3,5)
+num_g = random.randint(6,10)
+circuit = random_quantum_circuit_for_partial(num_q, num_a, num_g)
+
 circuit.draw("mpl", filename='test_figures/Greedy_Partial_Circuit.png')
 ancillas_list = [breakdown_qubit(q)['label'] for q in circuit.qubits][-num_a:]
 comp_graph = get_computation_graph(circuit, ancillas_list)

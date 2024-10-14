@@ -1,5 +1,5 @@
 from helperfunctions.graphhelper import edge_attr, node_attr
-from helperfunctions.randomcircuit import random_quantum_circuit
+from helperfunctions.randomcircuit import random_quantum_circuit_basic
 from helperfunctions.circuitgraphfunctions import get_uncomp_circuit
 from helperfunctions.circuitgraphfunctions import get_computation_graph
 
@@ -11,7 +11,7 @@ num_q = random.randint(3,5)
 num_a = random.randint(3,5)
 num_g = random.randint(5,10)
 
-circuit = random_quantum_circuit(num_q, num_a, num_g)
+circuit = random_quantum_circuit_basic(num_q, num_a, num_g)
 circuit.draw('mpl', filename='test_figures/random_circuit_gen/test_circuit.png')
 
 comp_graph = get_computation_graph(circuit, num_q)
