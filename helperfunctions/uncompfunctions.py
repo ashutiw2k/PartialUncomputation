@@ -322,7 +322,7 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
             # Get all outward/leaving edges
             idx_adj_nodes = circuit_graph.adj_direction(idx, False)
             # Get all nodes for which this node is a control and the controlled node is an uncomp node. 
-            controls = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and circuit_graph.get_node_data(x).node_type is UNCOMP, 
+            controlled_nodes = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and circuit_graph.get_node_data(x).node_type is UNCOMP, 
                                    idx_adj_nodes.keys()))
             # idx_cycles = qubit_node_cycles[idx]
             # print(f'{idx} : {idx_cycles}')
@@ -330,10 +330,14 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
             # NOT SURE ABOUT THIS CHECK
             # DON'T HAVE A GOOD/CONFIDENT ARGUMENT WHY THIS WORKS
             # DON'T HAVE AN EXAMPLE WHERE IT FAILS. 
-            if len(controls) == 0:
+            if len(controlled_nodes) == 0:
                 remove_uncomputation_step(circuit_graph, idx)
             else:
-                break
+                # Note - got an example, which is why added this 
+                for c in controlled_nodes:
+                    if rustworkx.digraph_find_cycle(circuit_graph, c):
+                        remove_uncomputation_step(circuit_graph, idx)
+                        break
         
     return circuit_graph
 
