@@ -11,7 +11,7 @@ from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomp
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
-from helperfunctions.graphhelper import edge_attr, node_attr
+from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr
 from rustworkx.visualization import graphviz_draw
 
 # logging.config.fileConfig('logger.config')
@@ -51,7 +51,8 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
                      filename=f'{eval_dir}/comp_circuit/{name_str}.png')
         
         logger.info(f'Creating Circuit Graph of circuit {name_str}')
-        _circuit_graph = get_computation_graph(_circuit, num_q)
+        ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
+        _circuit_graph = get_computation_graph(_circuit, ancillas_list)
 
         graphviz_draw(_circuit_graph,
                       node_attr_fn=node_attr,
@@ -66,13 +67,13 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
                 logger.error(f'Cycle in {name_str} : {cycle}')
 
         
-        _regular_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, range(num_q,num_q+num_a))
+        _regular_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, ancillas_list)
 
         if has_cycle:
             logger.warning(f'Trying to uncompute circuit {name_str} produces a cycle')
 
             logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
-            largest_set = exhaustive_uncomputation_adding(_circuit_graph, num_q, num_a)
+            largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
             logger.info(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
             _exhaustive_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, list(largest_set))
             if has_cycle:
@@ -90,7 +91,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
 # ***************************************************************************************************************#
             logger.info(f'Attempting to run greedy uncomp on {name_str}')
-            _greedy_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, num_q, num_a)
+            _greedy_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
             
             logger.info(f'Drawing Greedy Uncomp Circuit Graph for {name_str}')
             graphviz_draw(_greedy_uncomp_circuit_graph,
@@ -103,7 +104,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
 #**************************************************************************************************************#
             logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
-            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, num_q, num_a)
+            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
             
             logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
             graphviz_draw(_greedy_partial_uncomp_circuit_graph,

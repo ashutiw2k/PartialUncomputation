@@ -3,7 +3,7 @@ import rustworkx
 from helperfunctions.uncompfunctions import greedy_uncomputation_partial, add_uncomputation
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 
-from helperfunctions.graphhelper import edge_attr, node_attr
+from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr
 from rustworkx.visualization import graphviz_draw
 
 def test_circuit():
@@ -27,11 +27,12 @@ def test_circuit():
     # circuit.cx(2,5)
 
 
-    return circuit
+    return circuit,3,3
 
-circuit = test_circuit()
+circuit,num_q,num_a = test_circuit()
 circuit.draw("mpl", filename='test_figures/Greedy_Partial_Circuit.png')
-comp_graph = get_computation_graph(circuit, 3)
+ancillas_list = [breakdown_qubit(q)['label'] for q in circuit.qubits][-num_a:]
+comp_graph = get_computation_graph(circuit, ancillas_list)
 graphviz_draw(comp_graph, filename='test_figures/Greedy_Partial_CircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 if rustworkx.digraph_find_cycle(comp_graph):
@@ -39,10 +40,10 @@ if rustworkx.digraph_find_cycle(comp_graph):
     for cycle in rustworkx.simple_cycles(comp_graph):
         print(cycle)
 
-cyclic_uncomp_graph, has_cycle = add_uncomputation(comp_graph, range(3,6), allow_cycle=True)
+cyclic_uncomp_graph, has_cycle = add_uncomputation(comp_graph, ancillas_list, allow_cycle=True)
 graphviz_draw(cyclic_uncomp_graph, filename='test_figures/Cyclic_Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
-uncomp_graph = greedy_uncomputation_partial(comp_graph, 3,3)
+uncomp_graph = greedy_uncomputation_partial(comp_graph, ancillas_list)
 graphviz_draw(uncomp_graph, filename='test_figures/Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 uncomp_circuit = get_uncomp_circuit(uncomp_graph)
