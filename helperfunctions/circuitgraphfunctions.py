@@ -1,6 +1,8 @@
 
 
+import collections
 import copy
+from typing import List
 import qiskit
 import rustworkx
 
@@ -19,19 +21,19 @@ CONTROL = StringConstants.CONTROL.value
 ANTIDEP = StringConstants.ANTIDEP.value
 
 
-def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start: int):
+def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancillas: List):
     circuit_graph = rustworkx.PyDiGraph(multigraph=False)
     last_node_index = {}
     # Add the initial qubits
 
-    ANCILLA_START = ancilla_start
+    # ANCILLA_START = ancilla_start
 
     circuit_qubits = circuit.qubits
     circuit_data = circuit.data
 
     for qubit in circuit_qubits:
         qubit_dict = breakdown_qubit(qubit)
-        qubit_type = INPUT if qubit_dict['wire'] < ANCILLA_START else ANCILLA
+        qubit_type = ANCILLA if qubit_dict['label'] in ancillas else INPUT
         init_node = CGNode(qubit_dict, qubit_type=qubit_type, node_type=INIT)
         index = circuit_graph.add_node(init_node)
         circuit_graph.get_node_data(index).set_index(index)
@@ -58,7 +60,7 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
         prev_node_index = qubit_indicies.pop()
         print(prev_node_index)
         # Adding the node
-        qubit_type = INPUT if qubit_dict_all[-1]['wire'] < ANCILLA_START else ANCILLA
+        qubit_type = ANCILLA if qubit_dict_all[-1]['label'] in ancillas else INPUT
         opnode = CGNode(qubit_dict_all[-1], qubit_type=qubit_type, node_type=COMP, opname=opname)
         opnode_index = circuit_graph.add_child(prev_node_index, opnode, TARGET)
         circuit_graph.get_node_data(opnode_index).set_index(opnode_index)
@@ -100,12 +102,81 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancilla_start:
     return circuit_graph
 
 
+# def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
+    
+#     sorted_circuit_graph = rustworkx.topological_sort(copy.deepcopy(circuit_graph))
+#     print(sorted_circuit_graph)
+
+#     uncomp_circuit = qiskit.QuantumCircuit(len(list(filter(lambda x: x.node_type == INIT, circuit_graph.nodes()))))
+
+#     for idx in sorted_circuit_graph:
+#         # print(circuit_graph.nodes()[idx])
+#         node = circuit_graph.get_node_data(idx) 
+#         print(node)
+#         node_adj = circuit_graph.adj(idx)
+#         try:
+#             node_prev_idx = list(filter(lambda x: x[1] == TARGET and x[0] < node.get_index(), list(node_adj.items()))).pop()[0]
+#         except IndexError:
+#             node_prev_idx = None
+
+#         try:
+#             node_controls_idx = list(map(lambda x: x[0], list(filter(lambda x: x[1] == CONTROL and x[0] < node.get_index(), list(node_adj.items())))))
+#         except IndexError:
+#             node_controls_idx = []
+
+#         # node_controls = circuit_graph.find_successors_by_edge(idx, lambda x:x==CONTROL)
+#         print(node_prev_idx)
+#         print(node_controls_idx)
+#         print('------------------------------------------------')
+#         if node_prev_idx is None:
+#             continue
+#         prev_node = circuit_graph.get_node_data(node_prev_idx)
+#         control_nodes = [circuit_graph.get_node_data(idx) for idx in node_controls_idx]
+#         opname = node.opname
+#         if opname == 'mcx':
+#             controls = [control_nodes[i].qubit_wire for i in range(len(control_nodes))]
+#             uncomp_circuit.mcx(controls, prev_node.qubit_wire)
+#         if opname == 'ccx':
+#             assert len(control_nodes) == 2
+#             uncomp_circuit.ccx(control_nodes[0].qubit_wire, control_nodes[1].qubit_wire, prev_node.qubit_wire)
+#         elif opname == 'cx':
+#             assert len(control_nodes) == 1
+#             uncomp_circuit.cx(control_nodes[0].qubit_wire, prev_node.qubit_wire)
+#         elif opname == 'cz':
+#             assert len(control_nodes) == 1
+#             uncomp_circuit.cz(control_nodes[0].qubit_wire, prev_node.qubit_wire)
+#         elif opname == 'x':
+#             assert len(control_nodes) == 0
+#             uncomp_circuit.x(prev_node.qubit_wire)
+#         elif opname == 'z':
+#             assert len(control_nodes) == 0
+#             uncomp_circuit.z(prev_node.qubit_wire)
+#         elif opname == 'h':
+#             assert len(control_nodes) == 0
+#             uncomp_circuit.h(prev_node.qubit_wire)
+
+
+#     return uncomp_circuit
+
+
 def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
     
     sorted_circuit_graph = rustworkx.topological_sort(copy.deepcopy(circuit_graph))
     print(sorted_circuit_graph)
 
-    uncomp_circuit = qiskit.QuantumCircuit(len(list(filter(lambda x: x.node_type == INIT, circuit_graph.nodes()))))
+    init_nodes = list(filter(lambda x: x.node_type == INIT, circuit_graph.nodes()))
+    init_nodes_qubits = collections.Counter([x.qubit_name for x in init_nodes])
+    init_node_labels = [x.label for x in init_nodes]
+
+    qubits = [qiskit.QuantumRegister(size=x[1], name=x[0]) for x in init_nodes_qubits.items()]
+
+    print(init_nodes_qubits)
+    print(init_node_labels)
+
+    new_uncomp_circuit = qiskit.QuantumCircuit(*qubits)
+
+
+    # uncomp_circuit = qiskit.QuantumCircuit(len(list(filter(lambda x: x.node_type == INIT, circuit_graph.nodes()))))
 
     for idx in sorted_circuit_graph:
         # print(circuit_graph.nodes()[idx])
@@ -129,29 +200,31 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
         if node_prev_idx is None:
             continue
         prev_node = circuit_graph.get_node_data(node_prev_idx)
+        prev_node_wire = init_node_labels.index(prev_node.label)
         control_nodes = [circuit_graph.get_node_data(idx) for idx in node_controls_idx]
+        control_nodes_wires = [init_node_labels.index(node.label) for node in control_nodes]
         opname = node.opname
         if opname == 'mcx':
-            controls = [control_nodes[i].qubit_wire for i in range(len(control_nodes))]
-            uncomp_circuit.mcx(controls, prev_node.qubit_wire)
+            controls = [control_nodes_wires[i] for i in range(len(control_nodes_wires))]
+            new_uncomp_circuit.mcx(controls, prev_node_wire)
         if opname == 'ccx':
-            assert len(control_nodes) == 2
-            uncomp_circuit.ccx(control_nodes[0].qubit_wire, control_nodes[1].qubit_wire, prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 2
+            new_uncomp_circuit.ccx(control_nodes_wires[0], control_nodes_wires[1], prev_node_wire)
         elif opname == 'cx':
-            assert len(control_nodes) == 1
-            uncomp_circuit.cx(control_nodes[0].qubit_wire, prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 1
+            new_uncomp_circuit.cx(control_nodes_wires[0], prev_node_wire)
         elif opname == 'cz':
-            assert len(control_nodes) == 1
-            uncomp_circuit.cz(control_nodes[0].qubit_wire, prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 1
+            new_uncomp_circuit.cz(control_nodes_wires[0], prev_node_wire)
         elif opname == 'x':
-            assert len(control_nodes) == 0
-            uncomp_circuit.x(prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.x(prev_node_wire)
         elif opname == 'z':
-            assert len(control_nodes) == 0
-            uncomp_circuit.z(prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.z(prev_node_wire)
         elif opname == 'h':
-            assert len(control_nodes) == 0
-            uncomp_circuit.h(prev_node.qubit_wire)
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.h(prev_node_wire)
 
 
-    return uncomp_circuit
+    return new_uncomp_circuit

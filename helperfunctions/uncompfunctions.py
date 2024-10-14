@@ -11,6 +11,7 @@ from .graphhelper import CGNode
 
 ANCILLA = StringConstants.ANCILLA.value
 
+INIT = StringConstants.INIT.value
 COMP = StringConstants.COMP.value
 UNCOMP = StringConstants.UNCOMP.value
 
@@ -28,7 +29,7 @@ logger = logging.getLogger(__name__)
 def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():
         if node.node_type is UNCOMP \
-            and node.qubit_wire == circuit_graph.get_node_data(node_index).qubit_wire \
+            and node.label == circuit_graph.get_node_data(node_index).label \
             and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
             
             return node.get_index()
@@ -39,7 +40,7 @@ def get_uncomp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
 def get_comp_node_index(circuit_graph: rustworkx.PyDiGraph, node_index):
     for node in circuit_graph.nodes():
         if node.node_type is not UNCOMP \
-            and node.qubit_wire == circuit_graph.get_node_data(node_index).qubit_wire \
+            and node.label == circuit_graph.get_node_data(node_index).label \
             and node.get_nodenum() == circuit_graph.get_node_data(node_index).get_nodenum():
 
             return node.get_index()
@@ -74,7 +75,7 @@ def add_uncomputation_step(circuit_graph: rustworkx.PyDiGraph, idx):
     # Get the previous node. a[n] if first uncomp else a*[n-1]
     prev_node_index = node.get_index()
     for n in circuit_graph.nodes():
-        if n.qubit_wire == node.qubit_wire and n.node_type is UNCOMP and n.get_nodenum() == node.get_nodenum():
+        if n.label == node.label and n.node_type is UNCOMP and n.get_nodenum() == node.get_nodenum():
             prev_node_index = n.get_index()
 
     # print(prev_node_index)
@@ -123,7 +124,7 @@ def add_uncomputation_step(circuit_graph: rustworkx.PyDiGraph, idx):
 
     return rustworkx.digraph_find_cycle(circuit_graph)
 
-def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[int], allow_cycle=False):
+def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], allow_cycle=False):
     '''
     PLDI's Uncomp implementation
     '''
@@ -133,7 +134,7 @@ def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[int], al
     graph_nodes_reverse.reverse()
     print(graph_nodes_reverse)
     for idx in graph_nodes_reverse:
-        if circuit_graph.get_node_data(idx).qubit_wire in ancillas and circuit_graph.get_node_data(idx).node_type is COMP:
+        if circuit_graph.get_node_data(idx).label in ancillas and circuit_graph.get_node_data(idx).node_type is COMP:
             cycle = add_uncomputation_step(uncomp_circuit_graph, idx)
 
             if not allow_cycle and len(cycle) > 0:
@@ -146,12 +147,12 @@ def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[int], al
     return uncomp_circuit_graph, False
 
 
-def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str]):
     '''
     Exhaustively iterate over adding uncomputation for all possible ancillas
     '''
     
-    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     ancillas_power_set = chain.from_iterable(combinations(ancillas, r) for r in range(len(ancillas)+1))
     largest_uncomputable = ()
     for ancilla_set in ancillas_power_set:
@@ -192,22 +193,22 @@ def remove_uncomputation_step(uncomp_circuit_graph: rustworkx.PyDiGraph, idx):
         uncomp_circuit_graph.add_edge(idx, next_node_idx[0], ANTIDEP)
 
 # Remove all uncomputation nodes for specified set of ancilla qubits 
-def remove_uncomputation_full(uncomp_circuit_graph:rustworkx.PyDiGraph, ancillas):
+def remove_uncomputation_full(uncomp_circuit_graph:rustworkx.PyDiGraph, ancillas: List[str]):
     circuit_graph = copy.deepcopy(uncomp_circuit_graph)
     graph_nodes_reverse = circuit_graph.nodes()
     graph_nodes_reverse.reverse()
     # print(graph_nodes_reverse)
     for node in graph_nodes_reverse:
-        if node.qubit_wire in ancillas and node.node_type is UNCOMP:
+        if node.label in ancillas and node.node_type is UNCOMP:
             remove_uncomputation_step(circuit_graph, node.index)
 
     
     return circuit_graph
 
 # Exhaustive Uncomp implementation by removing uncomputation for subset of ancilla
-def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, ancillas: List[str]):
     
-    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     ancillas_power_set = chain.from_iterable(combinations(ancillas, r) for r in range(len(ancillas)+1))
     smallest_removable = ancillas
     
@@ -227,15 +228,15 @@ def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, num_qu
     return smallest_removable
     
 # Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
-def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
     
-    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
 
     cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
     while len(cycle_check) > 0:
-        uncomp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
-        comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+        uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+        # comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
 
         # Inbuilt Johnson's algorithm to find all simple cycles
         simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
@@ -246,17 +247,17 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, num_qubit, num
                 node = uncomp_circuit_graph.get_node_data(idx)
                 if node.qubit_type is ANCILLA: 
                     if node.node_type is UNCOMP:
-                        uncomp_cycle_counter[node.qubit_wire] +=1
-                    else:
-                        comp_cycle_counter[node.qubit_wire] +=1
+                        uncomp_cycle_counter[node.label] +=1
+                    # else:
+                    #     comp_cycle_counter[node.qubit_wire] +=1
 
         # Debugging warning, can be ignored as cycles can be introduced with the comp nodes 
         # AFTER adding uncomputation, which should be removed after greedy procedure
-        if comp_cycle_counter.total() > 0:
-            print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-            logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-            print(comp_cycle_counter)
-            logger.warning(comp_cycle_counter)
+        # if comp_cycle_counter.total() > 0:
+        #     print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+        #     logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+        #     print(comp_cycle_counter)
+        #     logger.warning(comp_cycle_counter)
 
         # Find the qubit with the most number of cycles (this will include only ancilla)
         qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
@@ -271,7 +272,7 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, num_qubit, num
 
 
 # Remove uncomputation of 'singular ancilla' until first node that controls ancilla is reached
-def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancilla: int, nodes_in_cycle:List[int]):
+def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancilla: str, nodes_in_cycle:List[int]):
     circuit_graph = copy.deepcopy(uncomp_circuit_graph)
     graph_nodes_reverse = circuit_graph.nodes()
     graph_nodes_reverse.reverse()
@@ -281,24 +282,26 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
     # first_node = circuit_graph.get_node_data(ancilla)
     # Get all outward/leaving edges of the FIRST/INIT node of the ancilla
     # This is because when we build the circuit graph, the index of INIT node is the same as the index of qubit. 
-    adj_nodes = circuit_graph.adj_direction(ancilla, False)
-    target_path = [ancilla]
+    # ancilla_idx = list(filter(lambda x: ,init_nodes))
+    target_path = [x.get_index() for x in circuit_graph.nodes() if x.label == ancilla]
+    # target_nodes = list(filter(lambda x: x.label == ancilla, circuit_graph.nodes()))
+    # target_path = [x.get_index() for x in target_nodes]
     # cycles_per_nodes = collections.Counter(nodes_in_cycle)
 
     # Nodes in cycle is the list of all nodes that are a part of a cycle
     uncomp_nodes_part_of_cycle = set(nodes_in_cycle)
 
     # Build the list of target nodes, from INIT to last given UNCOMP
-    while len(adj_nodes) > 0:
-        try:
-            target_node = list(filter(lambda x: adj_nodes.get(x) is TARGET, adj_nodes.keys()))[0]
-        except IndexError:
-            break
+    # while len(adj_nodes) > 0:
+    #     try:
+    #         target_node = list(filter(lambda x: adj_nodes.get(x) is TARGET, adj_nodes.keys()))[0]
+    #     except IndexError:
+    #         break
 
-        # print(target_node)
-        target_path.append(target_node)
-        # node = circuit_graph.get_node_data(target_node)
-        adj_nodes = circuit_graph.adj_direction(target_node, False)
+    #     # print(target_node)
+    #     target_path.append(target_node)
+    #     # node = circuit_graph.get_node_data(target_node)
+    #     adj_nodes = circuit_graph.adj_direction(target_node, False)
     
     # Get the path in descending order of node indices
     target_path.sort(reverse=True)
@@ -337,19 +340,19 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
 # Greedy - Partial Uncomp 
 # Same as Greedy - Full, but has an addition dictionary that stores 
 # the nodes of a qubit that are in the cycle
-def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, num_qubit, num_ancilla):
+def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, ancillas):
 
-    ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
 
     cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
     while len(cycle_check) > 0:
-        uncomp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
-        comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+        uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+        # comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
 
-        comp_cycle_nodes = collections.UserDict({i:collections.UserList([]) for i in range(num_qubit+num_ancilla)})
-        uncomp_cycle_nodes = collections.UserDict({i:collections.UserList([]) for i in range(num_qubit+num_ancilla)})
+        # comp_cycle_nodes = collections.UserDict({i:collections.UserList([]) for i in range(num_qubit+num_ancilla)})
+        uncomp_cycle_nodes = collections.UserDict({i:collections.UserList([]) for i in ancillas})
 
         # node_cycle_dict = collections.UserDict({i:collections.UserList([]) for i in uncomp_circuit_graph.node_indices()})
 
@@ -362,17 +365,17 @@ def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, num_qubit, 
                 # node_cycle_dict[idx].append([i for i in cycle])
                 if node.qubit_type is ANCILLA: 
                     if node.node_type is UNCOMP:
-                        uncomp_cycle_counter[node.qubit_wire] +=1
-                        uncomp_cycle_nodes[node.qubit_wire].append(idx)
-                    else:
-                        comp_cycle_counter[node.qubit_wire] +=1
-                        comp_cycle_nodes[node.qubit_wire].append(idx)
+                        uncomp_cycle_counter[node.label] +=1
+                        uncomp_cycle_nodes[node.label].append(idx)
+                    # else:
+                    #     comp_cycle_counter[node.qubit_wire] +=1
+                    #     comp_cycle_nodes[node.qubit_wire].append(idx)
 
-        if comp_cycle_counter.total() > 0:
-            print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-            logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-            print(comp_cycle_counter)
-            logger.warning(comp_cycle_counter)
+        # if comp_cycle_counter.total() > 0:
+        #     print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+        #     logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+        #     print(comp_cycle_counter)
+        #     logger.warning(comp_cycle_counter)
 
         qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
         # qubit_nodes_cycles = {i:node_cycle_dict.get(i) for i in set(uncomp_cycle_nodes[qubit])}
