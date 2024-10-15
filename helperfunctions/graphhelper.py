@@ -81,3 +81,10 @@ def edge_attr(edge):
         attribute_dict.update({'color': 'yellow', 'style': 'dashed'})
 
     return attribute_dict
+
+def edge_matcher(a, b):
+    return a == b
+
+def node_matcher(a:CGNode, b:CGNode):
+    return a.label == b.label and a.get_nodenum() == b.get_nodenum() \
+    and a.opname == b.opname and a.node_type == b.node_type 

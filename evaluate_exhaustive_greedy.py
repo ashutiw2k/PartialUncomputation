@@ -11,7 +11,7 @@ from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomp
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
-from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr
+from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr, node_matcher, edge_matcher
 from rustworkx.visualization import graphviz_draw
 
 # logging.config.fileConfig('logger.config')
@@ -33,12 +33,9 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     print('****************************************************************************')
     for i in range(num_circuits):
         if num_circuits > 1:
-            num_q = random.randint(3,10)
-            num_a = random.randint(3,10)
-            num_g = random.randint(5,15)
 
-            logger.info(f'Generating Random Circuit {i} with {num_q} input, {num_a} ancilla and {num_g} gates')
-            _circuit = random_quantum_circuit_basic(num_q,num_a,num_g)
+            logger.info(f'Generating Random Circuit {i}')
+            _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
 
         else:
             _circuit = simple_circuit_with_a2_uncomputable()
@@ -103,8 +100,16 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
             _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
 #**************************************************************************************************************#
+            logger.info(f'Comparing the uncomp circuits by greedy and exhaustive for {name_str}')
+            if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
+                                       node_matcher=node_matcher, edge_matcher=edge_matcher):
+                logger.info(f'Both methods return the same circuit graphs')
+            else:
+                logger.info(f'Both methods return different circuit graphs')
+
+#**************************************************************************************************************#
             logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
-            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
+            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_partial(_circuit_graph, ancillas_list)
             
             logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
             graphviz_draw(_greedy_partial_uncomp_circuit_graph,

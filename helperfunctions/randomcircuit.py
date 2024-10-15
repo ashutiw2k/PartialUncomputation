@@ -8,7 +8,11 @@ logger = logging.getLogger(__name__)
 # - Input - Ancilla gates
 # - Ancilla - Input gates
 # Results of Greedy and Greedy Partial are the same for this. 
-def random_quantum_circuit_basic(num_q:int, num_a:int, num_g:int=10) -> QuantumCircuit:
+def random_quantum_circuit_basic() -> tuple[QuantumCircuit,int,int,int]:
+    num_q = random.randint(3,10)
+    num_a = random.randint(3,10)
+    num_g = random.randint(10,25)
+    
     in_q = QuantumRegister(num_q, name='cq')
     an_q = QuantumRegister(num_a, name='aq')
     
@@ -31,7 +35,7 @@ def random_quantum_circuit_basic(num_q:int, num_a:int, num_g:int=10) -> QuantumC
         circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
 
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
-    return circuit
+    return circuit, num_q, num_a, num_g
 
 def random_quantum_circuit_for_partial(num_q:int, num_a:int, num_g:int=10) -> QuantumCircuit:
     in_q = QuantumRegister(num_q, name='cq')
