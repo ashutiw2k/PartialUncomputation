@@ -3,7 +3,7 @@ from qiskit import QuantumCircuit, qpy
 
 import rustworkx
 from helperfunctions.randomcircuit import random_quantum_circuit_for_partial
-from helperfunctions.uncompfunctions import greedy_uncomputation_partial, add_uncomputation
+from helperfunctions.uncompfunctions import greedy_uncomputation_partial, add_uncomputation, exhaustive_uncomputation_adding
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 
 from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr
@@ -87,7 +87,14 @@ if rustworkx.digraph_find_cycle(comp_graph):
 cyclic_uncomp_graph, has_cycle = add_uncomputation(comp_graph, ancillas_list, allow_cycle=True)
 graphviz_draw(cyclic_uncomp_graph, filename='test_figures/Cyclic_Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
+# removable_ancilla = exhaustive_uncomputation_adding(comp_graph, ancillas_list)
+# print(f'Valid ancilla that can be uncomputed : {removable_ancilla}')
+# uncomp_graph, has_cycle = add_uncomputation(comp_graph, removable_ancilla)
+# if has_cycle:
+#     print('Ancillas returned by exhaustive adding function still create cycle if uncomputed')
+
 uncomp_graph = greedy_uncomputation_partial(comp_graph, ancillas_list)
+
 graphviz_draw(uncomp_graph, filename='test_figures/Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 uncomp_circuit = get_uncomp_circuit(uncomp_graph)
