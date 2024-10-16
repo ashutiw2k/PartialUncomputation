@@ -334,8 +334,11 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
                 remove_uncomputation_step(circuit_graph, idx)
             else:
                 # Note - got an example, which is why added this 
+                # break
                 for c in controlled_nodes:
                     if rustworkx.digraph_find_cycle(circuit_graph, c):
+                        print(f'Node {idx} for qubit {circuit_graph.get_node_data(idx).label} controls node {c} of qubit {circuit_graph.get_node_data(c).label}')
+                        print(f'Node {c} is in a loop, so node {idx} will be removed')
                         remove_uncomputation_step(circuit_graph, idx)
                         break
         

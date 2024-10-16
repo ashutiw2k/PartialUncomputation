@@ -35,22 +35,43 @@ def test_circuit():
 def mcx_with_ancilla_test_circuit():
     circuit = QuantumCircuit(6)
 
-# circuit,num_q,num_a = test_circuit()
-# num_q = random.randint(3,5)
-# num_a = random.randint(3,5)
-# num_g = random.randint(6,20)
-# circuit = random_quantum_circuit_for_partial(num_q, num_a, num_g)
+'''
+Uncomment this line to run the simple test circuit shown above. 
+It's form is:
+               ┌───┐                         
+q_0: ──■───────┤ X ├─────────────────────────
+       │       └─┬─┘                         
+q_1: ──┼────■────┼───────────────────────────
+       │    │    │                           
+q_2: ──┼────┼────┼──────────────■────────────
+     ┌─┴─┐┌─┴─┐  │  ┌───┐     ┌─┴─┐     ┌───┐
+q_3: ┤ X ├┤ X ├──■──┤ X ├──■──┤ X ├──■──┤ X ├
+     └───┘└───┘     └─┬─┘┌─┴─┐└───┘┌─┴─┐└─┬─┘
+q_4: ─────────────────■──┤ X ├─────┤ X ├──■──
+                         └───┘     └───┘     
+q_5: ────────────────────────────────────────
+
+'''
+circuit,num_q,num_a = test_circuit()
+
+'''
+Uncomment the below lines to generate a new random circuit and run the algorithm on it. 
+You can also opt to store the random circuit as a qpy file in case the algorithm fails, and you'd
+like to debug why. 
+'''
+# circuit, num_q, num_a, num_g = random_quantum_circuit_for_partial()
 # with open('test_qasm/greedy_partial_bug.qpy', 'wb') as f, open('nums.txt', 'w') as f2:
 #     qpy.dump(circuit, f)
 #     print(num_q, num_a, num_g, file=f2, sep='\n')
 
-
-with open('test_qasm/greedy_partial_bug.qpy', 'rb') as f, open('nums.txt', 'r') as f2:
-    circuit = qpy.load(f)[0]
-    # lines = f2.readline()
-    num_q = int(f2.readline())
-    num_a = int(f2.readline())
-    num_g = int(f2.readline())
+'''
+Uncomment lines below to read work with a saved random circuit. 
+'''
+# with open('test_qasm/greedy_partial_bug.qpy', 'rb') as f, open('nums.txt', 'r') as f2:
+#     circuit = qpy.load(f)[0]
+#     num_q = int(f2.readline())
+#     num_a = int(f2.readline())
+#     num_g = int(f2.readline())
 
 circuit.draw("mpl", filename='test_figures/Greedy_Partial_Circuit.png')
 

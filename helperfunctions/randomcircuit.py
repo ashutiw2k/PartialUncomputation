@@ -37,7 +37,11 @@ def random_quantum_circuit_basic() -> tuple[QuantumCircuit,int,int,int]:
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
     return circuit, num_q, num_a, num_g
 
-def random_quantum_circuit_for_partial(num_q:int, num_a:int, num_g:int=10) -> QuantumCircuit:
+def random_quantum_circuit_for_partial() -> tuple[QuantumCircuit,int,int,int]:
+    num_q = random.randint(3,10)
+    num_a = random.randint(3,10)
+    num_g = random.randint(10,25)
+    
     in_q = QuantumRegister(num_q, name='cq')
     an_q = QuantumRegister(num_a, name='aq')
     
@@ -63,29 +67,7 @@ def random_quantum_circuit_for_partial(num_q:int, num_a:int, num_g:int=10) -> Qu
         circuit.mcx(controls, target) 
 
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
-    return circuit
+    return circuit, num_q, num_a, num_g
 
-# def random_quantum_circuit(num_q:int, num_a:int, num_g:int=10) -> QuantumCircuit:
-#     in_q = QuantumRegister(num_q, name='cq')
-#     an_q = QuantumRegister(num_a, name='aq')
-    
-#     circuit = QuantumCircuit(num_q+num_a)
-    
-#     for i in range(num_g):
-        
-#         if random.random() < 0.75: # Input acts on Ancilla    
-#             control_q = range(num_q)
-#             target_q = range(num_q, num_q+num_a)
-
-#         else: # Ancilla acts on input
-#             control_q = range(num_q, num_q+num_a)
-#             target_q = range(num_q)
-
-#         num_controls = random.randint(1, len(control_q))
-#         controls = random.sample(control_q, num_controls)  # Get control qubit/s
-#         target = random.sample(target_q, 1) # Get target qubit
-#         print(num_controls, controls, target)
-#         circuit.mcx(controls, target[0]) 
-
-#     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
-#     return circuit
+def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
+    pass
