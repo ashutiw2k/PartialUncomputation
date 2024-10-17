@@ -23,6 +23,7 @@ class ListConstants(Enum):
 
 EVAL_DIRS = ['comp_circuit', 
              'comp_circuit_graph', 
+             'comp_circuit_qpy',
              'exhaustive_uncomp_circuit',
              'exhaustive_uncomp_graph',
              'greedy_uncomp_circuit',

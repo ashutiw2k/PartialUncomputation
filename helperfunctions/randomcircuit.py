@@ -70,4 +70,61 @@ def random_quantum_circuit_for_partial() -> tuple[QuantumCircuit,int,int,int]:
     return circuit, num_q, num_a, num_g
 
 def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
-    pass
+    
+    num_q = random.randint(3,10)
+    num_a = random.randint(3,10)
+    num_g = random.randint(10,25)
+
+    cc_gates = 0
+    ca_gates = 0
+    ac_gates = 0
+    aa_gates = 0
+    
+    in_q = QuantumRegister(num_q, name='cq')
+    an_q = QuantumRegister(num_a, name='aq')
+    
+    circuit = QuantumCircuit(in_q, an_q)
+    
+    for i in range(num_g):
+
+        control_q = in_q
+        target_q = in_q
+
+        change_target_controls = random.random()
+
+        if change_target_controls > 0.9: # Input acts on Input only    
+            control_q = an_q
+            target_q = an_q
+            aa_gates += 1
+
+        elif change_target_controls > 0.8: 
+            # control_q = in_q
+            if random.random() > 0.7:
+                target_q = an_q
+                ca_gates += 1
+            else:
+                control_q = an_q
+                ac_gates += 1
+
+        else:
+            cc_gates += 1 
+            
+
+        num_controls = random.randrange(1, control_q.size)
+        target = random.randrange(target_q.size) # Get target qubit
+        controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+        # target = random.randrange(target_q.size) # Get target qubit
+        if control_q == target_q:
+            target = random.randrange(target_q.size) # Get target qubit
+            valid_controls = list(range(control_q.size))
+            valid_controls.remove(target)
+            controls = random.sample(valid_controls, num_controls)  # Get control qubit/s
+        else:
+            target = random.randrange(target_q.size) # Get target qubit
+            controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+        
+        print(num_controls, controls, target)
+        circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
+
+    logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
+    return circuit, num_q, num_a, num_g

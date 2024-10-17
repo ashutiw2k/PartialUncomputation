@@ -3,10 +3,10 @@ import logging
 import random
 import sys
 
-from qiskit import QuantumCircuit
+from qiskit import QuantumCircuit, qpy
 import rustworkx
 
-from helperfunctions.randomcircuit import random_quantum_circuit_basic
+from helperfunctions.randomcircuit import random_quantum_circuit_basic, random_quantum_circuit_large
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
@@ -35,7 +35,8 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
         if num_circuits > 1:
 
             logger.info(f'Generating Random Circuit {i}')
-            _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
+            # _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
+            _circuit, num_q, num_a, num_g = random_quantum_circuit_large()
 
         else:
             _circuit = simple_circuit_with_a2_uncomputable()
@@ -46,6 +47,10 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
         _circuit.draw('mpl', 
                      filename=f'{eval_dir}/comp_circuit/{name_str}.png')
+        
+        with open(f'{eval_dir}/comp_circuit_qpy/{name_str}.qpy', 'wb') as f:
+            qpy.dump(_circuit, f)
+            f.close()
         
         logger.info(f'Creating Circuit Graph of circuit {name_str}')
         ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
