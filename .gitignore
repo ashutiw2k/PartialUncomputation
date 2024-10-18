@@ -2,3 +2,5 @@
 *__pycache__
 .vscode
 evaluation_folder
+exhaustive_eval_folder
+greedy_eval_folder

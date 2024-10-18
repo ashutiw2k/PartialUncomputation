@@ -73,7 +73,7 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
     
     num_q = random.randint(3,10)
     num_a = random.randint(3,10)
-    num_g = random.randint(10,25)
+    num_g = random.randint(100,500)
 
     cc_gates = 0
     ca_gates = 0
@@ -127,4 +127,6 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
         circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
 
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
+    logger.info(f'There are {cc_gates} gates acting between control qubits, {ca_gates} gates acting between control and ancilla, {ac_gates} gates acting between ancilla and control and {aa_gates} gates acting between just the ancillas.')
+    
     return circuit, num_q, num_a, num_g

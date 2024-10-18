@@ -157,6 +157,8 @@ def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, ancillas
     largest_uncomputable = ()
     for ancilla_set in ancillas_power_set:
         # uncomp_circuit_graph = copy.deepcopy(circuit_graph)
+        print(f'Adding Uncomputation for ancilla set {ancilla_set}')
+        logger.info(f'Adding Uncomputation for ancilla set {ancilla_set}')
         uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, list(ancilla_set))
         
         if not has_cycle and len(ancilla_set) > len(largest_uncomputable):

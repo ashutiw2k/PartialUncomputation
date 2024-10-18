@@ -74,22 +74,22 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
         if has_cycle:
             logger.warning(f'Trying to uncompute circuit {name_str} produces a cycle')
 
-            logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
-            largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
-            logger.info(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
-            _exhaustive_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, list(largest_set))
-            if has_cycle:
-                logger.error(f'Exhaustive Uncomp of {name_str} still has cycle')
+            # logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
+            # largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
+            # logger.info(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
+            # _exhaustive_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, list(largest_set))
+            # if has_cycle:
+            #     logger.error(f'Exhaustive Uncomp of {name_str} still has cycle')
             
-            logger.info(f'Drawing Exhaustive Uncomp Circuit Graph for {name_str}')
-            # graphviz_draw(_exhaustive_uncomp_circuit_graph,
-            #           node_attr_fn=node_attr,
-            #           edge_attr_fn=edge_attr,
-            #           filename=f'{eval_dir}/exhaustive_uncomp_graph/{name_str}.png')
+            # logger.info(f'Drawing Exhaustive Uncomp Circuit Graph for {name_str}')
+            # # graphviz_draw(_exhaustive_uncomp_circuit_graph,
+            # #           node_attr_fn=node_attr,
+            # #           edge_attr_fn=edge_attr,
+            # #           filename=f'{eval_dir}/exhaustive_uncomp_graph/{name_str}.png')
 
-            logger.info(f'Building Exhaustive Uncomp Circuit for {name_str}')
-            _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
-            _exhaustive_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
+            # logger.info(f'Building Exhaustive Uncomp Circuit for {name_str}')
+            # _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
+            # _exhaustive_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
 
 # ***************************************************************************************************************#
             logger.info(f'Attempting to run greedy uncomp on {name_str}')
@@ -105,12 +105,12 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
             _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
 #**************************************************************************************************************#
-            logger.info(f'Comparing the uncomp circuits by greedy and exhaustive for {name_str}')
-            if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
-                                       node_matcher=node_matcher, edge_matcher=edge_matcher):
-                logger.info(f'Both methods return the same circuit graphs')
-            else:
-                logger.info(f'Both methods return different circuit graphs')
+            # logger.info(f'Comparing the uncomp circuits by greedy and exhaustive for {name_str}')
+            # if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
+            #                            node_matcher=node_matcher, edge_matcher=edge_matcher):
+            #     logger.info(f'Both methods return the same circuit graphs')
+            # else:
+            #     logger.info(f'Both methods return different circuit graphs')
 
 #**************************************************************************************************************#
             logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
@@ -143,7 +143,7 @@ if __name__ == '__main__':
     print(sys.argv)
     logger.info(f'CMD Args - {sys.argv}')
     num_circuits = 1
-    eval_dir = 'evaluation_folder'
+    eval_dir = 'greedy_eval_folder'
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         num_circuits = int(sys.argv[1])
         
