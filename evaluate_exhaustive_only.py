@@ -36,7 +36,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     
     print('****************************************************************************')
     for i in range(num_circuits):
-        if num_circuits > 1:
+        if num_circuits > 0:
 
             logger.info(f'Generating Random Circuit {i}')
             # _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
@@ -164,7 +164,7 @@ if __name__ == '__main__':
     
     print(sys.argv)
     logger.info(f'CMD Args - {sys.argv}')
-    num_circuits = 1
+    num_circuits = 0
     eval_dir = 'exhaustive_eval_folder'
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         num_circuits = int(sys.argv[1])

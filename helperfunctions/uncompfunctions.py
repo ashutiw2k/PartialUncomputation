@@ -229,7 +229,33 @@ def exhaustive_uncomputation_removing(circuit_graph: rustworkx.PyDiGraph, ancill
 
 
     return smallest_removable
+
+# Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
+def greedy_uncomputation_full_weak(circuit_graph: rustworkx.PyDiGraph, ancillas):
     
+    start_time = time.time_ns()
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+    logger.info(f'Time to build Greedy Uncomp Circuit Graph with cycles took {time.time_ns()-start_time} ns')
+    start_time = time.time_ns()
+
+    all_node_indicies = uncomp_circuit_graph.node_indices()
+    # all_node_indicies
+    for idx in all_node_indicies:
+        if idx not in uncomp_circuit_graph.node_indices():
+            continue
+        
+        node = uncomp_circuit_graph.get_node_data(idx)
+        if not node.node_type == UNCOMP:
+            continue
+
+        if rustworkx.digraph_find_cycle(uncomp_circuit_graph, idx):
+            uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [node.label])
+
+    return uncomp_circuit_graph
+
+
+
 # Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
 def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
     
