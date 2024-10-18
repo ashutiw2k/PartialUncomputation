@@ -8,7 +8,7 @@ from qiskit import QuantumCircuit, qpy
 import rustworkx
 
 from helperfunctions.randomcircuit import random_quantum_circuit_basic, random_quantum_circuit_large
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial, greedy_uncomputation_full_weak
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial, greedy_uncomputation_full_weak, greedy_uncomputation_full_per_node
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
@@ -115,7 +115,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
 # ***************************************************************************************************************#
             logger.info(f'Attempting to run greedy uncomp on {name_str}')
-            _greedy_uncomp_circuit_graph = greedy_uncomputation_full_weak(_circuit_graph, ancillas_list)
+            _greedy_uncomp_circuit_graph = greedy_uncomputation_full_per_node(_circuit_graph, ancillas_list)
             logger.info(f'Time to build Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
             start_time = time.time_ns()
             

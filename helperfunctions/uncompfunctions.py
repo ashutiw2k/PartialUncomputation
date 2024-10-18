@@ -159,7 +159,7 @@ def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, ancillas
     for ancilla_set in ancillas_power_set:
         # uncomp_circuit_graph = copy.deepcopy(circuit_graph)
         print(f'Adding Uncomputation for ancilla set {ancilla_set}')
-        logger.info(f'Adding Uncomputation for ancilla set {ancilla_set}')
+        # logger.info(f'Adding Uncomputation for ancilla set {ancilla_set}')
         uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, list(ancilla_set))
         
         if not has_cycle and len(ancilla_set) > len(largest_uncomputable):
@@ -316,6 +316,43 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
         uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
         logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
         start_time = time.time_ns()
+
+        cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+
+    return uncomp_circuit_graph
+
+
+# Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
+def greedy_uncomputation_full_per_node(circuit_graph: rustworkx.PyDiGraph, ancillas):
+    
+    start_time = time.time_ns()
+    # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
+    uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+    logger.info(f'Time to build Greedy Uncomp Circuit Graph with cycles took {time.time_ns()-start_time} ns')
+    start_time = time.time_ns()
+
+    cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+    logger.info(f'Time to check for cycle in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+    start_time = time.time_ns()
+    
+    while len(cycle_check) > 0:
+        uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+
+        for idx in uncomp_circuit_graph.node_indices():
+            node = uncomp_circuit_graph.get_node_data(idx)
+
+            if node.label in ancillas and node.node_type == UNCOMP:
+                logger.info(f'Getting all simple paths for node {node}')
+                all_simple_cycles_for_node = rustworkx.all_simple_paths(uncomp_circuit_graph, idx, idx)
+                uncomp_cycle_counter[node.label] += len(all_simple_cycles_for_node)
+
+        qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
+        print(qubit, num_cycles)
+        logger.info(f'The qubit {qubit} has the most number of uncomp nodes in cycles {num_cycles}')
+
+        # Remove uncomputation for that qubit. 
+        logger.info(f'Removing all uncomputation nodes for {qubit}')
+        uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
 
         cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
