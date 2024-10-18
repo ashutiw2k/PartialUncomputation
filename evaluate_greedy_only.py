@@ -2,6 +2,7 @@ import os
 import logging
 import random
 import sys
+import time
 
 from qiskit import QuantumCircuit, qpy
 import rustworkx
@@ -16,6 +17,7 @@ from rustworkx.visualization import graphviz_draw
 
 # logging.config.fileConfig('logger.config')
 logger = logging.getLogger(__name__)
+start_time = 0
 
 def simple_circuit_with_a2_uncomputable():
     circuit = QuantumCircuit(6)
@@ -30,6 +32,8 @@ def simple_circuit_with_a2_uncomputable():
 
 def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     logger.info(f'Starting Evaluation with {num_circuits} random quantum circuits')
+    global start_time
+    
     print('****************************************************************************')
     for i in range(num_circuits):
         if num_circuits > 1:
@@ -52,6 +56,8 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             qpy.dump(_circuit, f)
             f.close()
         
+        logger.info(f'Building Random Circuit took {time.time_ns()-start_time} ns')
+        start_time = time.time_ns()
         logger.info(f'Creating Circuit Graph of circuit {name_str}')
         ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
         _circuit_graph = get_computation_graph(_circuit, ancillas_list)
@@ -60,6 +66,9 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
         #               node_attr_fn=node_attr,
         #               edge_attr_fn=edge_attr,
         #               filename=f'{eval_dir}/comp_circuit_graph/{name_str}.png')
+
+        logger.info(f'Building Circuit Graph took {time.time_ns()-start_time} ns')
+        start_time = time.time_ns()
         
         if rustworkx.digraph_find_cycle(_circuit_graph):
             print(f'Computation Graph has cycles !!!!')
@@ -68,8 +77,13 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
                 print(cycle)
                 logger.error(f'Cycle in {name_str} : {cycle}')
 
+        logger.info(f'Checking for cycle in Comp Circuit Graph took {time.time_ns()-start_time} ns')
+        start_time = time.time_ns()
         
         _regular_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, ancillas_list)
+
+        logger.info(f'Adding Uncomputation to circuit graph took {time.time_ns()-start_time} ns')
+        start_time = time.time_ns()
 
         if has_cycle:
             logger.warning(f'Trying to uncompute circuit {name_str} produces a cycle')
@@ -77,23 +91,33 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             # logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
             # largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
             # logger.info(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
+            # logger.info(f'Time to find largest set took {time.time_ns()-start_time} ns')
+            # start_time = time.time_ns()
             # _exhaustive_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, list(largest_set))
             # if has_cycle:
             #     logger.error(f'Exhaustive Uncomp of {name_str} still has cycle')
             
-            # logger.info(f'Drawing Exhaustive Uncomp Circuit Graph for {name_str}')
+            # # logger.info(f'Drawing Exhaustive Uncomp Circuit Graph for {name_str}')
             # # graphviz_draw(_exhaustive_uncomp_circuit_graph,
             # #           node_attr_fn=node_attr,
             # #           edge_attr_fn=edge_attr,
             # #           filename=f'{eval_dir}/exhaustive_uncomp_graph/{name_str}.png')
 
+            # logger.info(f'Adding Uncomp for largest set took {time.time_ns()-start_time} ns')
+            # start_time = time.time_ns()
+
             # logger.info(f'Building Exhaustive Uncomp Circuit for {name_str}')
             # _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
             # _exhaustive_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
 
+            # logger.info(f'Time to build uncomp circuit took {time.time_ns()-start_time} ns')
+            # start_time = time.time_ns()
+
 # ***************************************************************************************************************#
             logger.info(f'Attempting to run greedy uncomp on {name_str}')
             _greedy_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
+            logger.info(f'Time to build Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+            start_time = time.time_ns()
             
             logger.info(f'Drawing Greedy Uncomp Circuit Graph for {name_str}')
             # graphviz_draw(_greedy_uncomp_circuit_graph,
@@ -104,6 +128,8 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             logger.info(f'Building Greedy Uncomp Circuit for {name_str}')
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
             _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
+            logger.info(f'Time to build Greedy Uncomp Circuit took {time.time_ns()-start_time} ns')
+            start_time = time.time_ns()
 #**************************************************************************************************************#
             # logger.info(f'Comparing the uncomp circuits by greedy and exhaustive for {name_str}')
             # if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
@@ -113,18 +139,18 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             #     logger.info(f'Both methods return different circuit graphs')
 
 #**************************************************************************************************************#
-            logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
-            _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_partial(_circuit_graph, ancillas_list)
+            # logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
+            # _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_partial(_circuit_graph, ancillas_list)
             
-            logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
-            # graphviz_draw(_greedy_partial_uncomp_circuit_graph,
-            #           node_attr_fn=node_attr,
-            #           edge_attr_fn=edge_attr,
-            #           filename=f'{eval_dir}/greedy_partial_uncomp_graph/{name_str}.png')
+            # logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
+            # # graphviz_draw(_greedy_partial_uncomp_circuit_graph,
+            # #           node_attr_fn=node_attr,
+            # #           edge_attr_fn=edge_attr,
+            # #           filename=f'{eval_dir}/greedy_partial_uncomp_graph/{name_str}.png')
 
-            logger.info(f'Building Greedy Partial Uncomp Circuit for {name_str}')
-            _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
-            _greedy_partial_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
+            # logger.info(f'Building Greedy Partial Uncomp Circuit for {name_str}')
+            # _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
+            # _greedy_partial_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
 #**************************************************************************************************************#
         else:
             logger.info(f'Drawing Regular Uncomp Circuit Graph for {name_str}')
@@ -182,7 +208,7 @@ if __name__ == '__main__':
 
     
     
-
+    start_time = time.time_ns()
     eval_main_func(num_circuits, eval_dir)
 
     # Save all logging information

@@ -31,7 +31,7 @@ def simple_circuit_with_a2_uncomputable():
 
 
 def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
-    logger.info(f'Starting Evaluation with {num_circuits} random quantum circuits')
+    logger.info(f'Starting Evaluation of Exhaustive Uncomp with {num_circuits} random quantum circuits')
     global start_time
     
     print('****************************************************************************')
