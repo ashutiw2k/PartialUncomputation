@@ -1,0 +1,367 @@
+['evaluate_greedy_only_memprof.py', '2']
+****************************************************************************
+8 [4, 6, 3, 2, 0, 8, 9, 5] 3
+10 [5, 8, 2, 6, 1, 4, 0, 3, 7, 9] 4
+4 [2, 0, 4, 5] 1
+8 [1, 6, 5, 3, 0, 8, 2, 7] 3
+5 [5, 3, 2, 8, 6] 5
+3 [7, 2, 1] 4
+1 [4] 0
+4 [1, 9, 8, 3] 2
+3 [1, 8, 2] 0
+5 [5, 2, 4, 6, 7] 4
+3 [6, 1, 8] 3
+6 [3, 8, 5, 2, 1, 4] 4
+5 [0, 5, 1, 3, 4] 7
+4 [5, 2, 0, 4] 9
+5 [4, 2, 0, 3, 5] 5
+8 [4, 3, 5, 9, 8, 7, 2, 0] 2
+6 [0, 5, 8, 2, 4, 1] 0
+5 [0, 5, 8, 9, 7] 5
+9 [8, 0, 7, 1, 3, 6, 2, 9, 5] 1
+5 [4, 5, 8, 3, 9] 3
+6 [7, 0, 1, 5, 3, 6] 0
+1 [1] 1
+6 [9, 4, 6, 7, 3, 1] 5
+4 [1, 2, 4, 5] 4
+7 [1, 3, 6, 5, 4, 2, 0] 3
+Filename: /home/ashutosh/Desktop/Uncomputation-Code/helperfunctions/randomcircuit_memprof.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    14    102.6 MiB    102.6 MiB           1   @profile
+    15                                         def random_quantum_circuit_basic() -> tuple[QuantumCircuit,int,int,int]:
+    16    102.6 MiB      0.0 MiB           1       num_q = random.randint(3,10)
+    17    102.6 MiB      0.0 MiB           1       num_a = random.randint(3,10)
+    18    102.6 MiB      0.0 MiB           1       num_g = random.randint(10,25)
+    19                                             
+    20    102.6 MiB      0.0 MiB           1       in_q = QuantumRegister(num_q, name='cq')
+    21    102.6 MiB      0.0 MiB           1       an_q = QuantumRegister(num_a, name='aq')
+    22                                             
+    23    102.6 MiB      0.0 MiB           1       circuit = QuantumCircuit(in_q, an_q)
+    24                                             
+    25    102.6 MiB      0.0 MiB          26       for i in range(num_g):
+    26                                                 
+    27    102.6 MiB      0.0 MiB          25           if random.random() < 0.75: # Input acts on Ancilla    
+    28    102.6 MiB      0.0 MiB          20               control_q = in_q
+    29    102.6 MiB      0.0 MiB          20               target_q = an_q
+    30                                         
+    31                                                 else: # Ancilla acts on input
+    32    102.6 MiB      0.0 MiB           5               control_q = an_q
+    33    102.6 MiB      0.0 MiB           5               target_q = in_q
+    34                                         
+    35    102.6 MiB      0.0 MiB          25           num_controls = random.randint(1, control_q.size)
+    36    102.6 MiB      0.0 MiB          25           controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+    37    102.6 MiB      0.0 MiB          25           target = random.randrange(target_q.size) # Get target qubit
+    38    102.6 MiB      0.0 MiB          25           print(num_controls, controls, target)
+    39    102.6 MiB      0.0 MiB         206           circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
+    40                                         
+    41    102.6 MiB      0.0 MiB           1       logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
+    42    102.6 MiB      0.0 MiB           1       return circuit, num_q, num_a, num_g
+
+
+aq4 390785
+aq3 6271
+aq5 237
+aq2 4
+aq1 1
+Filename: /home/ashutosh/Desktop/Uncomputation-Code/helperfunctions/uncompfunctions_memprof.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   262    232.5 MiB    232.5 MiB           1   @profile
+   263                                         def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
+   264                                             
+   265    232.5 MiB      0.0 MiB           1       start_time = time.time_ns()
+   266    232.6 MiB      0.1 MiB           1       uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+   267    232.6 MiB      0.0 MiB           1       logger.info(f'Time to build Greedy Uncomp Circuit Graph with cycles took {time.time_ns()-start_time} ns')
+   268    232.6 MiB      0.0 MiB           1       start_time = time.time_ns()
+   269                                         
+   270    232.6 MiB      0.0 MiB           1       cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+   271    232.6 MiB      0.0 MiB           1       logger.info(f'Time to check for cycle in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   272    232.6 MiB      0.0 MiB           1       start_time = time.time_ns()
+   273                                             
+   274    232.7 MiB      0.0 MiB           6       while len(cycle_check) > 0:
+   275    232.7 MiB      0.0 MiB          45           uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+   276                                         
+   277                                                 # Inbuilt Johnson's algorithm to find all simple cycles
+   278    232.7 MiB      0.0 MiB           5           simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
+   279    232.7 MiB      0.0 MiB           5           logger.info(f'Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   280    232.7 MiB      0.0 MiB           5           start_time = time.time_ns()
+   281    232.7 MiB      0.0 MiB       84255           for cycle in tqdm(simple_cycles, desc=f'Iterating over all cycles in graph'):
+   282                                                     # For each node in cycle, update the counter based on whether it's an uncomp node or comp node
+   283    232.7 MiB      0.0 MiB     1780199               for idx in cycle:
+   284    232.7 MiB      0.0 MiB     1695949                   node = uncomp_circuit_graph.get_node_data(idx)
+   285    232.7 MiB      0.0 MiB     1695949                   if node.qubit_type is ANCILLA: 
+   286    232.7 MiB      0.0 MiB     1325986                       if node.node_type is UNCOMP:
+   287    232.7 MiB      0.0 MiB      998542                           uncomp_cycle_counter[node.label] +=1
+   288                                                 
+   289                                                 # uncomp_cycle_labels = [uncomp_circuit_graph.get_node_data(idx).label for cycle in simple_cycles for idx in cycle if uncomp_circuit_graph.get_node_data(idx).node_type is UNCOMP]
+   290                                                 # uncomp_cycle_counter = collections.Counter(uncomp_cycle_labels)
+   291                                         
+   292    232.7 MiB      0.0 MiB           5           logger.info(f'Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   293    232.7 MiB      0.0 MiB           5           start_time = time.time_ns()
+   294                                         
+   295    232.7 MiB      0.0 MiB           5           qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
+   296    232.7 MiB      0.0 MiB           5           print(qubit, num_cycles)
+   297    232.7 MiB      0.0 MiB           5           logger.info(f'The qubit {qubit} has the most number of uncomp nodes in cycles {num_cycles}')
+   298                                         
+   299                                                 # Remove uncomputation for that qubit. 
+   300    232.7 MiB      0.0 MiB           5           logger.info(f'Removing all uncomputation nodes for {qubit}')
+   301    232.7 MiB      0.1 MiB           5           uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
+   302    232.7 MiB      0.0 MiB           5           logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   303    232.7 MiB      0.0 MiB           5           start_time = time.time_ns()
+   304                                         
+   305    232.7 MiB      0.0 MiB           5           cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+   306                                         
+   307    232.7 MiB      0.0 MiB           1       return uncomp_circuit_graph
+
+
+5 [6, 2, 8, 7, 1] 3
+2 [0, 5] 0
+1 [1] 3
+1 [2] 4
+1 [0] 2
+3 [0, 5, 1] 0
+1 [0] 5
+5 [2, 1, 5, 4, 3] 8
+4 [0, 3, 1, 5] 1
+9 [4, 7, 3, 0, 6, 1, 2, 5, 8] 5
+3 [1, 0, 2] 6
+9 [4, 5, 6, 1, 7, 0, 3, 8, 2] 4
+3 [2, 5, 0] 1
+Filename: /home/ashutosh/Desktop/Uncomputation-Code/helperfunctions/randomcircuit_memprof.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    14    329.6 MiB    329.6 MiB           1   @profile
+    15                                         def random_quantum_circuit_basic() -> tuple[QuantumCircuit,int,int,int]:
+    16    329.6 MiB      0.0 MiB           1       num_q = random.randint(3,10)
+    17    329.6 MiB      0.0 MiB           1       num_a = random.randint(3,10)
+    18    329.6 MiB      0.0 MiB           1       num_g = random.randint(10,25)
+    19                                             
+    20    329.6 MiB      0.0 MiB           1       in_q = QuantumRegister(num_q, name='cq')
+    21    329.6 MiB      0.0 MiB           1       an_q = QuantumRegister(num_a, name='aq')
+    22                                             
+    23    329.6 MiB      0.0 MiB           1       circuit = QuantumCircuit(in_q, an_q)
+    24                                             
+    25    329.6 MiB      0.0 MiB          14       for i in range(num_g):
+    26                                                 
+    27    329.6 MiB      0.0 MiB          13           if random.random() < 0.75: # Input acts on Ancilla    
+    28    329.6 MiB      0.0 MiB           8               control_q = in_q
+    29    329.6 MiB      0.0 MiB           8               target_q = an_q
+    30                                         
+    31                                                 else: # Ancilla acts on input
+    32    329.6 MiB      0.0 MiB           5               control_q = an_q
+    33    329.6 MiB      0.0 MiB           5               target_q = in_q
+    34                                         
+    35    329.6 MiB      0.0 MiB          13           num_controls = random.randint(1, control_q.size)
+    36    329.6 MiB      0.0 MiB          13           controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+    37    329.6 MiB      0.0 MiB          13           target = random.randrange(target_q.size) # Get target qubit
+    38    329.6 MiB      0.0 MiB          13           print(num_controls, controls, target)
+    39    329.6 MiB      0.0 MiB          86           circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
+    40                                         
+    41    329.6 MiB      0.0 MiB           1       logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
+    42    329.6 MiB      0.0 MiB           1       return circuit, num_q, num_a, num_g
+
+
+aq1 122
+aq0 52
+aq4 13
+aq8 3
+Filename: /home/ashutosh/Desktop/Uncomputation-Code/helperfunctions/uncompfunctions_memprof.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   262    331.6 MiB    331.6 MiB           1   @profile
+   263                                         def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
+   264                                             
+   265    331.6 MiB      0.0 MiB           1       start_time = time.time_ns()
+   266    331.6 MiB      0.0 MiB           1       uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+   267    331.6 MiB      0.0 MiB           1       logger.info(f'Time to build Greedy Uncomp Circuit Graph with cycles took {time.time_ns()-start_time} ns')
+   268    331.6 MiB      0.0 MiB           1       start_time = time.time_ns()
+   269                                         
+   270    331.6 MiB      0.0 MiB           1       cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+   271    331.6 MiB      0.0 MiB           1       logger.info(f'Time to check for cycle in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   272    331.6 MiB      0.0 MiB           1       start_time = time.time_ns()
+   273                                             
+   274    331.6 MiB      0.0 MiB           5       while len(cycle_check) > 0:
+   275    331.6 MiB      0.0 MiB          48           uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+   276                                         
+   277                                                 # Inbuilt Johnson's algorithm to find all simple cycles
+   278    331.6 MiB      0.0 MiB           4           simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
+   279    331.6 MiB      0.0 MiB           4           logger.info(f'Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   280    331.6 MiB      0.0 MiB           4           start_time = time.time_ns()
+   281    331.6 MiB      0.0 MiB         225           for cycle in tqdm(simple_cycles, desc=f'Iterating over all cycles in graph'):
+   282                                                     # For each node in cycle, update the counter based on whether it's an uncomp node or comp node
+   283    331.6 MiB      0.0 MiB        1686               for idx in cycle:
+   284    331.6 MiB      0.0 MiB        1465                   node = uncomp_circuit_graph.get_node_data(idx)
+   285    331.6 MiB      0.0 MiB        1465                   if node.qubit_type is ANCILLA: 
+   286    331.6 MiB      0.0 MiB         798                       if node.node_type is UNCOMP:
+   287    331.6 MiB      0.0 MiB         544                           uncomp_cycle_counter[node.label] +=1
+   288                                                 
+   289                                                 # uncomp_cycle_labels = [uncomp_circuit_graph.get_node_data(idx).label for cycle in simple_cycles for idx in cycle if uncomp_circuit_graph.get_node_data(idx).node_type is UNCOMP]
+   290                                                 # uncomp_cycle_counter = collections.Counter(uncomp_cycle_labels)
+   291                                         
+   292    331.6 MiB      0.0 MiB           4           logger.info(f'Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   293    331.6 MiB      0.0 MiB           4           start_time = time.time_ns()
+   294                                         
+   295    331.6 MiB      0.0 MiB           4           qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
+   296    331.6 MiB      0.0 MiB           4           print(qubit, num_cycles)
+   297    331.6 MiB      0.0 MiB           4           logger.info(f'The qubit {qubit} has the most number of uncomp nodes in cycles {num_cycles}')
+   298                                         
+   299                                                 # Remove uncomputation for that qubit. 
+   300    331.6 MiB      0.0 MiB           4           logger.info(f'Removing all uncomputation nodes for {qubit}')
+   301    331.6 MiB      0.0 MiB           4           uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
+   302    331.6 MiB      0.0 MiB           4           logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   303    331.6 MiB      0.0 MiB           4           start_time = time.time_ns()
+   304                                         
+   305    331.6 MiB      0.0 MiB           4           cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+   306                                         
+   307    331.6 MiB      0.0 MiB           1       return uncomp_circuit_graph
+
+
+Filename: evaluate_greedy_only_memprof.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    33    102.6 MiB    102.6 MiB           1   @profile
+    34                                         def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
+    35    102.6 MiB      0.0 MiB           1       logger.info(f'Starting Evaluation with {num_circuits} random quantum circuits')
+    36                                             global start_time
+    37                                             
+    38    102.6 MiB      0.0 MiB           1       print('****************************************************************************')
+    39    102.6 MiB      0.0 MiB           1       valid_num_circuits = num_circuits if num_circuits > 0 else 1
+    40    329.6 MiB    -33.2 MiB           3       for i in range(valid_num_circuits):
+    41    329.6 MiB      0.0 MiB           2           if num_circuits > 0:
+    42                                         
+    43    329.6 MiB      0.0 MiB           2               logger.info(f'Generating Random Circuit {i}')
+    44                                                     # _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
+    45    329.6 MiB      0.0 MiB           2               _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
+    46                                         
+    47                                                 else:
+    48                                                     _circuit = simple_circuit_with_a2_uncomputable()
+    49                                                     num_q = 3
+    50                                                     num_a = 3
+    51                                         
+    52    329.6 MiB      0.0 MiB           2           name_str = f'Circuit_{i}'
+    53                                         
+    54    331.6 MiB    131.6 MiB           4           _circuit.draw('mpl', 
+    55    329.6 MiB      0.0 MiB           2                        filename=f'{eval_dir}/comp_circuit/{name_str}.png')
+    56                                                 
+    57    331.6 MiB      0.0 MiB           4           with open(f'{eval_dir}/comp_circuit_qpy/{name_str}.qpy', 'wb') as f:
+    58    331.6 MiB      0.0 MiB           2               qpy.dump(_circuit, f)
+    59    331.6 MiB      0.0 MiB           2               f.close()
+    60                                                 
+    61    331.6 MiB      0.0 MiB           2           logger.info(f'Building Random Circuit took {time.time_ns()-start_time} ns')
+    62    331.6 MiB      0.0 MiB           2           start_time = time.time_ns()
+    63    331.6 MiB      0.0 MiB           2           logger.info(f'Creating Circuit Graph of circuit {name_str}')
+    64    331.6 MiB      0.0 MiB          37           ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
+    65    331.6 MiB      0.1 MiB           2           _circuit_graph = get_computation_graph(_circuit, ancillas_list)
+    66                                         
+    67                                                 # graphviz_draw(_circuit_graph,
+    68                                                 #               node_attr_fn=node_attr,
+    69                                                 #               edge_attr_fn=edge_attr,
+    70                                                 #               filename=f'{eval_dir}/comp_circuit_graph/{name_str}.png')
+    71                                         
+    72    331.6 MiB      0.0 MiB           2           logger.info(f'Building Circuit Graph took {time.time_ns()-start_time} ns')
+    73    331.6 MiB      0.0 MiB           2           start_time = time.time_ns()
+    74                                                 
+    75    331.6 MiB      0.0 MiB           2           if rustworkx.digraph_find_cycle(_circuit_graph):
+    76                                                     print(f'Computation Graph has cycles !!!!')
+    77                                                     logger.error(f'Computation Circuit Graph for circuit {name_str} has cycles!!')
+    78                                                     for cycle in rustworkx.simple_cycles(_circuit_graph):
+    79                                                         print(cycle)
+    80                                                         logger.error(f'Cycle in {name_str} : {cycle}')
+    81                                         
+    82    331.6 MiB      0.0 MiB           2           logger.info(f'Checking for cycle in Comp Circuit Graph took {time.time_ns()-start_time} ns')
+    83    331.6 MiB      0.0 MiB           2           start_time = time.time_ns()
+    84                                                 
+    85    331.6 MiB      0.1 MiB           2           _regular_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, ancillas_list)
+    86                                         
+    87    331.6 MiB      0.0 MiB           2           logger.info(f'Adding Uncomputation to circuit graph took {time.time_ns()-start_time} ns')
+    88    331.6 MiB      0.0 MiB           2           start_time = time.time_ns()
+    89                                         
+    90    331.6 MiB      0.0 MiB           2           if has_cycle:
+    91    331.6 MiB      0.0 MiB           2               logger.warning(f'Trying to uncompute circuit {name_str} produces a cycle')
+    92                                         
+    93                                                     # logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
+    94                                                     # largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
+    95                                                     # logger.info(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
+    96                                                     # logger.info(f'Time to find largest set took {time.time_ns()-start_time} ns')
+    97                                                     # start_time = time.time_ns()
+    98                                                     # _exhaustive_uncomp_circuit_graph, has_cycle = add_uncomputation(_circuit_graph, list(largest_set))
+    99                                                     # if has_cycle:
+   100                                                     #     logger.error(f'Exhaustive Uncomp of {name_str} still has cycle')
+   101                                                     
+   102                                                     # # logger.info(f'Drawing Exhaustive Uncomp Circuit Graph for {name_str}')
+   103                                                     # # graphviz_draw(_exhaustive_uncomp_circuit_graph,
+   104                                                     # #           node_attr_fn=node_attr,
+   105                                                     # #           edge_attr_fn=edge_attr,
+   106                                                     # #           filename=f'{eval_dir}/exhaustive_uncomp_graph/{name_str}.png')
+   107                                         
+   108                                                     # logger.info(f'Adding Uncomp for largest set took {time.time_ns()-start_time} ns')
+   109                                                     # start_time = time.time_ns()
+   110                                         
+   111                                                     # logger.info(f'Building Exhaustive Uncomp Circuit for {name_str}')
+   112                                                     # _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
+   113                                                     # _exhaustive_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
+   114                                         
+   115                                                     # logger.info(f'Time to build uncomp circuit took {time.time_ns()-start_time} ns')
+   116                                                     # start_time = time.time_ns()
+   117                                         
+   118                                         # ***************************************************************************************************************#
+   119    331.6 MiB      0.0 MiB           2               logger.info(f'Attempting to run greedy uncomp on {name_str}')
+   120    331.6 MiB      0.2 MiB           2               _greedy_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
+   121    331.6 MiB      0.0 MiB           2               logger.info(f'Time to build Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+   122    331.6 MiB      0.0 MiB           2               start_time = time.time_ns()
+   123                                                     
+   124    331.6 MiB      0.0 MiB           2               logger.info(f'Drawing Greedy Uncomp Circuit Graph for {name_str}')
+   125                                                     # graphviz_draw(_greedy_uncomp_circuit_graph,
+   126                                                     #           node_attr_fn=node_attr,
+   127                                                     #           edge_attr_fn=edge_attr,
+   128                                                     #           filename=f'{eval_dir}/greedy_uncomp_graph/{name_str}.png')
+   129                                         
+   130    331.6 MiB      0.0 MiB           2               logger.info(f'Building Greedy Uncomp Circuit for {name_str}')
+   131    331.6 MiB      0.0 MiB           2               _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
+   132    329.6 MiB     61.7 MiB           2               _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
+   133    329.6 MiB    -33.2 MiB           2               logger.info(f'Time to build Greedy Uncomp Circuit took {time.time_ns()-start_time} ns')
+   134    329.6 MiB    -33.2 MiB           2               start_time = time.time_ns()
+   135                                         #**************************************************************************************************************#
+   136                                                     # logger.info(f'Comparing the uncomp circuits by greedy and exhaustive for {name_str}')
+   137                                                     # if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
+   138                                                     #                            node_matcher=node_matcher, edge_matcher=edge_matcher):
+   139                                                     #     logger.info(f'Both methods return the same circuit graphs')
+   140                                                     # else:
+   141                                                     #     logger.warning(f'Both methods return different circuit graphs')
+   142                                         
+   143                                         #**************************************************************************************************************#
+   144                                                     # logger.info(f'Attempting to run greedy partial uncomp on {name_str}')
+   145                                                     # _greedy_partial_uncomp_circuit_graph = greedy_uncomputation_partial(_circuit_graph, ancillas_list)
+   146                                                     
+   147                                                     # logger.info(f'Drawing Greedy Partial Uncomp Circuit Graph for {name_str}')
+   148                                                     # # graphviz_draw(_greedy_partial_uncomp_circuit_graph,
+   149                                                     # #           node_attr_fn=node_attr,
+   150                                                     # #           edge_attr_fn=edge_attr,
+   151                                                     # #           filename=f'{eval_dir}/greedy_partial_uncomp_graph/{name_str}.png')
+   152                                         
+   153                                                     # logger.info(f'Building Greedy Partial Uncomp Circuit for {name_str}')
+   154                                                     # _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
+   155                                                     # _greedy_partial_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
+   156                                         #**************************************************************************************************************#
+   157                                                 else:
+   158                                                     logger.info(f'Drawing Regular Uncomp Circuit Graph for {name_str}')
+   159                                                     # graphviz_draw(_regular_uncomp_circuit_graph,
+   160                                                     #           node_attr_fn=node_attr,
+   161                                                     #           edge_attr_fn=edge_attr,
+   162                                                     #           filename=f'{eval_dir}/regular_uncomp_graph/{name_str}.png')
+   163                                                     
+   164                                                     logger.info(f'Building Regular Uncomp Circuit for {name_str}')
+   165                                                     _uncomp_circuit = get_uncomp_circuit(_regular_uncomp_circuit_graph)
+   166                                                     _uncomp_circuit.draw('mpl', filename=f'{eval_dir}/regular_uncomp_circuit/{name_str}.png')
+
+
+****************************************************************************
+mprof: Sampling memory every 0.1s
+running new process
+running as a Python program...

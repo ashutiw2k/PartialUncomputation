@@ -3,13 +3,14 @@ import logging
 import random
 import sys
 import time
+from memory_profiler import profile
 
 from qiskit import QuantumCircuit, qpy
 import rustworkx
 
-from helperfunctions.randomcircuit import random_quantum_circuit_basic, random_quantum_circuit_large
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial, greedy_uncomputation_full_weak, greedy_uncomputation_full_per_node
-from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
+from helperfunctions.randomcircuit_memprof import random_quantum_circuit_basic, random_quantum_circuit_large
+from helperfunctions.uncompfunctions_memprof import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial, greedy_uncomputation_full_weak, greedy_uncomputation_full_per_node
+from helperfunctions.circuitgraphfunctions_memprof import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
 from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr, node_matcher, edge_matcher
@@ -29,7 +30,7 @@ def simple_circuit_with_a2_uncomputable():
 
     return circuit
 
-
+@profile
 def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     logger.info(f'Starting Evaluation with {num_circuits} random quantum circuits')
     global start_time
@@ -41,7 +42,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Generating Random Circuit {i}')
             # _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
-            _circuit, num_q, num_a, num_g = random_quantum_circuit_large()
+            _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
 
         else:
             _circuit = simple_circuit_with_a2_uncomputable()
@@ -116,7 +117,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
 # ***************************************************************************************************************#
             logger.info(f'Attempting to run greedy uncomp on {name_str}')
-            _greedy_uncomp_circuit_graph = greedy_uncomputation_full_per_node(_circuit_graph, ancillas_list)
+            _greedy_uncomp_circuit_graph = greedy_uncomputation_full(_circuit_graph, ancillas_list)
             logger.info(f'Time to build Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
             start_time = time.time_ns()
             
@@ -170,7 +171,7 @@ if __name__ == '__main__':
     print(sys.argv)
     logger.info(f'CMD Args - {sys.argv}')
     num_circuits = 0
-    eval_dir = 'greedy_eval_folder'
+    eval_dir = 'greedy_eval_folder_memprof'
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         num_circuits = int(sys.argv[1])
         

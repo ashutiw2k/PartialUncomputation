@@ -1,7 +1,8 @@
 from qiskit import QuantumCircuit, QuantumRegister
 import random
 import logging
-
+# from memprof import *
+from memory_profiler import profile
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
@@ -10,6 +11,7 @@ logger = logging.getLogger(__name__)
 # - Input - Ancilla gates
 # - Ancilla - Input gates
 # Results of Greedy and Greedy Partial are the same for this. 
+@profile
 def random_quantum_circuit_basic() -> tuple[QuantumCircuit,int,int,int]:
     num_q = random.randint(3,10)
     num_a = random.randint(3,10)
@@ -71,6 +73,7 @@ def random_quantum_circuit_for_partial() -> tuple[QuantumCircuit,int,int,int]:
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
     return circuit, num_q, num_a, num_g
 
+@profile
 def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
     
     num_q = random.randint(3,10)

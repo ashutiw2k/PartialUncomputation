@@ -6,6 +6,7 @@ from typing import List
 import qiskit
 import rustworkx
 from tqdm import tqdm
+from memory_profiler import profile
 
 from .constants import StringConstants
 from .graphhelper import CGNode, breakdown_qubit
@@ -21,7 +22,7 @@ TARGET = StringConstants.TARGET.value
 CONTROL = StringConstants.CONTROL.value
 ANTIDEP = StringConstants.ANTIDEP.value
 
-
+# @profile
 def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancillas: List):
     circuit_graph = rustworkx.PyDiGraph(multigraph=False)
     last_node_index = {}
@@ -102,7 +103,7 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancillas: List
 
     return circuit_graph
 
-
+# @profile
 def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
     
     sorted_circuit_graph = rustworkx.topological_sort(copy.deepcopy(circuit_graph))

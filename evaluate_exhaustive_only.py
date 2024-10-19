@@ -35,7 +35,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     global start_time
     
     print('****************************************************************************')
-    for i in range(num_circuits):
+    for i in range(num_circuits+1):
         if num_circuits > 0:
 
             logger.info(f'Generating Random Circuit {i}')
