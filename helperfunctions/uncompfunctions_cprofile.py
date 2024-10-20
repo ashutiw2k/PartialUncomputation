@@ -7,6 +7,9 @@ import logging
 import rustworkx
 from tqdm import tqdm
 
+import cProfile
+import pstats
+
 from .constants import StringConstants, ListConstants
 from .graphhelper import CGNode
 
@@ -270,57 +273,62 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas):
     logger.info(f'Time to check for cycle in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
     start_time = time.time_ns()
     
-    while len(cycle_check) > 0:
-        uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
-        # comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
+    with cProfile.Profile() as profile:
+        while len(cycle_check) > 0:
+            uncomp_cycle_counter = collections.Counter({i:0 for i in ancillas})
+            # comp_cycle_counter = collections.Counter({i:0 for i in range(num_qubit+num_ancilla)})
 
-        # Inbuilt Johnson's algorithm to find all simple cycles
-        simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
-        logger.info(f'Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
-        start_time = time.time_ns()
-        for cycle in tqdm(simple_cycles, desc=f'Iterating over all cycles in graph'):
-            # print(cycle)
-            # For each node in cycle, update the counter based on whether it's an uncomp node or comp node
-            for idx in cycle:
-                node = uncomp_circuit_graph.get_node_data(idx)
-                if node.qubit_type is ANCILLA: 
-                    if node.node_type is UNCOMP:
-                        uncomp_cycle_counter[node.label] +=1
-                    # else:
-                    #     comp_cycle_counter[node.qubit_wire] +=1
-        
+            # Inbuilt Johnson's algorithm to find all simple cycles
+            simple_cycles = rustworkx.simple_cycles(uncomp_circuit_graph)
+            logger.info(f'Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+            start_time = time.time_ns()
+            for cycle in tqdm(simple_cycles, desc=f'Iterating over all cycles in graph'):
+                # print(cycle)
+                # For each node in cycle, update the counter based on whether it's an uncomp node or comp node
+                for idx in cycle:
+                    node = uncomp_circuit_graph.get_node_data(idx)
+                    if node.qubit_type is ANCILLA: 
+                        if node.node_type is UNCOMP:
+                            uncomp_cycle_counter[node.label] +=1
+                        # else:
+                        #     comp_cycle_counter[node.qubit_wire] +=1
+            
 
-        # logger.info(f'There are a total of {len(list(simple_cycles))} in the graph, and a total of {sum([len(x) for x in simple_cycles])} labels to check')
-        # print(f'There are a total of {len(list(simple_cycles))} simple cycles in the circuit graph.')
-        # logger.info(f'There are a total of {len(List(simple_cycles))} simple cycles in the circuit graph.')
+            # logger.info(f'There are a total of {len(list(simple_cycles))} in the graph, and a total of {sum([len(x) for x in simple_cycles])} labels to check')
+            # print(f'There are a total of {len(list(simple_cycles))} simple cycles in the circuit graph.')
+            # logger.info(f'There are a total of {len(List(simple_cycles))} simple cycles in the circuit graph.')
 
-        # uncomp_cycle_labels = [uncomp_circuit_graph.get_node_data(idx).label for cycle in simple_cycles for idx in cycle if uncomp_circuit_graph.get_node_data(idx).node_type is UNCOMP]
-        # uncomp_cycle_counter = collections.Counter(uncomp_cycle_labels)
+            # uncomp_cycle_labels = [uncomp_circuit_graph.get_node_data(idx).label for cycle in simple_cycles for idx in cycle if uncomp_circuit_graph.get_node_data(idx).node_type is UNCOMP]
+            # uncomp_cycle_counter = collections.Counter(uncomp_cycle_labels)
 
-        logger.info(f'Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
-        start_time = time.time_ns()
+            logger.info(f'Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+            start_time = time.time_ns()
 
-        # Debugging warning, can be ignored as cycles can be introduced with the comp nodes 
-        # AFTER adding uncomputation, which should be removed after greedy procedure
-        # if comp_cycle_counter.total() > 0:
-        #     print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-        #     logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
-        #     print(comp_cycle_counter)
-        #     logger.warning(comp_cycle_counter)
+            # Debugging warning, can be ignored as cycles can be introduced with the comp nodes 
+            # AFTER adding uncomputation, which should be removed after greedy procedure
+            # if comp_cycle_counter.total() > 0:
+            #     print(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+            #     logger.warning(f'Warning, removing uncomputation introduced cycles with computation ancilla nodes')
+            #     print(comp_cycle_counter)
+            #     logger.warning(comp_cycle_counter)
 
-        # Find the qubit with the most number of cycles (this will include only ancilla)
-        qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
-        print(qubit, num_cycles)
-        logger.info(f'The qubit {qubit} has the most number of uncomp nodes in cycles {num_cycles}')
+            # Find the qubit with the most number of cycles (this will include only ancilla)
+            qubit, num_cycles = uncomp_cycle_counter.most_common(1)[0]
+            print(qubit, num_cycles)
+            logger.info(f'The qubit {qubit} has the most number of uncomp nodes in cycles {num_cycles}')
 
-        # Remove uncomputation for that qubit. 
-        logger.info(f'Removing all uncomputation nodes for {qubit}')
-        # uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
-        remove_uncomputation_full(uncomp_circuit_graph, [qubit])
-        logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
-        start_time = time.time_ns()
+            # Remove uncomputation for that qubit. 
+            logger.info(f'Removing all uncomputation nodes for {qubit}')
+            # uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
+            remove_uncomputation_full(uncomp_circuit_graph, [qubit])
+            logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+            start_time = time.time_ns()
 
-        cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+            cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
+
+    profile_result = pstats.Stats(profile)
+    profile_result.sort_stats(pstats.SortKey.CALLS)
+    profile_result.print_stats()
 
     return uncomp_circuit_graph
 
