@@ -41,7 +41,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Generating Random Circuit {i}')
             # _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
-            _circuit, num_q, num_a, num_g = random_quantum_circuit_basic()
+            _circuit, num_q, num_a, num_g = random_quantum_circuit_large()
 
         else:
             _circuit = simple_circuit_with_a2_uncomputable()
