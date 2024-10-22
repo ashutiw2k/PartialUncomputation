@@ -1,5 +1,5 @@
 from qiskit import QuantumCircuit
-from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_statevector
+from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_prob_from_statevector
 
 def h_2_circuit():
     circuit = QuantumCircuit(4)
@@ -59,7 +59,7 @@ def h_2_circuit_one_uncomp():
     # Making a1 (from q1) uncomputable
     circuit.cx(3,1)
     # # Uncomp q0,a0
-    circuit.cx(0,2)
+    # circuit.cx(0,2)
 
     circuit.h(0)
     circuit.h(1)
@@ -78,10 +78,20 @@ def main():
     circ_one_uncomp_statevec = get_statevector(circuit_one_uncomp)
     circ_red_uncomp_statevec = get_statevector(circuit_red_uncomp)
     
+    print(f'Circuit: \n{circuit.draw("text")}')
     print(f'Circuit StateVector: \n{circ_statevec}')
-    print(f'All Uncomp Circuit StateVector: \n {circ_all_uncomp_statevec}')
-    print(f'One Uncomp Circuit StateVector: \n {circ_one_uncomp_statevec}')
-    print(f'One Uncomp Done Circuit StateVector: \n {circ_red_uncomp_statevec}')
+
+    
+    print(f'All Uncomp Circuit: \n{circuit_all_uncomp.draw("text")}')
+    print(f'All Uncomp Circuit StateVector: \n{circ_all_uncomp_statevec}')
+    
+    
+    print(f'One Uncomp Circuit: \n{circuit_one_uncomp.draw("text")}')
+    print(f'One Uncomp Circuit StateVector: \n{circ_one_uncomp_statevec}')
+
+    
+    print(f'One Uncomp Done Circuit: \n{circuit_red_uncomp.draw("text")}')
+    print(f'One Uncomp Done Circuit StateVector: \n{circ_red_uncomp_statevec}')
 
     zero_ancilla_circ_statevec = zero_ancillas_in_statevector(circ_statevec, num_a)
     zero_ancilla_circ_all_uncomp_statevec = zero_ancillas_in_statevector(circ_all_uncomp_statevec, num_ua)
@@ -90,16 +100,23 @@ def main():
 
     print('----------------------------------------------------------')
 
-    print(zero_ancilla_circ_statevec)
-    print(zero_ancilla_circ_all_uncomp_statevec)
-    print(zero_ancilla_circ_one_uncomp_statevec)
-    print(zero_ancilla_circ_red_uncomp_statevec)
+    # print(zero_ancilla_circ_statevec)
+    # print(zero_ancilla_circ_all_uncomp_statevec)
+    # print(zero_ancilla_circ_one_uncomp_statevec)
+    # print(zero_ancilla_circ_red_uncomp_statevec)
+
+    print_prob_from_statevector(circ_statevec)
+    print_prob_from_statevector(circ_all_uncomp_statevec)
+    print_prob_from_statevector(circ_one_uncomp_statevec)
+    print_prob_from_statevector(circ_red_uncomp_statevec)
+
+
     print('----------------------------------------------------------')
 
-    print_statevector(zero_ancilla_circ_statevec)
-    print_statevector(zero_ancilla_circ_all_uncomp_statevec)
-    print_statevector(zero_ancilla_circ_one_uncomp_statevec)
-    print_statevector(zero_ancilla_circ_red_uncomp_statevec)
+    print_prob_from_statevector(zero_ancilla_circ_statevec)
+    print_prob_from_statevector(zero_ancilla_circ_all_uncomp_statevec)
+    print_prob_from_statevector(zero_ancilla_circ_one_uncomp_statevec)
+    print_prob_from_statevector(zero_ancilla_circ_red_uncomp_statevec)
 
 
 if __name__=='__main__':
