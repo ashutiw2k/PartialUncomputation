@@ -39,8 +39,8 @@ def complex_circuit_failing_greedy_uncomp():
 
     return circuit    
 
-circuit = complex_circuit_failing_greedy_uncomp()
-ancillas_list = [f'q{i}' for i in range(5,8)]
+circuit = simple_circuit_with_a2_uncomputable()
+ancillas_list = [f'q{i}' for i in range(3,6)]
 comp_graph = get_computation_graph(circuit, ancillas_list)
 graphviz_draw(comp_graph, filename='test_figures/GreedyCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
@@ -49,7 +49,7 @@ if rustworkx.digraph_find_cycle(comp_graph):
     for cycle in rustworkx.simple_cycles(comp_graph):
         print(cycle)
     
-uncomp_graph = greedy_uncomputation_full_per_node(comp_graph, ancillas_list)
+uncomp_graph = greedy_uncomputation_full(comp_graph, ancillas_list)
 
 
 graphviz_draw(uncomp_graph, filename='test_figures/GreedyUncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
