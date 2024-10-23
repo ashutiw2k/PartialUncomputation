@@ -105,17 +105,31 @@ def main():
     # print(zero_ancilla_circ_one_uncomp_statevec)
     # print(zero_ancilla_circ_red_uncomp_statevec)
 
+    print('Circuit State Vector Probabilities')
     print_prob_from_statevector(circ_statevec)
+
+    print('Uncomputed Circuit State Vector Probabilities')
     print_prob_from_statevector(circ_all_uncomp_statevec)
+    
+    print('Only One Uncomp Possible Circuit State Vector Probabilities')
     print_prob_from_statevector(circ_one_uncomp_statevec)
+
+    print('Only One Uncomp Possible Done Circuit State Vector Probabilities')
     print_prob_from_statevector(circ_red_uncomp_statevec)
 
 
     print('----------------------------------------------------------')
 
-    print_prob_from_statevector(zero_ancilla_circ_statevec)
+    print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_prob_from_statevector(zero_ancilla_circ_statevec)    
+    
+    print('Uncomputed Circuit State Vector Probabilities (Ancillas Zero\'d)')
     print_prob_from_statevector(zero_ancilla_circ_all_uncomp_statevec)
+
+    print('Only One Uncomp Possible Circuit State Vector Probabilities (Ancillas Zero\'d)')
     print_prob_from_statevector(zero_ancilla_circ_one_uncomp_statevec)
+
+    print('Only One Uncomp Possible Done Circuit State Vector Probabilities (Ancillas Zero\'d)')
     print_prob_from_statevector(zero_ancilla_circ_red_uncomp_statevec)
 
 
