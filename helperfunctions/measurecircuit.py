@@ -24,7 +24,7 @@ def get_statevector(circuit: QuantumCircuit):
     circuit_copy.save_statevector()
     
     # This gives us the amplitudes
-    simulator = AerSimulator(method='statevector')
+    simulator = AerSimulator(method='statevector', device='GPU')
 
     circ = transpile(circuit_copy, simulator)
 

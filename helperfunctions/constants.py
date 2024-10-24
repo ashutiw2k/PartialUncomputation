@@ -26,10 +26,14 @@ EVAL_DIRS = ['comp_circuit',
              'comp_circuit_qpy',
              'exhaustive_uncomp_circuit',
              'exhaustive_uncomp_graph',
+             'exhaustive_uncomp_circuit_qpy',
              'greedy_uncomp_circuit',
              'greedy_uncomp_graph',
+             'greedy_uncomp_circuit_qpy',
              'greedy_partial_uncomp_circuit',
              'greedy_partial_uncomp_graph',
+             'greedy_partial_uncomp_circuit_qpy',
              'regular_uncomp_circuit',
-             'regular_uncomp_graph'
+             'regular_uncomp_graph',
+             'regular_uncomp_circuit_qpy'
              ]

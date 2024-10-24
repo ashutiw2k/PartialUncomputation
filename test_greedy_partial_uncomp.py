@@ -52,7 +52,7 @@ q_4: ─────────────────■──┤ X ├──
 q_5: ────────────────────────────────────────
 
 '''
-circuit,num_q,num_a = test_circuit()
+# circuit,num_q,num_a = test_circuit()
 
 '''
 Uncomment the below lines to generate a new random circuit and run the algorithm on it. 
@@ -67,17 +67,17 @@ like to debug why.
 '''
 Uncomment lines below to read work with a saved random circuit. 
 '''
-# with open('test_qasm/greedy_partial_bug.qpy', 'rb') as f, open('nums.txt', 'r') as f2:
-#     circuit = qpy.load(f)[0]
-#     num_q = int(f2.readline())
-#     num_a = int(f2.readline())
-#     num_g = int(f2.readline())
+with open('test_qasm/Circuit_5.qpy', 'rb') as f, open('nums.txt', 'r') as f2:
+    circuit = qpy.load(f)[0]
+    num_q = int(f2.readline())
+    num_a = int(f2.readline())
+    num_g = int(f2.readline())
 
 circuit.draw("mpl", filename='test_figures/Greedy_Partial_Circuit.png')
 
 ancillas_list = [breakdown_qubit(q)['label'] for q in circuit.qubits][-num_a:]
 comp_graph = get_computation_graph(circuit, ancillas_list)
-graphviz_draw(comp_graph, filename='test_figures/Greedy_Partial_CircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+# graphviz_draw(comp_graph, filename='test_figures/Greedy_Partial_CircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 if rustworkx.digraph_find_cycle(comp_graph):
     print(f'Computation Graph has cycles !!!!')
@@ -85,7 +85,7 @@ if rustworkx.digraph_find_cycle(comp_graph):
         print(cycle)
 
 cyclic_uncomp_graph, has_cycle = add_uncomputation(comp_graph, ancillas_list, allow_cycle=True)
-graphviz_draw(cyclic_uncomp_graph, filename='test_figures/Cyclic_Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+# graphviz_draw(cyclic_uncomp_graph, filename='test_figures/Cyclic_Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 # removable_ancilla = exhaustive_uncomputation_adding(comp_graph, ancillas_list)
 # print(f'Valid ancilla that can be uncomputed : {removable_ancilla}')
@@ -93,9 +93,9 @@ graphviz_draw(cyclic_uncomp_graph, filename='test_figures/Cyclic_Partial_Uncompu
 # if has_cycle:
 #     print('Ancillas returned by exhaustive adding function still create cycle if uncomputed')
 
-uncomp_graph = greedy_uncomputation_partial(comp_graph, ancillas_list)
+uncomp_graph = greedy_uncomputation_partial(comp_graph, ancillas_list, max_cycles=5*(10**5))
 
-graphviz_draw(uncomp_graph, filename='test_figures/Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
+# graphviz_draw(uncomp_graph, filename='test_figures/Partial_UncomputationCircuitGraph.png', node_attr_fn=node_attr, edge_attr_fn=edge_attr, method='dot')
 
 uncomp_circuit = get_uncomp_circuit(uncomp_graph)
 

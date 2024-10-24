@@ -51,7 +51,6 @@ def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircu
         logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is farther to Eq5 than Eq4')
 
 
-    pass
 
 def simple_circuit_with_a2_uncomputable():
     circuit = QuantumCircuit(6)
