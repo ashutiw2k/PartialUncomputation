@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit, QuantumRegister
 import random
 import logging
+from numpy import pi
 
 from tqdm import tqdm
 
@@ -48,6 +49,13 @@ def random_quantum_circuit_for_partial() -> tuple[QuantumCircuit,int,int,int]:
     an_q = QuantumRegister(num_a, name='aq')
     
     circuit = QuantumCircuit(in_q, an_q)
+
+    # Add random inputs
+    for i in num_q:
+        # circuit.rx(pi/4)
+        # circuit.ry(pi/4)
+        # circuit.rz(pi/4)
+        circuit.h(in_q[i])
     
     for i in range(num_g):
         

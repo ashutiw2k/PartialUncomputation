@@ -4,6 +4,7 @@ import random
 import sys
 import time
 
+import numpy
 from qiskit import QuantumCircuit, qpy
 import rustworkx
 
@@ -12,6 +13,8 @@ from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomp
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.constants import EVAL_DIRS
 
+from helperfunctions.measurecircuit import get_statevector, get_probability_from_statevector, zero_ancillas_in_statevector, print_probs
+
 from helperfunctions.graphhelper import breakdown_qubit, edge_attr, node_attr, node_matcher, edge_matcher
 from rustworkx.visualization import graphviz_draw
 
@@ -19,10 +22,16 @@ from rustworkx.visualization import graphviz_draw
 logger = logging.getLogger(__name__)
 start_time = 0
 
+# def evaluate_statevectors(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircuit, 
+#                           uncomp_type='regular':('regular', 'exhaustive', 'greedy-full', 'greedy-partial')):
+
+#     pass
+
 def simple_circuit_with_a2_uncomputable():
     circuit = QuantumCircuit(6)
 
     for i in range(3):
+        circuit.h(i)
         circuit.cx(i,i+3)
 
     circuit.cx(4,1)
@@ -33,9 +42,9 @@ def simple_circuit_with_a2_uncomputable():
 def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     logger.info(f'Starting Evaluation of Exhaustive Uncomp with {num_circuits} random quantum circuits')
     global start_time
-    
+    valid_num_circuits = num_circuits if num_circuits > 0 else 1
     print('****************************************************************************')
-    for i in range(num_circuits+1):
+    for i in range(valid_num_circuits):
         if num_circuits > 0:
 
             logger.info(f'Generating Random Circuit {i}')
@@ -112,6 +121,29 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Time to build uncomp circuit took {time.time_ns()-start_time} ns')
             start_time = time.time_ns()
+
+            _exhaustive_eq4_comp_statevector = get_statevector(_circuit)
+            _exhaustive_eq4_comp_prob_dist = get_probability_from_statevector(_exhaustive_eq4_comp_statevector)
+            logger.info(f'Comp Circuit Eq4 Probability Distribution: \n{print_probs(_exhaustive_eq4_comp_prob_dist)}')
+
+            _exhaustive_eq5_comp_statevector = zero_ancillas_in_statevector(_exhaustive_eq4_comp_statevector, num_a)
+            _exhaustive_eq5_comp_prob_dist = get_probability_from_statevector(_exhaustive_eq5_comp_statevector)
+            logger.info(f'Comp Circuit Eq5 Probability Distribution: \n{print_probs(_exhaustive_eq5_comp_prob_dist)}')
+
+            _exhaustive_eq4_uncomp_statevector = get_statevector(_exhaustive_uncomp_circuit)
+            _exhaustive_eq4_uncomp_prob_dist = get_probability_from_statevector(_exhaustive_eq4_uncomp_statevector)
+            logger.info(f'Uncomp Circuit Eq4 Probability Distribution: \n{print_probs(_exhaustive_eq4_uncomp_prob_dist)}')
+
+            _exhaustive_distance_probs_eq4_5_comp = numpy.linalg.norm(_exhaustive_eq5_comp_prob_dist - _exhaustive_eq4_comp_prob_dist)
+            logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {_exhaustive_distance_probs_eq4_5_comp}')
+            _exhaustive_distance_probs_eq4_4_uncomp = numpy.linalg.norm(_exhaustive_eq4_uncomp_prob_dist - _exhaustive_eq4_comp_prob_dist)
+            logger.info(f'The distance between the probability distributions of Eq4 Comp and Uncomp for Circuit {name_str} are {_exhaustive_distance_probs_eq4_4_uncomp}')
+
+
+
+
+            
+
 
 # ***************************************************************************************************************#
             # logger.info(f'Attempting to run greedy uncomp on {name_str}')

@@ -1,5 +1,5 @@
 from qiskit import QuantumCircuit
-from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_prob_from_statevector
+from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_probs
 
 def h_2_circuit():
     circuit = QuantumCircuit(4)
@@ -106,31 +106,31 @@ def main():
     # print(zero_ancilla_circ_red_uncomp_statevec)
 
     print('Circuit State Vector Probabilities')
-    print_prob_from_statevector(circ_statevec)
+    print_probs(circ_statevec, is_statevector=True)
 
     print('Uncomputed Circuit State Vector Probabilities')
-    print_prob_from_statevector(circ_all_uncomp_statevec)
+    print_probs(circ_all_uncomp_statevec, is_statevector=True)
     
     print('Only One Uncomp Possible Circuit State Vector Probabilities')
-    print_prob_from_statevector(circ_one_uncomp_statevec)
+    print_probs(circ_one_uncomp_statevec, is_statevector=True)
 
     print('Only One Uncomp Possible Done Circuit State Vector Probabilities')
-    print_prob_from_statevector(circ_red_uncomp_statevec)
+    print_probs(circ_red_uncomp_statevec, is_statevector=True)
 
 
     print('----------------------------------------------------------')
 
     print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
-    print_prob_from_statevector(zero_ancilla_circ_statevec)    
+    print_probs(zero_ancilla_circ_statevec, is_statevector=True)    
     
     print('Uncomputed Circuit State Vector Probabilities (Ancillas Zero\'d)')
-    print_prob_from_statevector(zero_ancilla_circ_all_uncomp_statevec)
+    print_probs(zero_ancilla_circ_all_uncomp_statevec, is_statevector=True)
 
     print('Only One Uncomp Possible Circuit State Vector Probabilities (Ancillas Zero\'d)')
-    print_prob_from_statevector(zero_ancilla_circ_one_uncomp_statevec)
+    print_probs(zero_ancilla_circ_one_uncomp_statevec, is_statevector=True)
 
     print('Only One Uncomp Possible Done Circuit State Vector Probabilities (Ancillas Zero\'d)')
-    print_prob_from_statevector(zero_ancilla_circ_red_uncomp_statevec)
+    print_probs(zero_ancilla_circ_red_uncomp_statevec, is_statevector=True)
 
 
 if __name__=='__main__':
