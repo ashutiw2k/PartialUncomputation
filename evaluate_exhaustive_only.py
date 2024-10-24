@@ -3,6 +3,7 @@ import logging
 import random
 import sys
 import time
+from typing import Literal
 
 import numpy
 from qiskit import QuantumCircuit, qpy
@@ -22,10 +23,35 @@ from rustworkx.visualization import graphviz_draw
 logger = logging.getLogger(__name__)
 start_time = 0
 
-# def evaluate_statevectors(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircuit, 
-#                           uncomp_type='regular':('regular', 'exhaustive', 'greedy-full', 'greedy-partial')):
+def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircuit, num_a, name_str,
+                          uncomp_type:Literal['regular', 'exhaustive', 'greedy-full', 'greedy-partial']='regular'):
+    
+    eq4_comp_statevector = get_statevector(comp_circuit)
+    eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
+    logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
 
-#     pass
+    eq5_comp_statevector = zero_ancillas_in_statevector(eq4_comp_statevector, num_a)
+    eq5_comp_prob_dist = get_probability_from_statevector(eq5_comp_statevector)
+    logger.info(f'Comp Circuit {name_str} Eq5 Probability Distribution: \n{print_probs(eq5_comp_prob_dist)}')
+
+    eq4_uncomp_statevector = get_statevector(uncomp_circuit)
+    eq4_uncomp_prob_dist = get_probability_from_statevector(eq4_uncomp_statevector)
+    logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
+
+    distance_probs_eq5_4_comp = numpy.linalg.norm(eq5_comp_prob_dist - eq4_comp_prob_dist)
+    logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {distance_probs_eq5_4_comp}')
+    distance_probs_eq5_4_uncomp = numpy.linalg.norm(eq4_uncomp_prob_dist - eq5_comp_prob_dist)
+    logger.info(f'The distance between the probability distributions of Comp Eq5  and {uncomp_type.capitalize()} Uncomp for Circuit {name_str} are {distance_probs_eq5_4_uncomp}')
+
+    if distance_probs_eq5_4_uncomp < distance_probs_eq5_4_comp:
+        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is closer to Eq5 than Eq4')
+    elif distance_probs_eq5_4_uncomp == distance_probs_eq5_4_comp:
+        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is the same to Eq5 as Eq4')
+    else:
+        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is farther to Eq5 than Eq4')
+
+
+    pass
 
 def simple_circuit_with_a2_uncomputable():
     circuit = QuantumCircuit(6)
@@ -122,28 +148,10 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             logger.info(f'Time to build uncomp circuit took {time.time_ns()-start_time} ns')
             start_time = time.time_ns()
 
-            _exhaustive_eq4_comp_statevector = get_statevector(_circuit)
-            _exhaustive_eq4_comp_prob_dist = get_probability_from_statevector(_exhaustive_eq4_comp_statevector)
-            logger.info(f'Comp Circuit Eq4 Probability Distribution: \n{print_probs(_exhaustive_eq4_comp_prob_dist)}')
-
-            _exhaustive_eq5_comp_statevector = zero_ancillas_in_statevector(_exhaustive_eq4_comp_statevector, num_a)
-            _exhaustive_eq5_comp_prob_dist = get_probability_from_statevector(_exhaustive_eq5_comp_statevector)
-            logger.info(f'Comp Circuit Eq5 Probability Distribution: \n{print_probs(_exhaustive_eq5_comp_prob_dist)}')
-
-            _exhaustive_eq4_uncomp_statevector = get_statevector(_exhaustive_uncomp_circuit)
-            _exhaustive_eq4_uncomp_prob_dist = get_probability_from_statevector(_exhaustive_eq4_uncomp_statevector)
-            logger.info(f'Uncomp Circuit Eq4 Probability Distribution: \n{print_probs(_exhaustive_eq4_uncomp_prob_dist)}')
-
-            _exhaustive_distance_probs_eq4_5_comp = numpy.linalg.norm(_exhaustive_eq5_comp_prob_dist - _exhaustive_eq4_comp_prob_dist)
-            logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {_exhaustive_distance_probs_eq4_5_comp}')
-            _exhaustive_distance_probs_eq4_4_uncomp = numpy.linalg.norm(_exhaustive_eq4_uncomp_prob_dist - _exhaustive_eq4_comp_prob_dist)
-            logger.info(f'The distance between the probability distributions of Eq4 Comp and Uncomp for Circuit {name_str} are {_exhaustive_distance_probs_eq4_4_uncomp}')
-
-
-
-
             
-
+            evaluate_circuits(comp_circuit=_circuit, 
+                              uncomp_circuit=_exhaustive_uncomp_circuit, 
+                              num_a=num_a, name_str=name_str, uncomp_type='exhaustive')
 
 # ***************************************************************************************************************#
             # logger.info(f'Attempting to run greedy uncomp on {name_str}')
