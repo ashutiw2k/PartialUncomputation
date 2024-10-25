@@ -18,7 +18,13 @@ class StringConstants(Enum):
     ANTIDEP = 'anti-dependence'
 
 
-UNCOMP_TYPES = Literal['regular', 'exhaustive', 'greedy-full', 'greedy-partial']
+# UNCOMP_TYPES = Literal['regular', 'exhaustive', 'greedy-full', 'greedy-partial']
+
+class UncompType(Enum):
+    REGULAR = 'regular'
+    EXHAUSTIVE = 'exhaustive'
+    GREEDY_FULL = 'greedy-full'
+    GREEDY_PARTIAL = 'greedy-partial'
 
 class ListConstants(Enum):
 

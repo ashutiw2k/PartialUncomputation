@@ -4,7 +4,9 @@ import random
 import sys
 import time
 from typing import Literal
+import gc
 
+from matplotlib import pyplot as plt
 import numpy
 from qiskit import QuantumCircuit, qpy
 import rustworkx
@@ -12,7 +14,7 @@ import rustworkx
 from helperfunctions.randomcircuit import random_quantum_circuit_basic, random_quantum_circuit_large
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
-from helperfunctions.constants import EVAL_DIRS, UNCOMP_TYPES
+from helperfunctions.constants import EVAL_DIRS, UncompType
 
 from helperfunctions.measurecircuit import get_statevector, get_probability_from_statevector, zero_ancillas_in_statevector, print_probs
 
@@ -45,13 +47,13 @@ class EvaluationMetrics:
         # self.exhaustive_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
         # self.greedy_full_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
         # self.greedy_partial_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
-        self.uncomp_better = {x:0 for x in UNCOMP_TYPES}
-        self.uncomp_same = {x:0 for x in UNCOMP_TYPES}
-        self.uncomp_worse = {x:0 for x in UNCOMP_TYPES}
+        self.uncomp_better = {x:0 for x in UncompType}
+        self.uncomp_same = {x:0 for x in UncompType}
+        self.uncomp_worse = {x:0 for x in UncompType}
 
 
 def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircuit, num_a, name_str,
-                          uncomp_type:UNCOMP_TYPES='regular'):
+                          metric:EvaluationMetrics, uncomp_type:UncompType='regular'):
     
     eq4_comp_statevector = get_statevector(comp_circuit)
     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
@@ -66,18 +68,26 @@ def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircu
     # logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
 
     distance_probs_eq5_4_comp = numpy.linalg.norm(eq5_comp_prob_dist - eq4_comp_prob_dist)
-    logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {distance_probs_eq5_4_comp}')
     distance_probs_eq5_4_uncomp = numpy.linalg.norm(eq4_uncomp_prob_dist - eq5_comp_prob_dist)
-    logger.info(f'The distance between the probability distributions of Comp Eq5  and {uncomp_type.capitalize()} Uncomp for Circuit {name_str} are {distance_probs_eq5_4_uncomp}')
+    
+    distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp = numpy.round((distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp), decimals=10)
+    
+    logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {distance_probs_eq5_4_comp}')
+    logger.info(f'The distance between the probability distributions of Comp Eq5  and {uncomp_type.value.capitalize()} Uncomp for Circuit {name_str} are {distance_probs_eq5_4_uncomp}')
+
 
     if distance_probs_eq5_4_uncomp < distance_probs_eq5_4_comp:
-        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is closer to Eq5 than Eq4')
+        logger.info(f'{uncomp_type.value.capitalize()} Uncomputation of Circuit {name_str} is closer to Eq5 than Eq4')
+        metric.uncomp_better[uncomp_type] += 1
+
     elif distance_probs_eq5_4_uncomp == distance_probs_eq5_4_comp:
-        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is the same to Eq5 as Eq4')
+        logger.info(f'{uncomp_type.value.capitalize()} Uncomputation of Circuit {name_str} is the same to Eq5 as Eq4')
+        metric.uncomp_same[uncomp_type] += 1
+        
     else:
-        logger.info(f'{uncomp_type.capitalize()} Uncomputation of Circuit {name_str} is farther to Eq5 than Eq4')
-
-
+        logger.info(f'{uncomp_type.value.capitalize()} Uncomputation of Circuit {name_str} is farther to Eq5 than Eq4')
+        metric.uncomp_worse[uncomp_type] += 1
+        
 
 def simple_circuit_with_a2_uncomputable():
     circuit = QuantumCircuit(6)
@@ -224,7 +234,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_exhaustive_uncomp_circuit, 
-                              num_a=num_a, name_str=name_str, uncomp_type='exhaustive')
+                              num_a=num_a, name_str=name_str, metric=metrics, uncomp_type=UncompType.EXHAUSTIVE)
             
 
             with open(f'{eval_dir}/exhaustive_uncomp_circuit_qpy/{name_str}.qpy', 'wb') as f:
@@ -249,7 +259,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_greedy_uncomp_circuit, 
-                              num_a=num_a, name_str=name_str, uncomp_type='greedy-full')
+                              num_a=num_a, name_str=name_str, metric=metrics, uncomp_type=UncompType.GREEDY_FULL)
             
 
             with open(f'{eval_dir}/greedy_uncomp_circuit_qpy/{name_str}.qpy', 'wb') as f:
@@ -262,6 +272,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             if rustworkx.is_isomorphic(_greedy_uncomp_circuit_graph, _exhaustive_uncomp_circuit_graph,
                                        node_matcher=node_matcher, edge_matcher=edge_matcher):
                 logger.info(f'Both methods return the same circuit graphs')
+                metrics.greedy_and_exhaustive_return_same += 1
             else:
                 logger.info(f'Both methods return different circuit graphs')
 
@@ -281,7 +292,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_greedy_partial_uncomp_circuit, 
-                              num_a=num_a, name_str=name_str, uncomp_type='greedy-partial') 
+                              num_a=num_a, name_str=name_str, metric=metrics, uncomp_type=UncompType.GREEDY_PARTIAL) 
 
             with open(f'{eval_dir}/greedy_partial_uncomp_circuit_qpy/{name_str}.qpy', 'wb') as f:
                 qpy.dump(_greedy_partial_uncomp_circuit, f)
@@ -300,15 +311,24 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_uncomp_circuit, 
-                              num_a=num_a, name_str=name_str, uncomp_type='regular')
+                              num_a=num_a, name_str=name_str, metric=metrics, uncomp_type=UncompType.REGULAR)
             
             metrics.can_be_regularly_uncomputed += 1
 
             with open(f'{eval_dir}/regular_uncomp_circuit_qpy/{name_str}.qpy', 'wb') as f:
                 qpy.dump(_uncomp_circuit, f)
                 f.close()
+
+        # Collect and free all memory
+        plt.close()
+        gc.collect()
 #**************************************************************************************************************#
 
+    logger.info(f'Evaluation Results:')
+    logger.info(f'Exhaustive and Greedy produced the same circuit in {metrics.greedy_and_exhaustive_return_same}')
+    logger.info(f'Uncomputation was closer than Eq4 for {[(i.value,x) for i,x in metrics.uncomp_better.items()]}')
+    logger.info(f'Uncomputation was same as Eq4 for {[(i.value,x) for i,x in metrics.uncomp_same.items()]}')
+    logger.info(f'Uncomputation was worse than Eq4 for {[(i.value,x) for i,x in metrics.uncomp_worse.items()]}')
 
 if __name__ == '__main__':
     

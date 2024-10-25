@@ -1,10 +1,1811 @@
-2024-10-12 11:03:52,466 - eval_main_func - 32 - INFO - Starting Evaluation with 10 random quantum circuits
-2024-10-12 11:03:52,467 - eval_main_func - 40 - INFO - Generating Random Circuit 0 with 12 input, 7 ancilla and 85 gates
-2024-10-12 11:03:52,479 - random_quantum_circuit - 54 - INFO - Built circuit with 12 input, 7 ancilla and 85 gates.
-2024-10-12 11:03:56,983 - eval_main_func - 53 - INFO - Creating Circuit Graph of circuit Circuit_0
-2024-10-12 11:07:25,314 - eval_main_func - 72 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
-2024-10-12 11:07:25,316 - eval_main_func - 74 - INFO - Attempting to run exhaustive uncomp on Circuit_0
-2024-10-12 11:07:26,142 - eval_main_func - 76 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is ()
-2024-10-12 11:07:26,150 - eval_main_func - 81 - INFO - Drawing Exhaustive Uncomp Circuit Graph for Circuit_0
-2024-10-12 11:11:12,430 - eval_main_func - 87 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
-2024-10-12 11:11:14,996 - eval_main_func - 92 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-25 03:38:37,468 - eval_main_func - 145 - INFO - Starting Evaluation of Exhaustive Uncomp with 10 random quantum circuits
+2024-10-25 03:38:37,469 - eval_main_func - 155 - INFO - Generating Random Circuit 0
+2024-10-25 03:38:37,496 - random_quantum_circuit_large - 143 - INFO - Built circuit with 4 input, 9 ancilla and 429 gates.
+2024-10-25 03:38:37,496 - random_quantum_circuit_large - 144 - INFO - There are 323 gates acting between control qubits, 16 gates acting between control and ancilla, 32 gates acting between ancilla and control and 58 gates acting between just the ancillas.
+2024-10-25 03:38:41,212 - eval_main_func - 172 - INFO - Building Random Circuit took 3743294060 ns
+2024-10-25 03:38:41,212 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_0
+2024-10-25 03:38:41,216 - eval_main_func - 183 - INFO - Building Circuit Graph took 4247158 ns
+2024-10-25 03:38:41,216 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 72593 ns
+2024-10-25 03:38:41,229 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 12533746 ns
+2024-10-25 03:38:41,229 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_0 produces a cycle
+2024-10-25 03:38:41,229 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_0
+2024-10-25 03:38:48,235 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_0 that can be uncomputed is ()
+2024-10-25 03:38:48,235 - eval_main_func - 207 - INFO - Time to find largest set took 7006427436 ns
+2024-10-25 03:38:48,247 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 11653533 ns
+2024-10-25 03:38:48,247 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_0
+2024-10-25 03:38:51,700 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 3453022528 ns
+2024-10-25 03:38:52,359 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 03:38:52,359 - execute - 109 - INFO - Pass: InverseCancellation - 0.38385 (ms)
+2024-10-25 03:38:52,360 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:38:52,362 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.97482 (ms)
+2024-10-25 03:38:52,363 - execute - 109 - INFO - Pass: BasisTranslator - 1.61290 (ms)
+2024-10-25 03:38:52,364 - execute - 109 - INFO - Pass: Depth - 0.39864 (ms)
+2024-10-25 03:38:52,364 - execute - 109 - INFO - Pass: FixedPoint - 0.00691 (ms)
+2024-10-25 03:38:52,364 - execute - 109 - INFO - Pass: Size - 0.06580 (ms)
+2024-10-25 03:38:52,364 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 03:38:52,365 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 1.01781 (ms)
+2024-10-25 03:38:52,365 - execute - 109 - INFO - Pass: InverseCancellation - 0.22888 (ms)
+2024-10-25 03:38:52,366 - execute - 109 - INFO - Pass: GatesInBasis - 0.95558 (ms)
+2024-10-25 03:38:52,367 - execute - 109 - INFO - Pass: Depth - 0.16880 (ms)
+2024-10-25 03:38:52,367 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 03:38:52,367 - execute - 109 - INFO - Pass: Size - 0.04244 (ms)
+2024-10-25 03:38:52,367 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:38:52,367 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00429 (ms)
+2024-10-25 03:38:52,367 - _log_transpile_time - 423 - INFO - Total Transpile Time - 666.37921 (ms)
+2024-10-25 03:38:52,847 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00453 (ms)
+2024-10-25 03:38:52,848 - execute - 109 - INFO - Pass: InverseCancellation - 0.34237 (ms)
+2024-10-25 03:38:52,848 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 03:38:52,849 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.15800 (ms)
+2024-10-25 03:38:52,849 - execute - 109 - INFO - Pass: BasisTranslator - 0.40865 (ms)
+2024-10-25 03:38:52,849 - execute - 109 - INFO - Pass: Depth - 0.17405 (ms)
+2024-10-25 03:38:52,849 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 03:38:52,850 - execute - 109 - INFO - Pass: Size - 0.04292 (ms)
+2024-10-25 03:38:52,850 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:38:52,850 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.19312 (ms)
+2024-10-25 03:38:52,850 - execute - 109 - INFO - Pass: InverseCancellation - 0.20528 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: GatesInBasis - 0.49782 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: Depth - 0.16379 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: Size - 0.04148 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 03:38:52,851 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 03:38:52,851 - _log_transpile_time - 423 - INFO - Total Transpile Time - 25.92492 (ms)
+2024-10-25 03:38:52,859 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:38:52,859 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:38:52,859 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_0 is the same to Eq5 as Eq4
+2024-10-25 03:38:52,861 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_0
+2024-10-25 03:38:53,036 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 174633491 ns
+2024-10-25 03:38:53,036 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 54759 ns
+2024-10-25 03:38:53,036 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 74887 ns
+2024-10-25 03:39:13,219 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20182989686 ns
+2024-10-25 03:39:13,219 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 3910988
+2024-10-25 03:39:13,219 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 03:39:13,220 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 513322 ns
+2024-10-25 03:39:13,220 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 230015 ns
+2024-10-25 03:39:35,062 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 21842311330 ns
+2024-10-25 03:39:35,062 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 4282320
+2024-10-25 03:39:35,062 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 03:39:35,063 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 377412 ns
+2024-10-25 03:39:35,063 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 214306 ns
+2024-10-25 03:39:55,480 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20416574780 ns
+2024-10-25 03:39:55,480 - greedy_uncomputation_full - 323 - INFO - The qubit aq8 has the most number of uncomp nodes in cycles 3858496
+2024-10-25 03:39:55,480 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq8
+2024-10-25 03:39:55,480 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq8 in Greedy Uncomp Circuit Graph took 495830 ns
+2024-10-25 03:39:55,480 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 304288 ns
+2024-10-25 03:40:18,486 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 23005035993 ns
+2024-10-25 03:40:18,486 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 4249736
+2024-10-25 03:40:18,486 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 03:40:18,486 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 408853 ns
+2024-10-25 03:40:18,486 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 200296 ns
+2024-10-25 03:40:41,780 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 23293161854 ns
+2024-10-25 03:40:41,780 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 4074903
+2024-10-25 03:40:41,780 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 03:40:41,780 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 307593 ns
+2024-10-25 03:40:41,780 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 198913 ns
+2024-10-25 03:41:01,869 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20088674117 ns
+2024-10-25 03:41:01,869 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 3782682
+2024-10-25 03:41:01,869 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 03:41:01,869 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 403312 ns
+2024-10-25 03:41:01,870 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 205561 ns
+2024-10-25 03:41:19,665 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 17795623821 ns
+2024-10-25 03:41:19,665 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 2429644
+2024-10-25 03:41:19,665 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 03:41:19,666 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 221598 ns
+2024-10-25 03:41:19,666 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 193290 ns
+2024-10-25 03:41:34,594 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 14928093346 ns
+2024-10-25 03:41:34,594 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 3443686
+2024-10-25 03:41:34,594 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 03:41:34,594 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 386253 ns
+2024-10-25 03:41:34,595 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 235470 ns
+2024-10-25 03:41:44,055 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 9460592903 ns
+2024-10-25 03:41:44,055 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 2500010
+2024-10-25 03:41:44,055 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 03:41:44,056 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 237167 ns
+2024-10-25 03:41:44,056 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_0
+2024-10-25 03:41:44,056 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_0
+2024-10-25 03:41:47,523 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00691 (ms)
+2024-10-25 03:41:47,524 - execute - 109 - INFO - Pass: InverseCancellation - 0.38862 (ms)
+2024-10-25 03:41:47,524 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00381 (ms)
+2024-10-25 03:41:47,525 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.38974 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: BasisTranslator - 0.54026 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: Depth - 0.17905 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: FixedPoint - 0.00668 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: Size - 0.04482 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:41:47,526 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.21267 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: InverseCancellation - 0.21505 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: GatesInBasis - 0.53263 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: Depth - 0.16475 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: Size - 0.04220 (ms)
+2024-10-25 03:41:47,527 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:41:47,528 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00334 (ms)
+2024-10-25 03:41:47,528 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.17655 (ms)
+2024-10-25 03:41:47,609 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 03:41:47,609 - execute - 109 - INFO - Pass: InverseCancellation - 0.32163 (ms)
+2024-10-25 03:41:47,609 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:41:47,611 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.25670 (ms)
+2024-10-25 03:41:47,611 - execute - 109 - INFO - Pass: BasisTranslator - 0.45276 (ms)
+2024-10-25 03:41:47,611 - execute - 109 - INFO - Pass: Depth - 0.17452 (ms)
+2024-10-25 03:41:47,612 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 03:41:47,612 - execute - 109 - INFO - Pass: Size - 0.04268 (ms)
+2024-10-25 03:41:47,612 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:41:47,612 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.20123 (ms)
+2024-10-25 03:41:47,612 - execute - 109 - INFO - Pass: InverseCancellation - 0.24247 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: GatesInBasis - 0.81444 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: Depth - 0.17548 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: Size - 0.04220 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:41:47,613 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 03:41:47,614 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.08619 (ms)
+2024-10-25 03:41:47,642 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:41:47,642 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:41:47,643 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_0 is the same to Eq5 as Eq4
+2024-10-25 03:41:47,644 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_0
+2024-10-25 03:41:47,645 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 03:41:47,645 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_0
+2024-10-25 03:48:07,799 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_0
+2024-10-25 03:48:07,799 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_0
+2024-10-25 03:48:11,332 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00834 (ms)
+2024-10-25 03:48:11,333 - execute - 109 - INFO - Pass: InverseCancellation - 0.37050 (ms)
+2024-10-25 03:48:11,333 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00334 (ms)
+2024-10-25 03:48:11,334 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.33991 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: BasisTranslator - 0.53596 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: Depth - 0.17905 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: FixedPoint - 0.00596 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: Size - 0.04458 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: FixedPoint - 0.00167 (ms)
+2024-10-25 03:48:11,335 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.20146 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: InverseCancellation - 0.21124 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: GatesInBasis - 0.51546 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: Depth - 0.16332 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: Size - 0.04315 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: FixedPoint - 0.00167 (ms)
+2024-10-25 03:48:11,336 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00191 (ms)
+2024-10-25 03:48:11,337 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.10087 (ms)
+2024-10-25 03:48:11,425 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 03:48:11,425 - execute - 109 - INFO - Pass: InverseCancellation - 0.28419 (ms)
+2024-10-25 03:48:11,425 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:48:11,426 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.19495 (ms)
+2024-10-25 03:48:11,427 - execute - 109 - INFO - Pass: BasisTranslator - 0.53835 (ms)
+2024-10-25 03:48:11,427 - execute - 109 - INFO - Pass: Depth - 0.17595 (ms)
+2024-10-25 03:48:11,427 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 03:48:11,427 - execute - 109 - INFO - Pass: Size - 0.04268 (ms)
+2024-10-25 03:48:11,427 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:48:11,428 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.19717 (ms)
+2024-10-25 03:48:11,428 - execute - 109 - INFO - Pass: InverseCancellation - 0.20790 (ms)
+2024-10-25 03:48:11,428 - execute - 109 - INFO - Pass: GatesInBasis - 0.51427 (ms)
+2024-10-25 03:48:11,429 - execute - 109 - INFO - Pass: Depth - 0.17118 (ms)
+2024-10-25 03:48:11,429 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:48:11,429 - execute - 109 - INFO - Pass: Size - 0.04172 (ms)
+2024-10-25 03:48:11,429 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:48:11,429 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 03:48:11,429 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.17049 (ms)
+2024-10-25 03:48:11,494 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:48:11,494 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_0 are 0.4129021260304594
+2024-10-25 03:48:11,494 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_0 is the same to Eq5 as Eq4
+2024-10-25 03:48:11,785 - eval_main_func - 155 - INFO - Generating Random Circuit 1
+2024-10-25 03:48:11,792 - random_quantum_circuit_large - 143 - INFO - Built circuit with 10 input, 7 ancilla and 120 gates.
+2024-10-25 03:48:11,792 - random_quantum_circuit_large - 144 - INFO - There are 96 gates acting between control qubits, 3 gates acting between control and ancilla, 11 gates acting between ancilla and control and 10 gates acting between just the ancillas.
+2024-10-25 03:48:13,297 - eval_main_func - 172 - INFO - Building Random Circuit took 561596812203 ns
+2024-10-25 03:48:13,297 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_1
+2024-10-25 03:48:13,299 - eval_main_func - 183 - INFO - Building Circuit Graph took 2139082 ns
+2024-10-25 03:48:13,299 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 28303 ns
+2024-10-25 03:48:13,304 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 4929147 ns
+2024-10-25 03:48:13,304 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_1 produces a cycle
+2024-10-25 03:48:13,305 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_1
+2024-10-25 03:48:13,963 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq1',)
+2024-10-25 03:48:13,963 - eval_main_func - 207 - INFO - Time to find largest set took 659068755 ns
+2024-10-25 03:48:13,968 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 4680088 ns
+2024-10-25 03:48:13,968 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_1
+2024-10-25 03:48:15,372 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 1403628527 ns
+2024-10-25 03:48:15,395 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00787 (ms)
+2024-10-25 03:48:15,395 - execute - 109 - INFO - Pass: InverseCancellation - 0.18167 (ms)
+2024-10-25 03:48:15,395 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00358 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.04475 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: BasisTranslator - 0.27752 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: Depth - 0.11086 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: FixedPoint - 0.00668 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: Size - 0.03076 (ms)
+2024-10-25 03:48:15,397 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.40865 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: InverseCancellation - 0.10800 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: GatesInBasis - 0.34976 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: Depth - 0.10204 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: FixedPoint - 0.00358 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: Size - 0.02837 (ms)
+2024-10-25 03:48:15,398 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:48:15,399 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00405 (ms)
+2024-10-25 03:48:15,399 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.51334 (ms)
+2024-10-25 03:48:15,468 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00501 (ms)
+2024-10-25 03:48:15,468 - execute - 109 - INFO - Pass: InverseCancellation - 0.09060 (ms)
+2024-10-25 03:48:15,468 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 03:48:15,468 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.40460 (ms)
+2024-10-25 03:48:15,468 - execute - 109 - INFO - Pass: BasisTranslator - 0.17142 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: Depth - 0.08464 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: Size - 0.02098 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25725 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: InverseCancellation - 0.07176 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: GatesInBasis - 0.21195 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: Depth - 0.07653 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: Size - 0.01931 (ms)
+2024-10-25 03:48:15,469 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 03:48:15,470 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 03:48:15,470 - _log_transpile_time - 423 - INFO - Total Transpile Time - 23.84830 (ms)
+2024-10-25 03:48:15,481 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:48:15,481 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:48:15,481 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_1 is the same to Eq5 as Eq4
+2024-10-25 03:48:15,482 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_1
+2024-10-25 03:48:15,492 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 9710162 ns
+2024-10-25 03:48:15,492 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 20428 ns
+2024-10-25 03:48:15,492 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 40378 ns
+2024-10-25 03:48:17,616 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 2123908070 ns
+2024-10-25 03:48:17,616 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 500002
+2024-10-25 03:48:17,616 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 03:48:17,616 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 165889 ns
+2024-10-25 03:48:17,616 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 79418 ns
+2024-10-25 03:48:20,025 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 2408308723 ns
+2024-10-25 03:48:20,025 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 724608
+2024-10-25 03:48:20,025 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 03:48:20,025 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 166683 ns
+2024-10-25 03:48:20,025 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 84563 ns
+2024-10-25 03:48:24,347 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 4322089601 ns
+2024-10-25 03:48:24,347 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 03:48:24,347 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 03:48:24,347 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 141002 ns
+2024-10-25 03:48:24,348 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 80507 ns
+2024-10-25 03:48:28,081 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 3733305918 ns
+2024-10-25 03:48:28,081 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 1241913
+2024-10-25 03:48:28,081 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 03:48:28,081 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 155176 ns
+2024-10-25 03:48:28,081 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 75496 ns
+2024-10-25 03:48:30,400 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 2319203048 ns
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 500002
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 147104 ns
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 75683 ns
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 239064 ns
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 1
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 03:48:30,401 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 68308 ns
+2024-10-25 03:48:30,401 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_1
+2024-10-25 03:48:30,401 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_1
+2024-10-25 03:48:32,156 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00548 (ms)
+2024-10-25 03:48:32,156 - execute - 109 - INFO - Pass: InverseCancellation - 0.10943 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.51498 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: BasisTranslator - 0.17476 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: Depth - 0.08798 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 03:48:32,157 - execute - 109 - INFO - Pass: Size - 0.02050 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.26345 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: InverseCancellation - 0.07749 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: GatesInBasis - 0.29254 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: Depth - 0.08559 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: Size - 0.01955 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:48:32,158 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00286 (ms)
+2024-10-25 03:48:32,159 - _log_transpile_time - 423 - INFO - Total Transpile Time - 25.80905 (ms)
+2024-10-25 03:48:32,227 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00572 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: InverseCancellation - 0.09751 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.42057 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: BasisTranslator - 0.17309 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: Depth - 0.08535 (ms)
+2024-10-25 03:48:32,228 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: Size - 0.02074 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.26178 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: InverseCancellation - 0.07319 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: GatesInBasis - 0.20075 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: Depth - 0.07725 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: Size - 0.01979 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:48:32,229 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 03:48:32,230 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.17416 (ms)
+2024-10-25 03:48:32,240 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:48:32,240 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:48:32,240 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_1 is the same to Eq5 as Eq4
+2024-10-25 03:48:32,242 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_1
+2024-10-25 03:48:32,242 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 03:48:32,242 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_1
+2024-10-25 03:49:02,351 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_1
+2024-10-25 03:49:02,351 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_1
+2024-10-25 03:49:03,793 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00501 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: InverseCancellation - 0.12016 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.46492 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: BasisTranslator - 0.16260 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: Depth - 0.08416 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 03:49:03,794 - execute - 109 - INFO - Pass: Size - 0.02098 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.26083 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: InverseCancellation - 0.07534 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: GatesInBasis - 0.19431 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: Depth - 0.07844 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: Size - 0.01955 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:49:03,795 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 03:49:03,796 - _log_transpile_time - 423 - INFO - Total Transpile Time - 24.82200 (ms)
+2024-10-25 03:49:03,879 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 03:49:03,879 - execute - 109 - INFO - Pass: InverseCancellation - 0.09537 (ms)
+2024-10-25 03:49:03,879 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.41866 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: BasisTranslator - 0.15831 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: Depth - 0.08655 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: Size - 0.02146 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25797 (ms)
+2024-10-25 03:49:03,880 - execute - 109 - INFO - Pass: InverseCancellation - 0.07200 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: GatesInBasis - 0.20671 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: Depth - 0.08106 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: Size - 0.02098 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:49:03,881 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 03:49:03,881 - _log_transpile_time - 423 - INFO - Total Transpile Time - 23.15378 (ms)
+2024-10-25 03:49:03,931 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:49:03,931 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_1 are 0.01735975472131951
+2024-10-25 03:49:03,931 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_1 is the same to Eq5 as Eq4
+2024-10-25 03:49:04,385 - eval_main_func - 155 - INFO - Generating Random Circuit 2
+2024-10-25 03:49:04,408 - random_quantum_circuit_large - 143 - INFO - Built circuit with 5 input, 9 ancilla and 457 gates.
+2024-10-25 03:49:04,408 - random_quantum_circuit_large - 144 - INFO - There are 360 gates acting between control qubits, 19 gates acting between control and ancilla, 32 gates acting between ancilla and control and 46 gates acting between just the ancillas.
+2024-10-25 03:49:08,246 - eval_main_func - 172 - INFO - Building Random Circuit took 52874198277 ns
+2024-10-25 03:49:08,246 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_2
+2024-10-25 03:49:08,251 - eval_main_func - 183 - INFO - Building Circuit Graph took 4361822 ns
+2024-10-25 03:49:08,251 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 57614 ns
+2024-10-25 03:49:08,266 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 15078147 ns
+2024-10-25 03:49:08,266 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_2 produces a cycle
+2024-10-25 03:49:08,266 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_2
+2024-10-25 03:49:16,448 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_2 that can be uncomputed is ()
+2024-10-25 03:49:16,448 - eval_main_func - 207 - INFO - Time to find largest set took 8182207236 ns
+2024-10-25 03:49:16,462 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 13860867 ns
+2024-10-25 03:49:16,462 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_2
+2024-10-25 03:49:20,605 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 4142813941 ns
+2024-10-25 03:49:20,631 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00739 (ms)
+2024-10-25 03:49:20,631 - execute - 109 - INFO - Pass: InverseCancellation - 0.36263 (ms)
+2024-10-25 03:49:20,631 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:49:20,633 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.45364 (ms)
+2024-10-25 03:49:20,633 - execute - 109 - INFO - Pass: BasisTranslator - 0.51117 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: Depth - 0.19932 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: Size - 0.04959 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.22531 (ms)
+2024-10-25 03:49:20,634 - execute - 109 - INFO - Pass: InverseCancellation - 0.21172 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: GatesInBasis - 0.58055 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: Depth - 0.19073 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: Size - 0.04840 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:49:20,635 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 03:49:20,636 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.19261 (ms)
+2024-10-25 03:49:20,718 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 03:49:20,719 - execute - 109 - INFO - Pass: InverseCancellation - 0.27156 (ms)
+2024-10-25 03:49:20,719 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 03:49:20,720 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.32275 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: BasisTranslator - 0.51451 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: Depth - 0.20123 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: Size - 0.04959 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.22316 (ms)
+2024-10-25 03:49:20,721 - execute - 109 - INFO - Pass: InverseCancellation - 0.20957 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: GatesInBasis - 0.57006 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: Depth - 0.19097 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: Size - 0.04745 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 03:49:20,722 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 03:49:20,723 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.73120 (ms)
+2024-10-25 03:49:20,782 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:49:20,782 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:49:20,782 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_2 is the same to Eq5 as Eq4
+2024-10-25 03:49:20,785 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_2
+2024-10-25 03:49:20,827 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 42378106 ns
+2024-10-25 03:49:20,827 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 87719 ns
+2024-10-25 03:49:20,828 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 96425 ns
+2024-10-25 03:49:40,662 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 19834549384 ns
+2024-10-25 03:49:40,662 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 4436538
+2024-10-25 03:49:40,662 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 03:49:40,663 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 505546 ns
+2024-10-25 03:49:40,663 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 205986 ns
+2024-10-25 03:50:00,981 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20318193529 ns
+2024-10-25 03:50:00,981 - greedy_uncomputation_full - 323 - INFO - The qubit aq8 has the most number of uncomp nodes in cycles 2818954
+2024-10-25 03:50:00,981 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq8
+2024-10-25 03:50:00,982 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq8 in Greedy Uncomp Circuit Graph took 355762 ns
+2024-10-25 03:50:00,982 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 211636 ns
+2024-10-25 03:50:21,497 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20515102149 ns
+2024-10-25 03:50:21,497 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 2973499
+2024-10-25 03:50:21,497 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 03:50:21,497 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 325309 ns
+2024-10-25 03:50:21,498 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 209621 ns
+2024-10-25 03:50:41,139 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 19641257865 ns
+2024-10-25 03:50:41,139 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 3229336
+2024-10-25 03:50:41,139 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 03:50:41,139 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 368519 ns
+2024-10-25 03:50:41,140 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 218031 ns
+2024-10-25 03:51:01,686 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 20546658053 ns
+2024-10-25 03:51:01,687 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 2291692
+2024-10-25 03:51:01,687 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 03:51:01,687 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 308557 ns
+2024-10-25 03:51:01,687 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 204033 ns
+2024-10-25 03:51:25,289 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 23601901565 ns
+2024-10-25 03:51:25,289 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 2273491
+2024-10-25 03:51:25,289 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 03:51:25,289 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 341207 ns
+2024-10-25 03:51:25,290 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 239151 ns
+2024-10-25 03:51:46,801 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 21511766157 ns
+2024-10-25 03:51:46,802 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 2958612
+2024-10-25 03:51:46,802 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 03:51:46,802 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 378261 ns
+2024-10-25 03:51:46,802 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 188858 ns
+2024-10-25 03:52:02,994 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 16191666274 ns
+2024-10-25 03:52:02,994 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 2500006
+2024-10-25 03:52:02,994 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 03:52:02,994 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 250771 ns
+2024-10-25 03:52:02,994 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 196524 ns
+2024-10-25 03:52:39,231 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 36236726170 ns
+2024-10-25 03:52:39,231 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 2500010
+2024-10-25 03:52:39,232 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 03:52:39,232 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 301897 ns
+2024-10-25 03:52:39,232 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_2
+2024-10-25 03:52:39,232 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_2
+2024-10-25 03:52:43,419 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00739 (ms)
+2024-10-25 03:52:43,420 - execute - 109 - INFO - Pass: InverseCancellation - 0.91290 (ms)
+2024-10-25 03:52:43,420 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 03:52:43,422 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.47486 (ms)
+2024-10-25 03:52:43,422 - execute - 109 - INFO - Pass: BasisTranslator - 0.61750 (ms)
+2024-10-25 03:52:43,423 - execute - 109 - INFO - Pass: Depth - 0.30065 (ms)
+2024-10-25 03:52:43,423 - execute - 109 - INFO - Pass: FixedPoint - 0.00596 (ms)
+2024-10-25 03:52:43,423 - execute - 109 - INFO - Pass: Size - 0.05746 (ms)
+2024-10-25 03:52:43,423 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 03:52:43,423 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25392 (ms)
+2024-10-25 03:52:43,424 - execute - 109 - INFO - Pass: InverseCancellation - 0.22459 (ms)
+2024-10-25 03:52:43,424 - execute - 109 - INFO - Pass: GatesInBasis - 0.63419 (ms)
+2024-10-25 03:52:43,425 - execute - 109 - INFO - Pass: Depth - 0.20623 (ms)
+2024-10-25 03:52:43,425 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:52:43,425 - execute - 109 - INFO - Pass: Size - 0.08202 (ms)
+2024-10-25 03:52:43,425 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 03:52:43,425 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00429 (ms)
+2024-10-25 03:52:43,426 - _log_transpile_time - 423 - INFO - Total Transpile Time - 34.50036 (ms)
+2024-10-25 03:52:43,512 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 03:52:43,512 - execute - 109 - INFO - Pass: InverseCancellation - 0.26155 (ms)
+2024-10-25 03:52:43,512 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00238 (ms)
+2024-10-25 03:52:43,513 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.30582 (ms)
+2024-10-25 03:52:43,514 - execute - 109 - INFO - Pass: BasisTranslator - 0.51236 (ms)
+2024-10-25 03:52:43,514 - execute - 109 - INFO - Pass: Depth - 0.22554 (ms)
+2024-10-25 03:52:43,514 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 03:52:43,514 - execute - 109 - INFO - Pass: Size - 0.05221 (ms)
+2024-10-25 03:52:43,514 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:52:43,515 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.23222 (ms)
+2024-10-25 03:52:43,515 - execute - 109 - INFO - Pass: InverseCancellation - 0.21410 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: GatesInBasis - 0.61774 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: Depth - 0.19622 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: Size - 0.04816 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:52:43,516 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 03:52:43,517 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.14484 (ms)
+2024-10-25 03:52:43,557 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:52:43,558 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:52:43,558 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_2 is the same to Eq5 as Eq4
+2024-10-25 03:52:43,560 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_2
+2024-10-25 03:52:43,562 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 03:52:43,562 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_2
+2024-10-25 03:58:46,921 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_2
+2024-10-25 03:58:46,921 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_2
+2024-10-25 03:58:50,651 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00620 (ms)
+2024-10-25 03:58:50,651 - execute - 109 - INFO - Pass: InverseCancellation - 0.55218 (ms)
+2024-10-25 03:58:50,651 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 03:58:50,653 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.62840 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: BasisTranslator - 0.53859 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: Depth - 0.21625 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: FixedPoint - 0.00644 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: Size - 0.05627 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:58:50,654 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.29826 (ms)
+2024-10-25 03:58:50,655 - execute - 109 - INFO - Pass: InverseCancellation - 0.21696 (ms)
+2024-10-25 03:58:50,655 - execute - 109 - INFO - Pass: GatesInBasis - 0.63658 (ms)
+2024-10-25 03:58:50,656 - execute - 109 - INFO - Pass: Depth - 0.19240 (ms)
+2024-10-25 03:58:50,656 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 03:58:50,656 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 03:58:50,656 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:58:50,656 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 03:58:50,656 - _log_transpile_time - 423 - INFO - Total Transpile Time - 33.25105 (ms)
+2024-10-25 03:58:50,737 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00620 (ms)
+2024-10-25 03:58:50,738 - execute - 109 - INFO - Pass: InverseCancellation - 0.59247 (ms)
+2024-10-25 03:58:50,738 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:58:50,740 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.56641 (ms)
+2024-10-25 03:58:50,740 - execute - 109 - INFO - Pass: BasisTranslator - 0.55647 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: Depth - 0.24486 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: FixedPoint - 0.00739 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: Size - 0.05078 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25201 (ms)
+2024-10-25 03:58:50,741 - execute - 109 - INFO - Pass: InverseCancellation - 0.22411 (ms)
+2024-10-25 03:58:50,742 - execute - 109 - INFO - Pass: GatesInBasis - 0.78630 (ms)
+2024-10-25 03:58:50,742 - execute - 109 - INFO - Pass: Depth - 0.23866 (ms)
+2024-10-25 03:58:50,742 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 03:58:50,743 - execute - 109 - INFO - Pass: Size - 0.05722 (ms)
+2024-10-25 03:58:50,743 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:58:50,743 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00381 (ms)
+2024-10-25 03:58:50,743 - _log_transpile_time - 423 - INFO - Total Transpile Time - 31.12960 (ms)
+2024-10-25 03:58:50,816 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:58:50,817 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_2 are 0.3688079225647905
+2024-10-25 03:58:50,818 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_2 is the same to Eq5 as Eq4
+2024-10-25 03:58:51,672 - eval_main_func - 155 - INFO - Generating Random Circuit 3
+2024-10-25 03:58:51,697 - random_quantum_circuit_large - 143 - INFO - Built circuit with 7 input, 9 ancilla and 422 gates.
+2024-10-25 03:58:51,697 - random_quantum_circuit_large - 144 - INFO - There are 351 gates acting between control qubits, 21 gates acting between control and ancilla, 24 gates acting between ancilla and control and 26 gates acting between just the ancillas.
+2024-10-25 03:58:57,860 - eval_main_func - 172 - INFO - Building Random Circuit took 577255381647 ns
+2024-10-25 03:58:57,861 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_3
+2024-10-25 03:58:57,866 - eval_main_func - 183 - INFO - Building Circuit Graph took 5332122 ns
+2024-10-25 03:58:57,866 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 86923 ns
+2024-10-25 03:58:57,882 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 15521445 ns
+2024-10-25 03:58:57,882 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_3 produces a cycle
+2024-10-25 03:58:57,882 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_3
+2024-10-25 03:59:06,374 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_3 that can be uncomputed is ()
+2024-10-25 03:59:06,374 - eval_main_func - 207 - INFO - Time to find largest set took 8492520968 ns
+2024-10-25 03:59:06,388 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 13776036 ns
+2024-10-25 03:59:06,388 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_3
+2024-10-25 03:59:12,117 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 5729069012 ns
+2024-10-25 03:59:12,143 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00596 (ms)
+2024-10-25 03:59:12,144 - execute - 109 - INFO - Pass: InverseCancellation - 0.30732 (ms)
+2024-10-25 03:59:12,144 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 03:59:12,146 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.57452 (ms)
+2024-10-25 03:59:12,146 - execute - 109 - INFO - Pass: BasisTranslator - 0.69308 (ms)
+2024-10-25 03:59:12,147 - execute - 109 - INFO - Pass: Depth - 0.30231 (ms)
+2024-10-25 03:59:12,147 - execute - 109 - INFO - Pass: FixedPoint - 0.00620 (ms)
+2024-10-25 03:59:12,147 - execute - 109 - INFO - Pass: Size - 0.05388 (ms)
+2024-10-25 03:59:12,147 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:59:12,147 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.33140 (ms)
+2024-10-25 03:59:12,148 - execute - 109 - INFO - Pass: InverseCancellation - 0.21601 (ms)
+2024-10-25 03:59:12,148 - execute - 109 - INFO - Pass: GatesInBasis - 0.56481 (ms)
+2024-10-25 03:59:12,148 - execute - 109 - INFO - Pass: Depth - 0.21100 (ms)
+2024-10-25 03:59:12,148 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 03:59:12,148 - execute - 109 - INFO - Pass: Size - 0.04935 (ms)
+2024-10-25 03:59:12,149 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:59:12,149 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00381 (ms)
+2024-10-25 03:59:12,149 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.96151 (ms)
+2024-10-25 03:59:12,260 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00715 (ms)
+2024-10-25 03:59:12,261 - execute - 109 - INFO - Pass: InverseCancellation - 0.28396 (ms)
+2024-10-25 03:59:12,261 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 03:59:12,262 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.63436 (ms)
+2024-10-25 03:59:12,264 - execute - 109 - INFO - Pass: BasisTranslator - 1.05643 (ms)
+2024-10-25 03:59:12,264 - execute - 109 - INFO - Pass: Depth - 0.22292 (ms)
+2024-10-25 03:59:12,264 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 03:59:12,264 - execute - 109 - INFO - Pass: Size - 0.05102 (ms)
+2024-10-25 03:59:12,264 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 03:59:12,265 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.65470 (ms)
+2024-10-25 03:59:12,265 - execute - 109 - INFO - Pass: InverseCancellation - 0.54407 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: GatesInBasis - 0.57387 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: Depth - 0.21315 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 03:59:12,266 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 03:59:12,267 - _log_transpile_time - 423 - INFO - Total Transpile Time - 29.97351 (ms)
+2024-10-25 03:59:12,340 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 03:59:12,340 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 03:59:12,340 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_3 is the same to Eq5 as Eq4
+2024-10-25 03:59:12,343 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_3
+2024-10-25 03:59:12,379 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 36509698 ns
+2024-10-25 03:59:12,380 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 79797 ns
+2024-10-25 03:59:12,380 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 98481 ns
+2024-10-25 03:59:29,556 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 17176141839 ns
+2024-10-25 03:59:29,556 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 3500008
+2024-10-25 03:59:29,556 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 03:59:29,556 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 424608 ns
+2024-10-25 03:59:29,557 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 216146 ns
+2024-10-25 03:59:47,587 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 18029885645 ns
+2024-10-25 03:59:47,587 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 2952129
+2024-10-25 03:59:47,587 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 03:59:47,588 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 1281395 ns
+2024-10-25 03:59:47,588 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 228044 ns
+2024-10-25 04:00:04,380 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 16791924053 ns
+2024-10-25 04:00:04,380 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 2499248
+2024-10-25 04:00:04,380 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 04:00:04,381 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 426631 ns
+2024-10-25 04:00:04,381 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 217783 ns
+2024-10-25 04:00:18,446 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 14065402910 ns
+2024-10-25 04:00:18,446 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 3000012
+2024-10-25 04:00:18,446 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:00:18,447 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 386384 ns
+2024-10-25 04:00:18,447 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 216914 ns
+2024-10-25 04:00:32,146 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 13698931219 ns
+2024-10-25 04:00:32,146 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 2500010
+2024-10-25 04:00:32,146 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:00:32,147 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 362720 ns
+2024-10-25 04:00:32,147 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 214181 ns
+2024-10-25 04:00:42,816 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10668841025 ns
+2024-10-25 04:00:42,816 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 04:00:42,816 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:00:42,816 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 374511 ns
+2024-10-25 04:00:42,816 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 213462 ns
+2024-10-25 04:00:53,194 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10378046623 ns
+2024-10-25 04:00:53,195 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 04:00:53,195 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 04:00:53,195 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 281989 ns
+2024-10-25 04:00:53,195 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 212986 ns
+2024-10-25 04:01:03,654 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10459008177 ns
+2024-10-25 04:01:03,654 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 2000008
+2024-10-25 04:01:03,654 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 04:01:03,655 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 356254 ns
+2024-10-25 04:01:03,655 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 261145 ns
+2024-10-25 04:01:18,993 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 15338058399 ns
+2024-10-25 04:01:18,993 - greedy_uncomputation_full - 323 - INFO - The qubit aq8 has the most number of uncomp nodes in cycles 3498800
+2024-10-25 04:01:18,993 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq8
+2024-10-25 04:01:18,994 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq8 in Greedy Uncomp Circuit Graph took 459318 ns
+2024-10-25 04:01:18,994 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_3
+2024-10-25 04:01:18,994 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_3
+2024-10-25 04:01:25,477 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 04:01:25,478 - execute - 109 - INFO - Pass: InverseCancellation - 0.47588 (ms)
+2024-10-25 04:01:25,478 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00334 (ms)
+2024-10-25 04:01:25,479 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.46747 (ms)
+2024-10-25 04:01:25,480 - execute - 109 - INFO - Pass: BasisTranslator - 0.45800 (ms)
+2024-10-25 04:01:25,480 - execute - 109 - INFO - Pass: Depth - 0.22101 (ms)
+2024-10-25 04:01:25,480 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 04:01:25,480 - execute - 109 - INFO - Pass: Size - 0.05150 (ms)
+2024-10-25 04:01:25,480 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:01:25,481 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.26226 (ms)
+2024-10-25 04:01:25,481 - execute - 109 - INFO - Pass: InverseCancellation - 0.18835 (ms)
+2024-10-25 04:01:25,481 - execute - 109 - INFO - Pass: GatesInBasis - 0.54336 (ms)
+2024-10-25 04:01:25,482 - execute - 109 - INFO - Pass: Depth - 0.21148 (ms)
+2024-10-25 04:01:25,482 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:01:25,482 - execute - 109 - INFO - Pass: Size - 0.04911 (ms)
+2024-10-25 04:01:25,482 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:01:25,482 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00286 (ms)
+2024-10-25 04:01:25,482 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.90642 (ms)
+2024-10-25 04:01:25,578 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 04:01:25,579 - execute - 109 - INFO - Pass: InverseCancellation - 0.25988 (ms)
+2024-10-25 04:01:25,579 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00238 (ms)
+2024-10-25 04:01:25,581 - execute - 109 - INFO - Pass: HighLevelSynthesis - 2.36607 (ms)
+2024-10-25 04:01:25,582 - execute - 109 - INFO - Pass: BasisTranslator - 0.54765 (ms)
+2024-10-25 04:01:25,582 - execute - 109 - INFO - Pass: Depth - 0.22078 (ms)
+2024-10-25 04:01:25,582 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:01:25,582 - execute - 109 - INFO - Pass: Size - 0.05054 (ms)
+2024-10-25 04:01:25,582 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:01:25,583 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.27728 (ms)
+2024-10-25 04:01:25,583 - execute - 109 - INFO - Pass: InverseCancellation - 0.26894 (ms)
+2024-10-25 04:01:25,583 - execute - 109 - INFO - Pass: GatesInBasis - 0.55838 (ms)
+2024-10-25 04:01:25,584 - execute - 109 - INFO - Pass: Depth - 0.21195 (ms)
+2024-10-25 04:01:25,584 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:01:25,584 - execute - 109 - INFO - Pass: Size - 0.04959 (ms)
+2024-10-25 04:01:25,584 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:01:25,584 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:01:25,585 - _log_transpile_time - 423 - INFO - Total Transpile Time - 32.09448 (ms)
+2024-10-25 04:01:25,646 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 04:01:25,646 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 04:01:25,646 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_3 is the same to Eq5 as Eq4
+2024-10-25 04:01:25,649 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_3
+2024-10-25 04:01:25,651 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:01:25,651 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_3
+2024-10-25 04:06:15,980 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_3
+2024-10-25 04:06:15,981 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_3
+2024-10-25 04:06:21,779 - execute - 109 - INFO - Pass: ContainsInstruction - 0.01025 (ms)
+2024-10-25 04:06:21,779 - execute - 109 - INFO - Pass: InverseCancellation - 0.38934 (ms)
+2024-10-25 04:06:21,780 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00381 (ms)
+2024-10-25 04:06:21,781 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.46818 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: BasisTranslator - 0.61250 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: Depth - 0.22650 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: FixedPoint - 0.00620 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: Size - 0.05269 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:06:21,782 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.29969 (ms)
+2024-10-25 04:06:21,783 - execute - 109 - INFO - Pass: InverseCancellation - 0.21386 (ms)
+2024-10-25 04:06:21,783 - execute - 109 - INFO - Pass: GatesInBasis - 0.59724 (ms)
+2024-10-25 04:06:21,784 - execute - 109 - INFO - Pass: Depth - 0.20480 (ms)
+2024-10-25 04:06:21,784 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:06:21,784 - execute - 109 - INFO - Pass: Size - 0.12970 (ms)
+2024-10-25 04:06:21,784 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:06:21,784 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00429 (ms)
+2024-10-25 04:06:21,785 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.19881 (ms)
+2024-10-25 04:06:21,848 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00882 (ms)
+2024-10-25 04:06:21,849 - execute - 109 - INFO - Pass: InverseCancellation - 0.27084 (ms)
+2024-10-25 04:06:21,849 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:06:21,850 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.29819 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: BasisTranslator - 0.56553 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: Depth - 0.21458 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:21,851 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.27990 (ms)
+2024-10-25 04:06:21,852 - execute - 109 - INFO - Pass: InverseCancellation - 0.29039 (ms)
+2024-10-25 04:06:21,852 - execute - 109 - INFO - Pass: GatesInBasis - 0.64754 (ms)
+2024-10-25 04:06:21,853 - execute - 109 - INFO - Pass: Depth - 0.24343 (ms)
+2024-10-25 04:06:21,853 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 04:06:21,853 - execute - 109 - INFO - Pass: Size - 0.05937 (ms)
+2024-10-25 04:06:21,853 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:06:21,853 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00477 (ms)
+2024-10-25 04:06:21,854 - _log_transpile_time - 423 - INFO - Total Transpile Time - 35.08258 (ms)
+2024-10-25 04:06:21,959 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 04:06:21,959 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_3 are 0.15780476466190746
+2024-10-25 04:06:21,959 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_3 is the same to Eq5 as Eq4
+2024-10-25 04:06:23,160 - eval_main_func - 155 - INFO - Generating Random Circuit 4
+2024-10-25 04:06:23,168 - random_quantum_circuit_large - 143 - INFO - Built circuit with 4 input, 5 ancilla and 140 gates.
+2024-10-25 04:06:23,169 - random_quantum_circuit_large - 144 - INFO - There are 119 gates acting between control qubits, 3 gates acting between control and ancilla, 4 gates acting between ancilla and control and 14 gates acting between just the ancillas.
+2024-10-25 04:06:24,214 - eval_main_func - 172 - INFO - Building Random Circuit took 432096442429 ns
+2024-10-25 04:06:24,214 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_4
+2024-10-25 04:06:24,216 - eval_main_func - 183 - INFO - Building Circuit Graph took 1640188 ns
+2024-10-25 04:06:24,216 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 23491 ns
+2024-10-25 04:06:24,220 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 4735721 ns
+2024-10-25 04:06:24,220 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_4 produces a cycle
+2024-10-25 04:06:24,220 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_4
+2024-10-25 04:06:24,362 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_4 that can be uncomputed is ()
+2024-10-25 04:06:24,362 - eval_main_func - 207 - INFO - Time to find largest set took 141967822 ns
+2024-10-25 04:06:24,367 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 4787273 ns
+2024-10-25 04:06:24,367 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_4
+2024-10-25 04:06:25,360 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 993060380 ns
+2024-10-25 04:06:25,384 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 04:06:25,384 - execute - 109 - INFO - Pass: InverseCancellation - 0.13351 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.45776 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: BasisTranslator - 0.15402 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: Depth - 0.06127 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: Size - 0.01884 (ms)
+2024-10-25 04:06:25,385 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.14853 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: InverseCancellation - 0.07963 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: GatesInBasis - 0.37241 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: Depth - 0.07343 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: Size - 0.01907 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:06:25,386 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00358 (ms)
+2024-10-25 04:06:25,387 - _log_transpile_time - 423 - INFO - Total Transpile Time - 25.91038 (ms)
+2024-10-25 04:06:25,414 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 04:06:25,414 - execute - 109 - INFO - Pass: InverseCancellation - 0.10562 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.42057 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: BasisTranslator - 0.15473 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: Depth - 0.06151 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: Size - 0.01907 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:25,415 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.14544 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: InverseCancellation - 0.07820 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: GatesInBasis - 0.19097 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: Depth - 0.05579 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: Size - 0.01740 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:25,416 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:06:25,416 - _log_transpile_time - 423 - INFO - Total Transpile Time - 24.22118 (ms)
+2024-10-25 04:06:25,421 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:06:25,421 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:06:25,421 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_4 is the same to Eq5 as Eq4
+2024-10-25 04:06:25,422 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_4
+2024-10-25 04:06:25,427 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 5010551 ns
+2024-10-25 04:06:25,427 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 15501 ns
+2024-10-25 04:06:25,427 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 28500 ns
+2024-10-25 04:06:28,094 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 2666554598 ns
+2024-10-25 04:06:28,094 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 933316
+2024-10-25 04:06:28,094 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:06:28,094 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 243045 ns
+2024-10-25 04:06:28,094 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 104779 ns
+2024-10-25 04:06:33,398 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 5303881333 ns
+2024-10-25 04:06:33,398 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 1846276
+2024-10-25 04:06:33,399 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:06:33,399 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 327199 ns
+2024-10-25 04:06:33,399 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 89644 ns
+2024-10-25 04:06:38,430 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 5031428198 ns
+2024-10-25 04:06:38,431 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 1069921
+2024-10-25 04:06:38,431 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:06:38,431 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 176064 ns
+2024-10-25 04:06:38,431 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 73890 ns
+2024-10-25 04:06:40,383 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 1952583566 ns
+2024-10-25 04:06:40,383 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 160657 ns
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 71211 ns
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 283516 ns
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 61
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:06:40,384 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 102584 ns
+2024-10-25 04:06:40,384 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_4
+2024-10-25 04:06:40,385 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_4
+2024-10-25 04:06:41,423 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00620 (ms)
+2024-10-25 04:06:41,423 - execute - 109 - INFO - Pass: InverseCancellation - 0.12898 (ms)
+2024-10-25 04:06:41,424 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:06:41,424 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.47588 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: BasisTranslator - 1.90687 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: Depth - 0.06914 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: Size - 0.01979 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:41,426 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.15926 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: InverseCancellation - 0.08535 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: GatesInBasis - 0.18001 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: Depth - 0.05603 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: Size - 0.01740 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:06:41,427 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:06:41,428 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.82869 (ms)
+2024-10-25 04:06:41,477 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00572 (ms)
+2024-10-25 04:06:41,477 - execute - 109 - INFO - Pass: InverseCancellation - 0.10371 (ms)
+2024-10-25 04:06:41,477 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00215 (ms)
+2024-10-25 04:06:41,477 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.40889 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: BasisTranslator - 0.15354 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: Depth - 0.06032 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: Size - 0.01788 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.14472 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: InverseCancellation - 0.07963 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: GatesInBasis - 0.17786 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: Depth - 0.05484 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: Size - 0.02623 (ms)
+2024-10-25 04:06:41,478 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:06:41,479 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:06:41,479 - _log_transpile_time - 423 - INFO - Total Transpile Time - 22.70460 (ms)
+2024-10-25 04:06:41,503 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:06:41,503 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:06:41,503 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_4 is the same to Eq5 as Eq4
+2024-10-25 04:06:41,504 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_4
+2024-10-25 04:06:41,504 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:06:41,504 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_4
+2024-10-25 04:07:02,633 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_4
+2024-10-25 04:07:02,634 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_4
+2024-10-25 04:07:03,684 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 04:07:03,684 - execute - 109 - INFO - Pass: InverseCancellation - 0.12851 (ms)
+2024-10-25 04:07:03,684 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:07:03,684 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.46134 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: BasisTranslator - 0.24533 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: Depth - 0.06461 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: Size - 0.01931 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.14210 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: InverseCancellation - 0.08154 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: GatesInBasis - 0.18358 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: Depth - 0.05651 (ms)
+2024-10-25 04:07:03,685 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:07:03,686 - execute - 109 - INFO - Pass: Size - 0.01693 (ms)
+2024-10-25 04:07:03,686 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:03,686 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:07:03,686 - _log_transpile_time - 423 - INFO - Total Transpile Time - 25.12884 (ms)
+2024-10-25 04:07:03,741 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00501 (ms)
+2024-10-25 04:07:03,741 - execute - 109 - INFO - Pass: InverseCancellation - 0.10324 (ms)
+2024-10-25 04:07:03,741 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.40865 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: BasisTranslator - 0.16022 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: Depth - 0.06294 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: Size - 0.01860 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.14687 (ms)
+2024-10-25 04:07:03,742 - execute - 109 - INFO - Pass: InverseCancellation - 0.07939 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: GatesInBasis - 0.17858 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: Depth - 0.05507 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: Size - 0.01669 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:03,743 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:07:03,743 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.67015 (ms)
+2024-10-25 04:07:03,769 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:07:03,769 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_4 are 0.3409545424246464
+2024-10-25 04:07:03,769 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_4 is the same to Eq5 as Eq4
+2024-10-25 04:07:04,970 - eval_main_func - 155 - INFO - Generating Random Circuit 5
+2024-10-25 04:07:05,002 - random_quantum_circuit_large - 143 - INFO - Built circuit with 10 input, 7 ancilla and 466 gates.
+2024-10-25 04:07:05,002 - random_quantum_circuit_large - 144 - INFO - There are 362 gates acting between control qubits, 20 gates acting between control and ancilla, 39 gates acting between ancilla and control and 45 gates acting between just the ancillas.
+2024-10-25 04:07:10,050 - eval_main_func - 172 - INFO - Building Random Circuit took 44689601625 ns
+2024-10-25 04:07:10,050 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_5
+2024-10-25 04:07:10,057 - eval_main_func - 183 - INFO - Building Circuit Graph took 6387872 ns
+2024-10-25 04:07:10,057 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 68909 ns
+2024-10-25 04:07:10,075 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 18388533 ns
+2024-10-25 04:07:10,075 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_5 produces a cycle
+2024-10-25 04:07:10,075 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_5
+2024-10-25 04:07:12,264 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_5 that can be uncomputed is ()
+2024-10-25 04:07:12,264 - eval_main_func - 207 - INFO - Time to find largest set took 2188848838 ns
+2024-10-25 04:07:12,280 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 16010508 ns
+2024-10-25 04:07:12,280 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_5
+2024-10-25 04:07:18,586 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 6305683474 ns
+2024-10-25 04:07:18,611 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00834 (ms)
+2024-10-25 04:07:18,611 - execute - 109 - INFO - Pass: InverseCancellation - 0.27490 (ms)
+2024-10-25 04:07:18,612 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00334 (ms)
+2024-10-25 04:07:18,613 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.50585 (ms)
+2024-10-25 04:07:18,614 - execute - 109 - INFO - Pass: BasisTranslator - 0.59557 (ms)
+2024-10-25 04:07:18,614 - execute - 109 - INFO - Pass: Depth - 0.28419 (ms)
+2024-10-25 04:07:18,614 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 04:07:18,614 - execute - 109 - INFO - Pass: Size - 0.07153 (ms)
+2024-10-25 04:07:18,614 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:07:18,615 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.35810 (ms)
+2024-10-25 04:07:18,615 - execute - 109 - INFO - Pass: InverseCancellation - 0.19240 (ms)
+2024-10-25 04:07:18,615 - execute - 109 - INFO - Pass: GatesInBasis - 0.69761 (ms)
+2024-10-25 04:07:18,616 - execute - 109 - INFO - Pass: Depth - 0.28443 (ms)
+2024-10-25 04:07:18,616 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:07:18,616 - execute - 109 - INFO - Pass: Size - 0.05889 (ms)
+2024-10-25 04:07:18,616 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:18,616 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 04:07:18,617 - _log_transpile_time - 423 - INFO - Total Transpile Time - 29.49166 (ms)
+2024-10-25 04:07:18,741 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00572 (ms)
+2024-10-25 04:07:18,742 - execute - 109 - INFO - Pass: InverseCancellation - 0.22602 (ms)
+2024-10-25 04:07:18,742 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:07:18,743 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.54066 (ms)
+2024-10-25 04:07:18,744 - execute - 109 - INFO - Pass: BasisTranslator - 0.62251 (ms)
+2024-10-25 04:07:18,744 - execute - 109 - INFO - Pass: Depth - 0.29778 (ms)
+2024-10-25 04:07:18,744 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:07:18,744 - execute - 109 - INFO - Pass: Size - 0.06080 (ms)
+2024-10-25 04:07:18,744 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:18,745 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.34332 (ms)
+2024-10-25 04:07:18,745 - execute - 109 - INFO - Pass: InverseCancellation - 0.19765 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: GatesInBasis - 0.70453 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: Depth - 0.28276 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: Size - 0.05841 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:07:18,746 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 04:07:18,747 - _log_transpile_time - 423 - INFO - Total Transpile Time - 29.21367 (ms)
+2024-10-25 04:07:18,809 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:07:18,810 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:07:18,810 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_5 is the same to Eq5 as Eq4
+2024-10-25 04:07:18,813 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_5
+2024-10-25 04:07:18,857 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 43730052 ns
+2024-10-25 04:07:18,857 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 94744 ns
+2024-10-25 04:07:18,857 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 117312 ns
+2024-10-25 04:07:37,559 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 18701389781 ns
+2024-10-25 04:07:37,559 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 8926824
+2024-10-25 04:07:37,559 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:07:37,559 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 723393 ns
+2024-10-25 04:07:37,560 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 256592 ns
+2024-10-25 04:08:04,111 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 26551157336 ns
+2024-10-25 04:08:04,111 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 4682641
+2024-10-25 04:08:04,111 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:08:04,111 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 399683 ns
+2024-10-25 04:08:04,112 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 255174 ns
+2024-10-25 04:08:23,469 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 19357654399 ns
+2024-10-25 04:08:23,470 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 3982868
+2024-10-25 04:08:23,470 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:08:23,470 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 353192 ns
+2024-10-25 04:08:23,470 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 264699 ns
+2024-10-25 04:08:41,543 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 18073014739 ns
+2024-10-25 04:08:41,543 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 3247366
+2024-10-25 04:08:41,543 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 04:08:41,544 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 387926 ns
+2024-10-25 04:08:41,544 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 246703 ns
+2024-10-25 04:08:53,413 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 11868615206 ns
+2024-10-25 04:08:53,413 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 3498596
+2024-10-25 04:08:53,413 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:08:53,413 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 386732 ns
+2024-10-25 04:08:53,413 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 235569 ns
+2024-10-25 04:09:05,905 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 12491178343 ns
+2024-10-25 04:09:05,905 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 2500010
+2024-10-25 04:09:05,905 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:09:05,905 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 334926 ns
+2024-10-25 04:09:05,905 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 238503 ns
+2024-10-25 04:09:17,508 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 11603116782 ns
+2024-10-25 04:09:17,509 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 2500010
+2024-10-25 04:09:17,509 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 04:09:17,509 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 321652 ns
+2024-10-25 04:09:17,509 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_5
+2024-10-25 04:09:17,509 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_5
+2024-10-25 04:09:22,615 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 04:09:22,615 - execute - 109 - INFO - Pass: InverseCancellation - 0.27251 (ms)
+2024-10-25 04:09:22,615 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:09:22,617 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.57547 (ms)
+2024-10-25 04:09:22,618 - execute - 109 - INFO - Pass: BasisTranslator - 0.58675 (ms)
+2024-10-25 04:09:22,618 - execute - 109 - INFO - Pass: Depth - 0.28467 (ms)
+2024-10-25 04:09:22,618 - execute - 109 - INFO - Pass: FixedPoint - 0.00596 (ms)
+2024-10-25 04:09:22,618 - execute - 109 - INFO - Pass: Size - 0.06199 (ms)
+2024-10-25 04:09:22,618 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:09:22,619 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.40174 (ms)
+2024-10-25 04:09:22,619 - execute - 109 - INFO - Pass: InverseCancellation - 0.30637 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: GatesInBasis - 0.68784 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: Depth - 0.28062 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: Size - 0.05960 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:09:22,620 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00334 (ms)
+2024-10-25 04:09:22,621 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.59912 (ms)
+2024-10-25 04:09:22,716 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00882 (ms)
+2024-10-25 04:09:22,716 - execute - 109 - INFO - Pass: InverseCancellation - 0.22149 (ms)
+2024-10-25 04:09:22,716 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:09:22,718 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.42574 (ms)
+2024-10-25 04:09:22,718 - execute - 109 - INFO - Pass: BasisTranslator - 0.55265 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: Depth - 0.28658 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: Size - 0.05841 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.35977 (ms)
+2024-10-25 04:09:22,719 - execute - 109 - INFO - Pass: InverseCancellation - 0.18907 (ms)
+2024-10-25 04:09:22,720 - execute - 109 - INFO - Pass: GatesInBasis - 0.72026 (ms)
+2024-10-25 04:09:22,721 - execute - 109 - INFO - Pass: Depth - 0.29397 (ms)
+2024-10-25 04:09:22,721 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:09:22,721 - execute - 109 - INFO - Pass: Size - 0.05937 (ms)
+2024-10-25 04:09:22,721 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:09:22,721 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00334 (ms)
+2024-10-25 04:09:22,721 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.50318 (ms)
+2024-10-25 04:09:22,736 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:09:22,736 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:09:22,736 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_5 is the same to Eq5 as Eq4
+2024-10-25 04:09:22,739 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_5
+2024-10-25 04:09:22,742 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:09:22,742 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_5
+2024-10-25 04:14:03,408 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_5
+2024-10-25 04:14:03,408 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_5
+2024-10-25 04:14:08,662 - execute - 109 - INFO - Pass: ContainsInstruction - 0.01121 (ms)
+2024-10-25 04:14:08,663 - execute - 109 - INFO - Pass: InverseCancellation - 0.31233 (ms)
+2024-10-25 04:14:08,663 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:14:08,667 - execute - 109 - INFO - Pass: HighLevelSynthesis - 4.45771 (ms)
+2024-10-25 04:14:08,668 - execute - 109 - INFO - Pass: BasisTranslator - 0.84281 (ms)
+2024-10-25 04:14:08,668 - execute - 109 - INFO - Pass: Depth - 0.32473 (ms)
+2024-10-25 04:14:08,669 - execute - 109 - INFO - Pass: FixedPoint - 0.00739 (ms)
+2024-10-25 04:14:08,669 - execute - 109 - INFO - Pass: Size - 0.07439 (ms)
+2024-10-25 04:14:08,669 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:14:08,669 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.50068 (ms)
+2024-10-25 04:14:08,669 - execute - 109 - INFO - Pass: InverseCancellation - 0.21553 (ms)
+2024-10-25 04:14:08,670 - execute - 109 - INFO - Pass: GatesInBasis - 0.76818 (ms)
+2024-10-25 04:14:08,671 - execute - 109 - INFO - Pass: Depth - 0.28586 (ms)
+2024-10-25 04:14:08,671 - execute - 109 - INFO - Pass: FixedPoint - 0.00381 (ms)
+2024-10-25 04:14:08,671 - execute - 109 - INFO - Pass: Size - 0.06104 (ms)
+2024-10-25 04:14:08,671 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:14:08,671 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00358 (ms)
+2024-10-25 04:14:08,672 - _log_transpile_time - 423 - INFO - Total Transpile Time - 41.21828 (ms)
+2024-10-25 04:14:08,823 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00930 (ms)
+2024-10-25 04:14:08,824 - execute - 109 - INFO - Pass: InverseCancellation - 0.29778 (ms)
+2024-10-25 04:14:08,824 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00358 (ms)
+2024-10-25 04:14:08,826 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.95169 (ms)
+2024-10-25 04:14:08,827 - execute - 109 - INFO - Pass: BasisTranslator - 0.73862 (ms)
+2024-10-25 04:14:08,827 - execute - 109 - INFO - Pass: Depth - 0.29492 (ms)
+2024-10-25 04:14:08,827 - execute - 109 - INFO - Pass: FixedPoint - 0.00572 (ms)
+2024-10-25 04:14:08,827 - execute - 109 - INFO - Pass: Size - 0.06151 (ms)
+2024-10-25 04:14:08,827 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:14:08,828 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.35334 (ms)
+2024-10-25 04:14:08,828 - execute - 109 - INFO - Pass: InverseCancellation - 0.20838 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: GatesInBasis - 0.69237 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: Depth - 0.30422 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: Size - 0.06032 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:14:08,829 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 04:14:08,830 - _log_transpile_time - 423 - INFO - Total Transpile Time - 38.44213 (ms)
+2024-10-25 04:14:08,915 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:14:08,915 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_5 are 0.06049774245431134
+2024-10-25 04:14:08,915 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_5 is the same to Eq5 as Eq4
+2024-10-25 04:14:10,603 - eval_main_func - 155 - INFO - Generating Random Circuit 6
+2024-10-25 04:14:10,622 - random_quantum_circuit_large - 143 - INFO - Built circuit with 6 input, 4 ancilla and 326 gates.
+2024-10-25 04:14:10,622 - random_quantum_circuit_large - 144 - INFO - There are 250 gates acting between control qubits, 12 gates acting between control and ancilla, 28 gates acting between ancilla and control and 36 gates acting between just the ancillas.
+2024-10-25 04:14:13,047 - eval_main_func - 172 - INFO - Building Random Circuit took 414461410234 ns
+2024-10-25 04:14:13,048 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_6
+2024-10-25 04:14:13,051 - eval_main_func - 183 - INFO - Building Circuit Graph took 3192958 ns
+2024-10-25 04:14:13,051 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 44695 ns
+2024-10-25 04:14:13,061 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 10091240 ns
+2024-10-25 04:14:13,061 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_6 produces a cycle
+2024-10-25 04:14:13,062 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_6
+2024-10-25 04:14:13,216 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_6 that can be uncomputed is ()
+2024-10-25 04:14:13,216 - eval_main_func - 207 - INFO - Time to find largest set took 154543968 ns
+2024-10-25 04:14:13,225 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 9138042 ns
+2024-10-25 04:14:13,225 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_6
+2024-10-25 04:14:15,706 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 2480597674 ns
+2024-10-25 04:14:15,733 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 04:14:15,733 - execute - 109 - INFO - Pass: InverseCancellation - 0.28968 (ms)
+2024-10-25 04:14:15,733 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:14:15,734 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.13082 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: BasisTranslator - 0.45824 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: Depth - 0.14067 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: Size - 0.03648 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.22221 (ms)
+2024-10-25 04:14:15,735 - execute - 109 - INFO - Pass: InverseCancellation - 0.17381 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: GatesInBasis - 0.40698 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: Depth - 0.13304 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: Size - 0.03481 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:14:15,736 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:14:15,737 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.08866 (ms)
+2024-10-25 04:14:15,811 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00739 (ms)
+2024-10-25 04:14:15,811 - execute - 109 - INFO - Pass: InverseCancellation - 0.22054 (ms)
+2024-10-25 04:14:15,811 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:14:15,812 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.92053 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: BasisTranslator - 0.34380 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: Depth - 0.18883 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: Size - 0.03672 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.22388 (ms)
+2024-10-25 04:14:15,813 - execute - 109 - INFO - Pass: InverseCancellation - 0.17118 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: GatesInBasis - 0.65923 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: Depth - 0.17428 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: Size - 0.04601 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:14:15,814 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00381 (ms)
+2024-10-25 04:14:15,815 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.66807 (ms)
+2024-10-25 04:14:15,866 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:14:15,866 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:14:15,866 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_6 is the same to Eq5 as Eq4
+2024-10-25 04:14:15,869 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_6
+2024-10-25 04:14:15,890 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 20604741 ns
+2024-10-25 04:14:15,890 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 45437 ns
+2024-10-25 04:14:15,890 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 58045 ns
+2024-10-25 04:14:29,041 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 13150624445 ns
+2024-10-25 04:14:29,041 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 3786306
+2024-10-25 04:14:29,041 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:14:29,042 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 443558 ns
+2024-10-25 04:14:29,042 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 151262 ns
+2024-10-25 04:14:44,714 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 15672079664 ns
+2024-10-25 04:14:44,714 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 4525798
+2024-10-25 04:14:44,714 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:14:44,715 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 585434 ns
+2024-10-25 04:14:44,715 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 140904 ns
+2024-10-25 04:15:02,650 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 17935410593 ns
+2024-10-25 04:15:02,650 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 4905532
+2024-10-25 04:15:02,650 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:15:02,651 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 365396 ns
+2024-10-25 04:15:02,651 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 145859 ns
+2024-10-25 04:15:13,247 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10595852305 ns
+2024-10-25 04:15:13,247 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 5477792
+2024-10-25 04:15:13,247 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:15:13,247 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 437622 ns
+2024-10-25 04:15:13,248 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_6
+2024-10-25 04:15:13,248 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_6
+2024-10-25 04:15:15,633 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00763 (ms)
+2024-10-25 04:15:15,634 - execute - 109 - INFO - Pass: InverseCancellation - 0.60010 (ms)
+2024-10-25 04:15:15,634 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00358 (ms)
+2024-10-25 04:15:15,636 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.80411 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: BasisTranslator - 0.35715 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: Depth - 0.14687 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: FixedPoint - 0.00668 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: Size - 0.03600 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.23508 (ms)
+2024-10-25 04:15:15,637 - execute - 109 - INFO - Pass: InverseCancellation - 0.17643 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: GatesInBasis - 0.48113 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: Depth - 0.13590 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: FixedPoint - 0.00358 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: Size - 0.03552 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:15:15,638 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00286 (ms)
+2024-10-25 04:15:15,639 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.33541 (ms)
+2024-10-25 04:15:15,700 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00596 (ms)
+2024-10-25 04:15:15,701 - execute - 109 - INFO - Pass: InverseCancellation - 0.21338 (ms)
+2024-10-25 04:15:15,701 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.89955 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: BasisTranslator - 0.42033 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: Depth - 0.24986 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: Size - 0.04005 (ms)
+2024-10-25 04:15:15,702 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:15:15,703 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.22483 (ms)
+2024-10-25 04:15:15,703 - execute - 109 - INFO - Pass: InverseCancellation - 0.17500 (ms)
+2024-10-25 04:15:15,703 - execute - 109 - INFO - Pass: GatesInBasis - 0.40913 (ms)
+2024-10-25 04:15:15,703 - execute - 109 - INFO - Pass: Depth - 0.13089 (ms)
+2024-10-25 04:15:15,704 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:15:15,704 - execute - 109 - INFO - Pass: Size - 0.03433 (ms)
+2024-10-25 04:15:15,704 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:15:15,704 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:15:15,704 - _log_transpile_time - 423 - INFO - Total Transpile Time - 31.00443 (ms)
+2024-10-25 04:15:15,747 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:15:15,747 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:15:15,747 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_6 is the same to Eq5 as Eq4
+2024-10-25 04:15:15,749 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_6
+2024-10-25 04:15:15,749 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:15:15,749 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_6
+2024-10-25 04:16:44,754 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_6
+2024-10-25 04:16:44,754 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_6
+2024-10-25 04:16:47,096 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 04:16:47,096 - execute - 109 - INFO - Pass: InverseCancellation - 0.30041 (ms)
+2024-10-25 04:16:47,097 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.98300 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: BasisTranslator - 0.44012 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: Depth - 0.14019 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: Size - 0.03576 (ms)
+2024-10-25 04:16:47,098 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.21291 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: InverseCancellation - 0.17023 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: GatesInBasis - 0.39244 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: Depth - 0.12922 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: Size - 0.03362 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:16:47,099 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:16:47,100 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.23820 (ms)
+2024-10-25 04:16:47,151 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 04:16:47,152 - execute - 109 - INFO - Pass: InverseCancellation - 0.22745 (ms)
+2024-10-25 04:16:47,152 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:16:47,153 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.92316 (ms)
+2024-10-25 04:16:47,153 - execute - 109 - INFO - Pass: BasisTranslator - 0.43440 (ms)
+2024-10-25 04:16:47,153 - execute - 109 - INFO - Pass: Depth - 0.14138 (ms)
+2024-10-25 04:16:47,153 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 04:16:47,154 - execute - 109 - INFO - Pass: Size - 0.03624 (ms)
+2024-10-25 04:16:47,154 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:16:47,154 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.21434 (ms)
+2024-10-25 04:16:47,154 - execute - 109 - INFO - Pass: InverseCancellation - 0.16761 (ms)
+2024-10-25 04:16:47,154 - execute - 109 - INFO - Pass: GatesInBasis - 0.42558 (ms)
+2024-10-25 04:16:47,155 - execute - 109 - INFO - Pass: Depth - 0.13185 (ms)
+2024-10-25 04:16:47,155 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:16:47,155 - execute - 109 - INFO - Pass: Size - 0.03409 (ms)
+2024-10-25 04:16:47,155 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:16:47,155 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:16:47,155 - _log_transpile_time - 423 - INFO - Total Transpile Time - 25.12074 (ms)
+2024-10-25 04:16:47,183 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:16:47,183 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_6 are 0.240035804620894
+2024-10-25 04:16:47,183 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_6 is the same to Eq5 as Eq4
+2024-10-25 04:16:48,983 - eval_main_func - 155 - INFO - Generating Random Circuit 7
+2024-10-25 04:16:48,989 - random_quantum_circuit_large - 143 - INFO - Built circuit with 6 input, 8 ancilla and 105 gates.
+2024-10-25 04:16:48,989 - random_quantum_circuit_large - 144 - INFO - There are 81 gates acting between control qubits, 6 gates acting between control and ancilla, 6 gates acting between ancilla and control and 12 gates acting between just the ancillas.
+2024-10-25 04:16:50,013 - eval_main_func - 172 - INFO - Building Random Circuit took 154306635254 ns
+2024-10-25 04:16:50,013 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_7
+2024-10-25 04:16:50,014 - eval_main_func - 183 - INFO - Building Circuit Graph took 1475025 ns
+2024-10-25 04:16:50,014 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 31658 ns
+2024-10-25 04:16:50,019 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 4373079 ns
+2024-10-25 04:16:50,019 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_7 produces a cycle
+2024-10-25 04:16:50,019 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_7
+2024-10-25 04:16:50,990 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_7 that can be uncomputed is ()
+2024-10-25 04:16:50,990 - eval_main_func - 207 - INFO - Time to find largest set took 971473030 ns
+2024-10-25 04:16:50,994 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 3502628 ns
+2024-10-25 04:16:50,994 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_7
+2024-10-25 04:16:51,959 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 964892621 ns
+2024-10-25 04:16:51,982 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00906 (ms)
+2024-10-25 04:16:51,982 - execute - 109 - INFO - Pass: InverseCancellation - 0.11444 (ms)
+2024-10-25 04:16:51,982 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.40245 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: BasisTranslator - 0.19622 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: Depth - 0.06890 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: Size - 0.01955 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.18978 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: InverseCancellation - 0.06509 (ms)
+2024-10-25 04:16:51,983 - execute - 109 - INFO - Pass: GatesInBasis - 0.15926 (ms)
+2024-10-25 04:16:51,984 - execute - 109 - INFO - Pass: Depth - 0.05698 (ms)
+2024-10-25 04:16:51,984 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:16:51,984 - execute - 109 - INFO - Pass: Size - 0.01645 (ms)
+2024-10-25 04:16:51,984 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:16:51,984 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:16:51,984 - _log_transpile_time - 423 - INFO - Total Transpile Time - 24.68228 (ms)
+2024-10-25 04:16:52,014 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00548 (ms)
+2024-10-25 04:16:52,014 - execute - 109 - INFO - Pass: InverseCancellation - 0.07915 (ms)
+2024-10-25 04:16:52,014 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00238 (ms)
+2024-10-25 04:16:52,014 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.36073 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: BasisTranslator - 0.22721 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: Depth - 0.06437 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: Size - 0.01836 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.17667 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: InverseCancellation - 0.06247 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: GatesInBasis - 0.15426 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: Depth - 0.05531 (ms)
+2024-10-25 04:16:52,015 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:16:52,016 - execute - 109 - INFO - Pass: Size - 0.01621 (ms)
+2024-10-25 04:16:52,016 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:16:52,016 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:16:52,016 - _log_transpile_time - 423 - INFO - Total Transpile Time - 22.83168 (ms)
+2024-10-25 04:16:52,031 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:16:52,032 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:16:52,032 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_7 is the same to Eq5 as Eq4
+2024-10-25 04:16:52,033 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_7
+2024-10-25 04:16:52,040 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 7393465 ns
+2024-10-25 04:16:52,040 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 17433 ns
+2024-10-25 04:16:52,040 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 33499 ns
+2024-10-25 04:16:56,435 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 4394859013 ns
+2024-10-25 04:16:56,435 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 1500006
+2024-10-25 04:16:56,435 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:16:56,435 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 156161 ns
+2024-10-25 04:16:56,435 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 76722 ns
+2024-10-25 04:17:01,672 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 5236692964 ns
+2024-10-25 04:17:01,672 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 1500006
+2024-10-25 04:17:01,672 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 04:17:01,672 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 175189 ns
+2024-10-25 04:17:01,672 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 78091 ns
+2024-10-25 04:17:08,056 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 6383715960 ns
+2024-10-25 04:17:08,056 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 1156060
+2024-10-25 04:17:08,056 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:17:08,056 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 147021 ns
+2024-10-25 04:17:08,057 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 77453 ns
+2024-10-25 04:17:12,040 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 3983400885 ns
+2024-10-25 04:17:12,040 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 04:17:12,043 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 04:17:12,044 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 3499616 ns
+2024-10-25 04:17:12,044 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 76959 ns
+2024-10-25 04:17:14,265 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 2220994840 ns
+2024-10-25 04:17:14,265 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 919476
+2024-10-25 04:17:14,265 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:17:14,265 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 149125 ns
+2024-10-25 04:17:14,265 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 67055 ns
+2024-10-25 04:17:15,836 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 1570990947 ns
+2024-10-25 04:17:15,836 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 500002
+2024-10-25 04:17:15,836 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:17:15,836 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 156067 ns
+2024-10-25 04:17:15,836 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 67049 ns
+2024-10-25 04:17:17,511 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 1674513226 ns
+2024-10-25 04:17:17,511 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 500002
+2024-10-25 04:17:17,511 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 04:17:17,511 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 140280 ns
+2024-10-25 04:17:17,511 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 68430 ns
+2024-10-25 04:17:17,512 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 633300 ns
+2024-10-25 04:17:17,512 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 238
+2024-10-25 04:17:17,512 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:17:17,512 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 71118 ns
+2024-10-25 04:17:17,512 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_7
+2024-10-25 04:17:17,512 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_7
+2024-10-25 04:17:18,510 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00572 (ms)
+2024-10-25 04:17:18,510 - execute - 109 - INFO - Pass: InverseCancellation - 0.09751 (ms)
+2024-10-25 04:17:18,510 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:17:18,510 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.36263 (ms)
+2024-10-25 04:17:18,510 - execute - 109 - INFO - Pass: BasisTranslator - 0.13280 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: Depth - 0.06390 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: Size - 0.01788 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.17834 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: InverseCancellation - 0.06199 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: GatesInBasis - 0.15521 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: Depth - 0.05627 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: Size - 0.01597 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:17:18,511 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:17:18,511 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.02141 (ms)
+2024-10-25 04:17:18,554 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00525 (ms)
+2024-10-25 04:17:18,554 - execute - 109 - INFO - Pass: InverseCancellation - 0.08249 (ms)
+2024-10-25 04:17:18,554 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:17:18,554 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.37003 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: BasisTranslator - 0.13709 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: Depth - 0.06175 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: Size - 0.01812 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.18001 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: InverseCancellation - 0.06104 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: GatesInBasis - 0.15521 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: Depth - 0.05698 (ms)
+2024-10-25 04:17:18,555 - execute - 109 - INFO - Pass: FixedPoint - 0.01860 (ms)
+2024-10-25 04:17:18,556 - execute - 109 - INFO - Pass: Size - 0.02599 (ms)
+2024-10-25 04:17:18,556 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:17:18,556 - execute - 109 - INFO - Pass: ContainsInstruction - 0.06509 (ms)
+2024-10-25 04:17:18,556 - _log_transpile_time - 423 - INFO - Total Transpile Time - 23.34905 (ms)
+2024-10-25 04:17:18,580 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:17:18,580 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:17:18,580 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_7 is the same to Eq5 as Eq4
+2024-10-25 04:17:18,581 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_7
+2024-10-25 04:17:18,582 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:17:18,582 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_7
+2024-10-25 04:18:10,011 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_7
+2024-10-25 04:18:10,011 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_7
+2024-10-25 04:18:10,982 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 04:18:10,982 - execute - 109 - INFO - Pass: InverseCancellation - 0.11086 (ms)
+2024-10-25 04:18:10,982 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00381 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.36955 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: BasisTranslator - 0.24891 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: Depth - 0.06723 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: FixedPoint - 0.00596 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: Size - 0.01955 (ms)
+2024-10-25 04:18:10,983 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.18930 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: InverseCancellation - 0.07129 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: GatesInBasis - 0.18716 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: Depth - 0.06318 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: Size - 0.01907 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:18:10,984 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00334 (ms)
+2024-10-25 04:18:10,984 - _log_transpile_time - 423 - INFO - Total Transpile Time - 24.20831 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00501 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: InverseCancellation - 0.08512 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00238 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: HighLevelSynthesis - 0.35024 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: BasisTranslator - 0.13924 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: Depth - 0.06485 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: FixedPoint - 0.00405 (ms)
+2024-10-25 04:18:11,038 - execute - 109 - INFO - Pass: Size - 0.01884 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.18573 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: InverseCancellation - 0.06318 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: GatesInBasis - 0.15426 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: Depth - 0.05674 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: Size - 0.01740 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:18:11,039 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:18:11,039 - _log_transpile_time - 423 - INFO - Total Transpile Time - 22.49622 (ms)
+2024-10-25 04:18:11,071 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:18:11,071 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_7 are 0.1883399553347887
+2024-10-25 04:18:11,071 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_7 is the same to Eq5 as Eq4
+2024-10-25 04:18:13,006 - eval_main_func - 155 - INFO - Generating Random Circuit 8
+2024-10-25 04:18:13,026 - random_quantum_circuit_large - 143 - INFO - Built circuit with 7 input, 10 ancilla and 355 gates.
+2024-10-25 04:18:13,026 - random_quantum_circuit_large - 144 - INFO - There are 291 gates acting between control qubits, 9 gates acting between control and ancilla, 27 gates acting between ancilla and control and 28 gates acting between just the ancillas.
+2024-10-25 04:18:16,730 - eval_main_func - 172 - INFO - Building Random Circuit took 84771413248 ns
+2024-10-25 04:18:16,730 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_8
+2024-10-25 04:18:16,735 - eval_main_func - 183 - INFO - Building Circuit Graph took 4201668 ns
+2024-10-25 04:18:16,735 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 51268 ns
+2024-10-25 04:18:16,747 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 12606315 ns
+2024-10-25 04:18:16,747 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_8 produces a cycle
+2024-10-25 04:18:16,747 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_8
+2024-10-25 04:18:28,929 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_8 that can be uncomputed is ()
+2024-10-25 04:18:28,929 - eval_main_func - 207 - INFO - Time to find largest set took 12181519050 ns
+2024-10-25 04:18:28,940 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 10879470 ns
+2024-10-25 04:18:28,940 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_8
+2024-10-25 04:18:34,770 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 5830470969 ns
+2024-10-25 04:18:34,795 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00596 (ms)
+2024-10-25 04:18:34,795 - execute - 109 - INFO - Pass: InverseCancellation - 0.23770 (ms)
+2024-10-25 04:18:34,795 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00310 (ms)
+2024-10-25 04:18:34,796 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.10650 (ms)
+2024-10-25 04:18:34,797 - execute - 109 - INFO - Pass: BasisTranslator - 0.48351 (ms)
+2024-10-25 04:18:34,797 - execute - 109 - INFO - Pass: Depth - 0.18740 (ms)
+2024-10-25 04:18:34,797 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:18:34,797 - execute - 109 - INFO - Pass: Size - 0.04482 (ms)
+2024-10-25 04:18:34,797 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:18:34,798 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.27943 (ms)
+2024-10-25 04:18:34,798 - execute - 109 - INFO - Pass: InverseCancellation - 0.15545 (ms)
+2024-10-25 04:18:34,798 - execute - 109 - INFO - Pass: GatesInBasis - 0.49114 (ms)
+2024-10-25 04:18:34,799 - execute - 109 - INFO - Pass: Depth - 0.17667 (ms)
+2024-10-25 04:18:34,799 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:18:34,799 - execute - 109 - INFO - Pass: Size - 0.04315 (ms)
+2024-10-25 04:18:34,799 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:18:34,799 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:18:34,799 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.82233 (ms)
+2024-10-25 04:18:34,915 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 04:18:34,916 - execute - 109 - INFO - Pass: InverseCancellation - 0.20194 (ms)
+2024-10-25 04:18:34,916 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.03021 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: BasisTranslator - 0.37575 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: Depth - 0.20123 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: FixedPoint - 0.00453 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: Size - 0.04458 (ms)
+2024-10-25 04:18:34,917 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:18:34,918 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.26417 (ms)
+2024-10-25 04:18:34,918 - execute - 109 - INFO - Pass: InverseCancellation - 0.14925 (ms)
+2024-10-25 04:18:34,918 - execute - 109 - INFO - Pass: GatesInBasis - 0.50664 (ms)
+2024-10-25 04:18:34,919 - execute - 109 - INFO - Pass: Depth - 0.17619 (ms)
+2024-10-25 04:18:34,919 - execute - 109 - INFO - Pass: FixedPoint - 0.00286 (ms)
+2024-10-25 04:18:34,919 - execute - 109 - INFO - Pass: Size - 0.04292 (ms)
+2024-10-25 04:18:34,919 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:18:34,919 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:18:34,919 - _log_transpile_time - 423 - INFO - Total Transpile Time - 28.26929 (ms)
+2024-10-25 04:18:34,955 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:18:34,958 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:18:34,958 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_8 is the same to Eq5 as Eq4
+2024-10-25 04:18:34,961 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_8
+2024-10-25 04:18:34,989 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 27889255 ns
+2024-10-25 04:18:34,989 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 90498 ns
+2024-10-25 04:18:34,989 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 97439 ns
+2024-10-25 04:18:50,269 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 15279809321 ns
+2024-10-25 04:18:50,269 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 2114560
+2024-10-25 04:18:50,269 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:18:50,269 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 317385 ns
+2024-10-25 04:18:50,269 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 188130 ns
+2024-10-25 04:19:06,328 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 16058137590 ns
+2024-10-25 04:19:06,328 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 2000008
+2024-10-25 04:19:06,328 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:19:06,328 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 276871 ns
+2024-10-25 04:19:06,328 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 202081 ns
+2024-10-25 04:19:20,512 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 14183345791 ns
+2024-10-25 04:19:20,512 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 2088172
+2024-10-25 04:19:20,512 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 04:19:20,513 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 782443 ns
+2024-10-25 04:19:20,513 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 194433 ns
+2024-10-25 04:19:34,432 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 13919078009 ns
+2024-10-25 04:19:34,432 - greedy_uncomputation_full - 323 - INFO - The qubit aq8 has the most number of uncomp nodes in cycles 1910064
+2024-10-25 04:19:34,432 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq8
+2024-10-25 04:19:34,432 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq8 in Greedy Uncomp Circuit Graph took 261571 ns
+2024-10-25 04:19:34,432 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 190902 ns
+2024-10-25 04:19:48,018 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 13585873055 ns
+2024-10-25 04:19:48,018 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 1805448
+2024-10-25 04:19:48,018 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 04:19:48,019 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 227344 ns
+2024-10-25 04:19:48,019 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 183583 ns
+2024-10-25 04:19:59,006 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10987311886 ns
+2024-10-25 04:19:59,006 - greedy_uncomputation_full - 323 - INFO - The qubit aq9 has the most number of uncomp nodes in cycles 2000008
+2024-10-25 04:19:59,006 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq9
+2024-10-25 04:19:59,007 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq9 in Greedy Uncomp Circuit Graph took 271617 ns
+2024-10-25 04:19:59,007 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 185022 ns
+2024-10-25 04:20:09,245 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 10238080849 ns
+2024-10-25 04:20:09,245 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 1500006
+2024-10-25 04:20:09,245 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:20:09,245 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 241903 ns
+2024-10-25 04:20:09,245 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 193139 ns
+2024-10-25 04:20:18,918 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 9672327618 ns
+2024-10-25 04:20:18,918 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 2000008
+2024-10-25 04:20:18,918 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:20:18,918 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 328034 ns
+2024-10-25 04:20:18,919 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 240183 ns
+2024-10-25 04:20:27,905 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 8985908373 ns
+2024-10-25 04:20:27,905 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 1500006
+2024-10-25 04:20:27,905 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:20:27,905 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 353852 ns
+2024-10-25 04:20:27,905 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 326797 ns
+2024-10-25 04:20:27,945 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 39551872 ns
+2024-10-25 04:20:27,945 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 16685
+2024-10-25 04:20:27,945 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 04:20:27,945 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 195423 ns
+2024-10-25 04:20:27,946 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_8
+2024-10-25 04:20:27,946 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_8
+2024-10-25 04:20:31,567 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00715 (ms)
+2024-10-25 04:20:31,567 - execute - 109 - INFO - Pass: InverseCancellation - 0.24772 (ms)
+2024-10-25 04:20:31,567 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00334 (ms)
+2024-10-25 04:20:31,568 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.13320 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: BasisTranslator - 0.42677 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: Depth - 0.19741 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: Size - 0.04506 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.30828 (ms)
+2024-10-25 04:20:31,569 - execute - 109 - INFO - Pass: InverseCancellation - 0.15521 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: GatesInBasis - 0.49067 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: Depth - 0.19979 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: Size - 0.04411 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:20:31,570 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:20:31,571 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.57843 (ms)
+2024-10-25 04:20:31,682 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00644 (ms)
+2024-10-25 04:20:31,682 - execute - 109 - INFO - Pass: InverseCancellation - 0.19741 (ms)
+2024-10-25 04:20:31,682 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:20:31,683 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.04237 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: BasisTranslator - 0.41938 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: Depth - 0.19145 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: Size - 0.04482 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:20:31,684 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25821 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: InverseCancellation - 0.15402 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: GatesInBasis - 0.47851 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: Depth - 0.18573 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: Size - 0.04339 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:20:31,685 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00215 (ms)
+2024-10-25 04:20:31,686 - _log_transpile_time - 423 - INFO - Total Transpile Time - 26.66020 (ms)
+2024-10-25 04:20:31,749 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:20:31,752 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:20:31,752 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_8 is the same to Eq5 as Eq4
+2024-10-25 04:20:31,755 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_8
+2024-10-25 04:20:31,756 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:20:31,756 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_8
+2024-10-25 04:24:29,940 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_8
+2024-10-25 04:24:29,940 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_8
+2024-10-25 04:24:33,944 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00715 (ms)
+2024-10-25 04:24:33,944 - execute - 109 - INFO - Pass: InverseCancellation - 0.32783 (ms)
+2024-10-25 04:24:33,945 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00334 (ms)
+2024-10-25 04:24:33,946 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.14131 (ms)
+2024-10-25 04:24:33,946 - execute - 109 - INFO - Pass: BasisTranslator - 0.41795 (ms)
+2024-10-25 04:24:33,946 - execute - 109 - INFO - Pass: Depth - 0.20289 (ms)
+2024-10-25 04:24:33,946 - execute - 109 - INFO - Pass: FixedPoint - 0.00572 (ms)
+2024-10-25 04:24:33,947 - execute - 109 - INFO - Pass: Size - 0.04697 (ms)
+2024-10-25 04:24:33,947 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:24:33,947 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.31066 (ms)
+2024-10-25 04:24:33,947 - execute - 109 - INFO - Pass: InverseCancellation - 0.16379 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: GatesInBasis - 0.54073 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: Depth - 0.17953 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: Size - 0.04363 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:24:33,948 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:24:33,949 - _log_transpile_time - 423 - INFO - Total Transpile Time - 31.41141 (ms)
+2024-10-25 04:24:34,070 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00763 (ms)
+2024-10-25 04:24:34,070 - execute - 109 - INFO - Pass: InverseCancellation - 0.19646 (ms)
+2024-10-25 04:24:34,070 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00238 (ms)
+2024-10-25 04:24:34,072 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.32561 (ms)
+2024-10-25 04:24:34,072 - execute - 109 - INFO - Pass: BasisTranslator - 0.42796 (ms)
+2024-10-25 04:24:34,072 - execute - 109 - INFO - Pass: Depth - 0.18597 (ms)
+2024-10-25 04:24:34,072 - execute - 109 - INFO - Pass: FixedPoint - 0.00429 (ms)
+2024-10-25 04:24:34,073 - execute - 109 - INFO - Pass: Size - 0.22030 (ms)
+2024-10-25 04:24:34,073 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:24:34,073 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.25415 (ms)
+2024-10-25 04:24:34,073 - execute - 109 - INFO - Pass: InverseCancellation - 0.15688 (ms)
+2024-10-25 04:24:34,074 - execute - 109 - INFO - Pass: GatesInBasis - 1.12247 (ms)
+2024-10-25 04:24:34,074 - execute - 109 - INFO - Pass: Depth - 0.21958 (ms)
+2024-10-25 04:24:34,075 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 04:24:34,075 - execute - 109 - INFO - Pass: Size - 0.07105 (ms)
+2024-10-25 04:24:34,075 - execute - 109 - INFO - Pass: FixedPoint - 0.00262 (ms)
+2024-10-25 04:24:34,075 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00429 (ms)
+2024-10-25 04:24:34,075 - _log_transpile_time - 423 - INFO - Total Transpile Time - 30.45154 (ms)
+2024-10-25 04:24:34,164 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:24:34,174 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_8 are 0.1498504019826838
+2024-10-25 04:24:34,174 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_8 is the same to Eq5 as Eq4
+2024-10-25 04:24:36,684 - eval_main_func - 155 - INFO - Generating Random Circuit 9
+2024-10-25 04:24:36,707 - random_quantum_circuit_large - 143 - INFO - Built circuit with 8 input, 10 ancilla and 379 gates.
+2024-10-25 04:24:36,707 - random_quantum_circuit_large - 144 - INFO - There are 311 gates acting between control qubits, 11 gates acting between control and ancilla, 28 gates acting between ancilla and control and 29 gates acting between just the ancillas.
+2024-10-25 04:24:41,116 - eval_main_func - 172 - INFO - Building Random Circuit took 366345489555 ns
+2024-10-25 04:24:41,116 - eval_main_func - 174 - INFO - Creating Circuit Graph of circuit Circuit_9
+2024-10-25 04:24:41,124 - eval_main_func - 183 - INFO - Building Circuit Graph took 7810555 ns
+2024-10-25 04:24:41,124 - eval_main_func - 193 - INFO - Checking for cycle in Comp Circuit Graph took 99828 ns
+2024-10-25 04:24:41,139 - eval_main_func - 198 - INFO - Adding Uncomputation to circuit graph took 14978790 ns
+2024-10-25 04:24:41,139 - eval_main_func - 202 - WARNING - Trying to uncompute circuit Circuit_9 produces a cycle
+2024-10-25 04:24:41,139 - eval_main_func - 204 - INFO - Attempting to run exhaustive uncomp on Circuit_9
+2024-10-25 04:24:57,634 - eval_main_func - 206 - INFO - Largest Set of ancilla for Circuit_9 that can be uncomputed is ()
+2024-10-25 04:24:57,634 - eval_main_func - 207 - INFO - Time to find largest set took 16494625943 ns
+2024-10-25 04:24:57,647 - eval_main_func - 219 - INFO - Adding Uncomp for largest set took 13541195 ns
+2024-10-25 04:24:57,648 - eval_main_func - 222 - INFO - Building Exhaustive Uncomp Circuit for Circuit_9
+2024-10-25 04:25:02,059 - eval_main_func - 226 - INFO - Time to build uncomp circuit took 4410907821 ns
+2024-10-25 04:25:02,086 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00739 (ms)
+2024-10-25 04:25:02,087 - execute - 109 - INFO - Pass: InverseCancellation - 0.23031 (ms)
+2024-10-25 04:25:02,087 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:25:02,088 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.21450 (ms)
+2024-10-25 04:25:02,088 - execute - 109 - INFO - Pass: BasisTranslator - 0.42844 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: Depth - 0.22745 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.31376 (ms)
+2024-10-25 04:25:02,089 - execute - 109 - INFO - Pass: InverseCancellation - 0.16856 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: GatesInBasis - 0.54789 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: Depth - 0.21982 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: FixedPoint - 0.00358 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:25:02,090 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00238 (ms)
+2024-10-25 04:25:02,091 - _log_transpile_time - 423 - INFO - Total Transpile Time - 31.23975 (ms)
+2024-10-25 04:25:02,268 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00620 (ms)
+2024-10-25 04:25:02,268 - execute - 109 - INFO - Pass: InverseCancellation - 0.19503 (ms)
+2024-10-25 04:25:02,269 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:25:02,271 - execute - 109 - INFO - Pass: HighLevelSynthesis - 2.24090 (ms)
+2024-10-25 04:25:02,272 - execute - 109 - INFO - Pass: BasisTranslator - 0.93222 (ms)
+2024-10-25 04:25:02,272 - execute - 109 - INFO - Pass: Depth - 0.23055 (ms)
+2024-10-25 04:25:02,272 - execute - 109 - INFO - Pass: FixedPoint - 0.00477 (ms)
+2024-10-25 04:25:02,272 - execute - 109 - INFO - Pass: Size - 0.05031 (ms)
+2024-10-25 04:25:02,272 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:25:02,273 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.28396 (ms)
+2024-10-25 04:25:02,273 - execute - 109 - INFO - Pass: InverseCancellation - 0.64731 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: GatesInBasis - 0.54169 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: Depth - 0.24581 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: FixedPoint - 0.00358 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: Size - 0.04983 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:25:02,274 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:25:02,275 - _log_transpile_time - 423 - INFO - Total Transpile Time - 33.25343 (ms)
+2024-10-25 04:25:02,338 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:25:02,340 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Exhaustive Uncomp for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:25:02,340 - evaluate_circuits - 79 - INFO - Exhaustive Uncomputation of Circuit Circuit_9 is the same to Eq5 as Eq4
+2024-10-25 04:25:02,343 - eval_main_func - 241 - INFO - Attempting to run greedy uncomp on Circuit_9
+2024-10-25 04:25:02,373 - greedy_uncomputation_full - 266 - INFO - Time to build Greedy Uncomp Circuit Graph with cycles took 30535924 ns
+2024-10-25 04:25:02,373 - greedy_uncomputation_full - 270 - INFO - Time to check for cycle in Greedy Uncomp Circuit Graph took 76237 ns
+2024-10-25 04:25:02,374 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 114331 ns
+2024-10-25 04:25:20,835 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 18461671059 ns
+2024-10-25 04:25:20,835 - greedy_uncomputation_full - 323 - INFO - The qubit aq9 has the most number of uncomp nodes in cycles 3349194
+2024-10-25 04:25:20,835 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq9
+2024-10-25 04:25:20,836 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq9 in Greedy Uncomp Circuit Graph took 352734 ns
+2024-10-25 04:25:20,836 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 223780 ns
+2024-10-25 04:25:38,362 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 17526411163 ns
+2024-10-25 04:25:38,363 - greedy_uncomputation_full - 323 - INFO - The qubit aq6 has the most number of uncomp nodes in cycles 2317560
+2024-10-25 04:25:38,363 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq6
+2024-10-25 04:25:38,363 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq6 in Greedy Uncomp Circuit Graph took 431029 ns
+2024-10-25 04:25:38,363 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 210981 ns
+2024-10-25 04:25:56,419 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 18055798427 ns
+2024-10-25 04:25:56,419 - greedy_uncomputation_full - 323 - INFO - The qubit aq7 has the most number of uncomp nodes in cycles 2475110
+2024-10-25 04:25:56,419 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq7
+2024-10-25 04:25:56,420 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq7 in Greedy Uncomp Circuit Graph took 457340 ns
+2024-10-25 04:25:56,420 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 234798 ns
+2024-10-25 04:26:13,013 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 16592501386 ns
+2024-10-25 04:26:13,013 - greedy_uncomputation_full - 323 - INFO - The qubit aq1 has the most number of uncomp nodes in cycles 1999078
+2024-10-25 04:26:13,013 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq1
+2024-10-25 04:26:13,013 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq1 in Greedy Uncomp Circuit Graph took 257711 ns
+2024-10-25 04:26:13,013 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 212229 ns
+2024-10-25 04:26:29,260 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 16246644804 ns
+2024-10-25 04:26:29,260 - greedy_uncomputation_full - 323 - INFO - The qubit aq5 has the most number of uncomp nodes in cycles 1833526
+2024-10-25 04:26:29,260 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq5
+2024-10-25 04:26:29,260 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq5 in Greedy Uncomp Circuit Graph took 358747 ns
+2024-10-25 04:26:29,261 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 227938 ns
+2024-10-25 04:26:46,330 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 17069097280 ns
+2024-10-25 04:26:46,330 - greedy_uncomputation_full - 323 - INFO - The qubit aq8 has the most number of uncomp nodes in cycles 1499976
+2024-10-25 04:26:46,330 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq8
+2024-10-25 04:26:46,330 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq8 in Greedy Uncomp Circuit Graph took 203375 ns
+2024-10-25 04:26:46,330 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 251569 ns
+2024-10-25 04:27:07,687 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 21356403185 ns
+2024-10-25 04:27:07,687 - greedy_uncomputation_full - 323 - INFO - The qubit aq0 has the most number of uncomp nodes in cycles 1499203
+2024-10-25 04:27:07,687 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq0
+2024-10-25 04:27:07,687 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq0 in Greedy Uncomp Circuit Graph took 235093 ns
+2024-10-25 04:27:07,687 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 196987 ns
+2024-10-25 04:27:31,760 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 24072867188 ns
+2024-10-25 04:27:31,760 - greedy_uncomputation_full - 323 - INFO - The qubit aq2 has the most number of uncomp nodes in cycles 999995
+2024-10-25 04:27:31,760 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq2
+2024-10-25 04:27:31,760 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq2 in Greedy Uncomp Circuit Graph took 190463 ns
+2024-10-25 04:27:31,761 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 189133 ns
+2024-10-25 04:27:39,210 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 7449072950 ns
+2024-10-25 04:27:39,210 - greedy_uncomputation_full - 323 - INFO - The qubit aq3 has the most number of uncomp nodes in cycles 996759
+2024-10-25 04:27:39,210 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq3
+2024-10-25 04:27:39,210 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq3 in Greedy Uncomp Circuit Graph took 197086 ns
+2024-10-25 04:27:39,210 - greedy_uncomputation_full - 279 - INFO - Time to get all simple cycles using Johnsons in Greedy Uncomp Circuit Graph took 173840 ns
+2024-10-25 04:27:43,826 - greedy_uncomputation_full - 309 - INFO - Time to get ancilla qubits with most cycles in Greedy Uncomp Circuit Graph took 4615698269 ns
+2024-10-25 04:27:43,826 - greedy_uncomputation_full - 323 - INFO - The qubit aq4 has the most number of uncomp nodes in cycles 1000004
+2024-10-25 04:27:43,826 - greedy_uncomputation_full - 326 - INFO - Removing all uncomputation nodes for aq4
+2024-10-25 04:27:43,826 - greedy_uncomputation_full - 329 - INFO - Time remove all uncomp nodes for aq4 in Greedy Uncomp Circuit Graph took 326261 ns
+2024-10-25 04:27:43,827 - eval_main_func - 244 - INFO - Drawing Greedy Uncomp Circuit Graph for Circuit_9
+2024-10-25 04:27:43,827 - eval_main_func - 250 - INFO - Building Greedy Uncomp Circuit for Circuit_9
+2024-10-25 04:27:48,087 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00691 (ms)
+2024-10-25 04:27:48,087 - execute - 109 - INFO - Pass: InverseCancellation - 0.26679 (ms)
+2024-10-25 04:27:48,088 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:27:48,089 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.26195 (ms)
+2024-10-25 04:27:48,089 - execute - 109 - INFO - Pass: BasisTranslator - 0.62466 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: Depth - 0.23484 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: Size - 0.05150 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.32425 (ms)
+2024-10-25 04:27:48,090 - execute - 109 - INFO - Pass: InverseCancellation - 0.16522 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: GatesInBasis - 0.54026 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: Depth - 0.21935 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: FixedPoint - 0.00501 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: Size - 0.05245 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:27:48,091 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00262 (ms)
+2024-10-25 04:27:48,092 - _log_transpile_time - 423 - INFO - Total Transpile Time - 32.97544 (ms)
+2024-10-25 04:27:48,237 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00691 (ms)
+2024-10-25 04:27:48,237 - execute - 109 - INFO - Pass: InverseCancellation - 0.19145 (ms)
+2024-10-25 04:27:48,237 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00262 (ms)
+2024-10-25 04:27:48,239 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.31440 (ms)
+2024-10-25 04:27:48,239 - execute - 109 - INFO - Pass: BasisTranslator - 0.50426 (ms)
+2024-10-25 04:27:48,239 - execute - 109 - INFO - Pass: Depth - 0.23317 (ms)
+2024-10-25 04:27:48,239 - execute - 109 - INFO - Pass: FixedPoint - 0.00548 (ms)
+2024-10-25 04:27:48,240 - execute - 109 - INFO - Pass: Size - 0.05150 (ms)
+2024-10-25 04:27:48,240 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:27:48,240 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.31161 (ms)
+2024-10-25 04:27:48,240 - execute - 109 - INFO - Pass: InverseCancellation - 0.16332 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: GatesInBasis - 0.53978 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: Depth - 0.22006 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: FixedPoint - 0.00334 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: Size - 0.04864 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:27:48,241 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00310 (ms)
+2024-10-25 04:27:48,242 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.34923 (ms)
+2024-10-25 04:27:48,294 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:27:48,295 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-full Uncomp for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:27:48,295 - evaluate_circuits - 79 - INFO - Greedy-full Uncomputation of Circuit Circuit_9 is the same to Eq5 as Eq4
+2024-10-25 04:27:48,297 - eval_main_func - 266 - INFO - Comparing the uncomp circuit grapphs by greedy and exhaustive for Circuit_9
+2024-10-25 04:27:48,299 - eval_main_func - 269 - INFO - Both methods return the same circuit graphs
+2024-10-25 04:27:48,299 - eval_main_func - 275 - INFO - Attempting to run greedy partial uncomp on Circuit_9
+2024-10-25 04:34:05,178 - eval_main_func - 278 - INFO - Drawing Greedy Partial Uncomp Circuit Graph for Circuit_9
+2024-10-25 04:34:05,178 - eval_main_func - 284 - INFO - Building Greedy Partial Uncomp Circuit for Circuit_9
+2024-10-25 04:34:09,330 - execute - 109 - INFO - Pass: ContainsInstruction - 0.02337 (ms)
+2024-10-25 04:34:09,330 - execute - 109 - INFO - Pass: InverseCancellation - 0.25225 (ms)
+2024-10-25 04:34:09,330 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:34:09,332 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.29533 (ms)
+2024-10-25 04:34:09,332 - execute - 109 - INFO - Pass: BasisTranslator - 0.59342 (ms)
+2024-10-25 04:34:09,332 - execute - 109 - INFO - Pass: Depth - 0.24223 (ms)
+2024-10-25 04:34:09,333 - execute - 109 - INFO - Pass: FixedPoint - 0.00572 (ms)
+2024-10-25 04:34:09,333 - execute - 109 - INFO - Pass: Size - 0.05031 (ms)
+2024-10-25 04:34:09,333 - execute - 109 - INFO - Pass: FixedPoint - 0.00191 (ms)
+2024-10-25 04:34:09,333 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.34308 (ms)
+2024-10-25 04:34:09,333 - execute - 109 - INFO - Pass: InverseCancellation - 0.16928 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: GatesInBasis - 0.54669 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: Depth - 0.21434 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: FixedPoint - 0.00381 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: Size - 0.04911 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:34:09,334 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00286 (ms)
+2024-10-25 04:34:09,335 - _log_transpile_time - 423 - INFO - Total Transpile Time - 31.20899 (ms)
+2024-10-25 04:34:09,485 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00668 (ms)
+2024-10-25 04:34:09,486 - execute - 109 - INFO - Pass: InverseCancellation - 0.19860 (ms)
+2024-10-25 04:34:09,486 - execute - 109 - INFO - Pass: UnitarySynthesis - 0.00286 (ms)
+2024-10-25 04:34:09,487 - execute - 109 - INFO - Pass: HighLevelSynthesis - 1.17993 (ms)
+2024-10-25 04:34:09,487 - execute - 109 - INFO - Pass: BasisTranslator - 0.51022 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: Depth - 0.24056 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: FixedPoint - 0.00525 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: Size - 0.05007 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: FixedPoint - 0.00238 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: Optimize1qGatesDecomposition - 0.28038 (ms)
+2024-10-25 04:34:09,488 - execute - 109 - INFO - Pass: InverseCancellation - 0.16451 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: GatesInBasis - 0.56434 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: Depth - 0.21577 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: FixedPoint - 0.00310 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: Size - 0.04959 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: FixedPoint - 0.00215 (ms)
+2024-10-25 04:34:09,489 - execute - 109 - INFO - Pass: ContainsInstruction - 0.00286 (ms)
+2024-10-25 04:34:09,490 - _log_transpile_time - 423 - INFO - Total Transpile Time - 27.99439 (ms)
+2024-10-25 04:34:09,545 - evaluate_circuits - 70 - INFO - The distance between the probability distributions of Eq4 and Eq5 for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:34:09,546 - evaluate_circuits - 72 - INFO - The distance between the probability distributions of Comp Eq5  and Greedy-partial Uncomp for Circuit Circuit_9 are 0.1075046502128394
+2024-10-25 04:34:09,546 - evaluate_circuits - 79 - INFO - Greedy-partial Uncomputation of Circuit Circuit_9 is the same to Eq5 as Eq4
+2024-10-25 04:34:12,238 - eval_main_func - 320 - INFO - Evaluation Results:
+2024-10-25 04:34:12,238 - eval_main_func - 321 - INFO - Exhaustive and Greedy produced the same circuit in 10
+2024-10-25 04:34:12,238 - eval_main_func - 322 - INFO - Uncomputation was closer than Eq4 for [('regular', 0), ('exhaustive', 0), ('greedy-full', 0), ('greedy-partial', 0)]
+2024-10-25 04:34:12,238 - eval_main_func - 323 - INFO - Uncomputation was same as Eq4 for [('regular', 0), ('exhaustive', 10), ('greedy-full', 10), ('greedy-partial', 10)]
+2024-10-25 04:34:12,238 - eval_main_func - 324 - INFO - Uncomputation was worse than Eq4 for [('regular', 0), ('exhaustive', 0), ('greedy-full', 0), ('greedy-partial', 0)]
