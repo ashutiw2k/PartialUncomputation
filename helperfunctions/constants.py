@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Literal
 
 
 class StringConstants(Enum):
@@ -16,6 +17,8 @@ class StringConstants(Enum):
     CONTROL = 'control'
     ANTIDEP = 'anti-dependence'
 
+
+UNCOMP_TYPES = Literal['regular', 'exhaustive', 'greedy-full', 'greedy-partial']
 
 class ListConstants(Enum):
 

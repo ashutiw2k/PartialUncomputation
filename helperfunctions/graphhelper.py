@@ -22,6 +22,7 @@ class CGNode:
         self.node_type = node_type
         self.opname = opname
         self.node_num = -1
+        self.mark = False
 
     def set_index(self, index):
         self.index = index
@@ -32,6 +33,12 @@ class CGNode:
         self.node_num = nodenum
     def get_nodenum(self):
         return self.node_num
+
+    def mark_node(self):
+        self.mark=True
+
+    def get_mark(self):
+        return self.mark
 
     def graph_label(self):
         return f'{self.index}:{self.opname}:{self.label}_{self.node_num}{"*" if self.node_type is UNCOMP else ""}' if self.opname else self.label

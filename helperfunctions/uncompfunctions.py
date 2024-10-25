@@ -373,8 +373,8 @@ def greedy_uncomputation_full_per_node(circuit_graph: rustworkx.PyDiGraph, ancil
 
 # Remove uncomputation of 'singular ancilla' until first node that controls ancilla is reached
 def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancilla: str, nodes_in_cycle:List[int]):
-    circuit_graph = copy.deepcopy(uncomp_circuit_graph)
-    graph_nodes_reverse = circuit_graph.nodes()
+    # uncomp_circuit_graph = copy.deepcopy(uncomp_circuit_graph)
+    graph_nodes_reverse = uncomp_circuit_graph.nodes()
     graph_nodes_reverse.reverse()
     # print(graph_nodes_reverse)
     # Initialize node for this will have same index as ancilla
@@ -382,7 +382,7 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
     # Get all outward/leaving edges of the FIRST/INIT node of the ancilla
     # This is because when we build the circuit graph, the index of INIT node is the same as the index of qubit. 
     # ancilla_idx = list(filter(lambda x: ,init_nodes))
-    target_path = [x.get_index() for x in circuit_graph.nodes() if x.label == ancilla]
+    target_path = [x.get_index() for x in uncomp_circuit_graph.nodes() if x.label == ancilla]
 
 
     # Nodes in cycle is the list of all nodes that are a part of a cycle
@@ -393,10 +393,10 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
     # Get the path in descending order of node indices
     target_path.sort(reverse=True)
 
-    print(f'nodes_in_cycle: {nodes_in_cycle}')
-    print(f'target_path: {target_path}')
+    # print(f'nodes_in_cycle: {nodes_in_cycle}')
+    # print(f'target_path: {target_path}')
     # print(f'cycles_per_nodes: {cycles_per_nodes}')
-    print(f'uncomp_nodes_part_of_cycle: {uncomp_nodes_part_of_cycle}')
+    # print(f'uncomp_nodes_part_of_cycle: {uncomp_nodes_part_of_cycle}')
     # print(f'qubit_node_cycles: {qubit_node_cycles}')
     
     # exit(0) 
@@ -406,9 +406,9 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
     for idx in target_path:
         if idx in uncomp_nodes_part_of_cycle:
             # Get all outward/leaving edges
-            idx_adj_nodes = circuit_graph.adj_direction(idx, False)
+            idx_adj_nodes = uncomp_circuit_graph.adj_direction(idx, False)
             # Get all nodes for which this node is a control and the controlled node is an uncomp node. 
-            controlled_nodes = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and circuit_graph.get_node_data(x).node_type is UNCOMP, 
+            controlled_nodes = list(filter(lambda x: idx_adj_nodes.get(x) is CONTROL and uncomp_circuit_graph.get_node_data(x).node_type is UNCOMP, 
                                    idx_adj_nodes.keys()))
             # idx_cycles = qubit_node_cycles[idx]
             # print(f'{idx} : {idx_cycles}')
@@ -417,18 +417,21 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
             # DON'T HAVE A GOOD/CONFIDENT ARGUMENT WHY THIS WORKS
             # DON'T HAVE AN EXAMPLE WHERE IT FAILS. 
             if len(controlled_nodes) == 0:
-                remove_uncomputation_step(circuit_graph, idx)
+                remove_uncomputation_step(uncomp_circuit_graph, idx)
+            elif uncomp_circuit_graph.get_node_data(idx).get_mark():
+                remove_uncomputation_step(uncomp_circuit_graph, idx)
             else:
-                # Note - got an example, which is why added this 
-                # break
-                for c in controlled_nodes:
-                    if rustworkx.digraph_find_cycle(circuit_graph, c):
-                        print(f'Node {idx} for qubit {circuit_graph.get_node_data(idx).label} controls node {c} of qubit {circuit_graph.get_node_data(c).label}')
-                        print(f'Node {c} is in a loop, so node {idx} will be removed')
-                        remove_uncomputation_step(circuit_graph, idx)
-                        break
+                # # Note - got an example, which is why added this 
+                # # break
+                # for c in controlled_nodes:
+                #     if rustworkx.digraph_find_cycle(circuit_graph, c):
+                #         print(f'Node {idx} for qubit {circuit_graph.get_node_data(idx).label} controls node {c} of qubit {circuit_graph.get_node_data(c).label}')
+                #         print(f'Node {c} is in a loop, so node {idx} will be removed')
+                #         remove_uncomputation_step(circuit_graph, idx)
+                #         break
+                uncomp_circuit_graph.get_node_data(idx).mark_node()
         
-    return circuit_graph
+    return uncomp_circuit_graph
 
 # Greedy - Partial Uncomp 
 # Same as Greedy - Full, but has an addition dictionary that stores 

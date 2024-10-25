@@ -12,7 +12,7 @@ import rustworkx
 from helperfunctions.randomcircuit import random_quantum_circuit_basic, random_quantum_circuit_large
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
-from helperfunctions.constants import EVAL_DIRS
+from helperfunctions.constants import EVAL_DIRS, UNCOMP_TYPES
 
 from helperfunctions.measurecircuit import get_statevector, get_probability_from_statevector, zero_ancillas_in_statevector, print_probs
 
@@ -23,8 +23,35 @@ from rustworkx.visualization import graphviz_draw
 logger = logging.getLogger(__name__)
 start_time = 0
 
+# class CircuitMetrics:
+#     def __init__(self, name_str, num_q, num_a, num_g):
+#         self.name_str = name_str
+#         self.num_q = num_q
+#         self.num_a = num_a
+#         self.num_g = num_g
+
+#         self.exhaustive_uncomp_gates = None
+
+
+
+#         pass
+
+
+class EvaluationMetrics:
+    def __init__(self, num_circuits):
+        self.num_circuits = num_circuits
+        self.can_be_regularly_uncomputed = 0
+        self.greedy_and_exhaustive_return_same = 0
+        # self.exhaustive_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
+        # self.greedy_full_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
+        # self.greedy_partial_eval = {'uncomp_closer': 0, 'uncomp_same':0, 'uncomp_worse':0}
+        self.uncomp_better = {x:0 for x in UNCOMP_TYPES}
+        self.uncomp_same = {x:0 for x in UNCOMP_TYPES}
+        self.uncomp_worse = {x:0 for x in UNCOMP_TYPES}
+
+
 def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircuit, num_a, name_str,
-                          uncomp_type:Literal['regular', 'exhaustive', 'greedy-full', 'greedy-partial']='regular'):
+                          uncomp_type:UNCOMP_TYPES='regular'):
     
     eq4_comp_statevector = get_statevector(comp_circuit)
     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
@@ -113,6 +140,9 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
     logger.info(f'Starting Evaluation of Exhaustive Uncomp with {num_circuits} random quantum circuits')
     global start_time
     valid_num_circuits = num_circuits if num_circuits > 0 else 1
+
+    metrics = EvaluationMetrics(valid_num_circuits)
+
     print('****************************************************************************')
     for i in range(valid_num_circuits):
         if num_circuits > 0:
@@ -271,6 +301,8 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_uncomp_circuit, 
                               num_a=num_a, name_str=name_str, uncomp_type='regular')
+            
+            metrics.can_be_regularly_uncomputed += 1
 
             with open(f'{eval_dir}/regular_uncomp_circuit_qpy/{name_str}.qpy', 'wb') as f:
                 qpy.dump(_uncomp_circuit, f)
