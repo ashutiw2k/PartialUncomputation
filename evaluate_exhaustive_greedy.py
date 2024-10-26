@@ -71,7 +71,7 @@ def evaluate_circuits(comp_circuit: QuantumCircuit, uncomp_circuit: QuantumCircu
     distance_probs_eq5_4_uncomp = numpy.linalg.norm(eq4_uncomp_prob_dist - eq5_comp_prob_dist)
     
     distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp = numpy.round((distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp), decimals=10)
-    
+
     logger.info(f'The distance between the probability distributions of Eq4 and Eq5 for Circuit {name_str} are {distance_probs_eq5_4_comp}')
     logger.info(f'The distance between the probability distributions of Comp Eq5  and {uncomp_type.value.capitalize()} Uncomp for Circuit {name_str} are {distance_probs_eq5_4_uncomp}')
 
@@ -167,7 +167,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
         name_str = f'Circuit_{i}'
 
-        _circuit.draw('mpl', 
+        _circuit.draw('latex', 
                      filename=f'{eval_dir}/comp_circuit/{name_str}.png')
         
         with open(f'{eval_dir}/comp_circuit_qpy/{name_str}.qpy', 'wb') as f:
@@ -226,7 +226,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Building Exhaustive Uncomp Circuit for {name_str}')
             _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
-            _exhaustive_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
+            _exhaustive_uncomp_circuit.draw('latex', filename=f'{eval_dir}/exhaustive_uncomp_circuit/{name_str}.png')
 
             logger.info(f'Time to build uncomp circuit took {time.time_ns()-start_time} ns')
             start_time = time.time_ns()
@@ -254,7 +254,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Building Greedy Uncomp Circuit for {name_str}')
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
-            _greedy_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
+            _greedy_uncomp_circuit.draw('latex', filename=f'{eval_dir}/greedy_uncomp_circuit/{name_str}.png')
 
 
             evaluate_circuits(comp_circuit=_circuit, 
@@ -288,7 +288,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
 
             logger.info(f'Building Greedy Partial Uncomp Circuit for {name_str}')
             _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
-            _greedy_partial_uncomp_circuit.draw('mpl', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
+            _greedy_partial_uncomp_circuit.draw('latex', filename=f'{eval_dir}/greedy_partial_uncomp_circuit/{name_str}.png')
 
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_greedy_partial_uncomp_circuit, 
@@ -307,7 +307,7 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
             
             logger.info(f'Building Regular Uncomp Circuit for {name_str}')
             _uncomp_circuit = get_uncomp_circuit(_regular_uncomp_circuit_graph)
-            _uncomp_circuit.draw('mpl', filename=f'{eval_dir}/regular_uncomp_circuit/{name_str}.png')
+            _uncomp_circuit.draw('latex', filename=f'{eval_dir}/regular_uncomp_circuit/{name_str}.png')
 
             evaluate_circuits(comp_circuit=_circuit, 
                               uncomp_circuit=_uncomp_circuit, 
@@ -320,7 +320,12 @@ def eval_main_func(num_circuits, eval_dir='evaluation_folder'):
                 f.close()
 
         # Collect and free all memory
-        plt.close()
+        # # Clear the current axes.
+        # plt.cla() 
+        # # Clear the current figure.
+        # plt.clf() 
+        # # Closes all the figure windows.
+        # plt.close('all')
         gc.collect()
 #**************************************************************************************************************#
 
