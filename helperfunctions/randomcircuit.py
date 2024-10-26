@@ -83,8 +83,8 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
     
     num_q = random.randint(3,10)
     num_a = random.randint(3,10)
-    # num_g = random.randint(100,500)
-    num_g = random.randint(10,50)
+    num_g = random.randint(100,500)
+    # num_g = random.randint(10,50)
     # num_g = 75
 
     cc_gates = 0
