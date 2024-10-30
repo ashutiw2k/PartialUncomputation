@@ -83,7 +83,7 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
     
     num_q = random.randint(3,10)
     num_a = random.randint(3,10)
-    num_g = random.randint(100,500)
+    num_g = random.randint(50, 100)
     # num_g = random.randint(10,50)
     # num_g = 75
 
@@ -98,6 +98,7 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
     circuit = QuantumCircuit(in_q, an_q)
 
     for q in in_q:
+        circuit.x(q)
         circuit.h(q)
     
     for i in tqdm(range(num_g), desc=f'Building Random Quantum Circuit with {num_q}q, {num_a}a, {num_g}g'):
