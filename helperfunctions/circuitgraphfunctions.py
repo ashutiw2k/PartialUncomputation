@@ -63,6 +63,11 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancillas: List
         # Adding the node
         qubit_type = ANCILLA if qubit_dict_all[-1]['label'] in ancillas else INPUT
         opnode = CGNode(qubit_dict_all[-1], qubit_type=qubit_type, node_type=COMP, opname=opname)
+        
+        params = circ_inst.operation.params
+        if len(params) == 1:
+            opnode.theta = params[0]
+
         opnode_index = circuit_graph.add_child(prev_node_index, opnode, TARGET)
         circuit_graph.get_node_data(opnode_index).set_index(opnode_index)
         circuit_graph.get_node_data(opnode_index).set_nodenum(
@@ -98,6 +103,7 @@ def get_computation_graph(circuit: qiskit.circuit.QuantumCircuit, ancillas: List
         # print(circuit_graph.adj(opnode_index))
 
         # print('----------------------------------------')
+        
 
 
     return circuit_graph
@@ -169,6 +175,19 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
         elif opname == 'h':
             assert len(control_nodes_wires) == 0
             new_uncomp_circuit.h(prev_node_wire)
+        
+        elif opname == 'rx':
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.rx(node.theta, prev_node_wire)
+        elif opname == 'ry':
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.ry(node.theta, prev_node_wire)
+        elif opname == 'rz':
+            assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.rz(node.theta, prev_node_wire)
+
+        else:
+            print(f'Operation {opname} DNE in QC Builder')
 
 
     return new_uncomp_circuit

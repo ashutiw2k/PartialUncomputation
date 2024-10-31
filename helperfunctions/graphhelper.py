@@ -23,6 +23,7 @@ class CGNode:
         self.opname = opname
         self.node_num = -1
         self.mark = False
+        self.theta = 0.0
 
     def set_index(self, index):
         self.index = index
