@@ -9,3 +9,4 @@ greedy_eval_folder_memprof
 greedy_eval_folder_cprofile
 final_eval_results
 latex_error.log
+large_circuit_evals
