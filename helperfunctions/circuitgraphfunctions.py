@@ -186,6 +186,10 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
             assert len(control_nodes_wires) == 0
             new_uncomp_circuit.rz(node.theta, prev_node_wire)
 
+        elif opname =='barrier':
+            # assert len(control_nodes_wires) == 0
+            new_uncomp_circuit.barrier()
+
         else:
             print(f'Operation {opname} DNE in QC Builder')
 
