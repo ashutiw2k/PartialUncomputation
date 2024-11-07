@@ -258,12 +258,13 @@ def greedy_uncomputation_full_weak(circuit_graph: rustworkx.PyDiGraph, ancillas)
 
 
 # Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
-def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], max_cycles:int=10**5):
+def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], max_cycles:int=10**5, return_uncomputed_ancillas=False):
     
     start_time = time.time_ns()
     # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
     logger.info(f'Time to build Greedy Uncomp Circuit Graph with cycles took {time.time_ns()-start_time} ns')
+    uncomp_ancillas_list = copy.deepcopy(ancillas)
     start_time = time.time_ns()
 
     cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
@@ -327,11 +328,20 @@ def greedy_uncomputation_full(circuit_graph: rustworkx.PyDiGraph, ancillas:List[
         # uncomp_circuit_graph = remove_uncomputation_full(uncomp_circuit_graph, [qubit])
         remove_uncomputation_full(uncomp_circuit_graph, [qubit])
         logger.info(f'Time remove all uncomp nodes for {qubit} in Greedy Uncomp Circuit Graph took {time.time_ns()-start_time} ns')
+
+        if qubit in uncomp_ancillas_list:
+            uncomp_ancillas_list.remove(qubit)
+        else:
+            raise ValueError(f'Trying to remove qubit {qubit} not present in uncomp ancillas list {uncomp_ancillas_list}')
+        
         start_time = time.time_ns()
 
         cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
-    return uncomp_circuit_graph
+    if return_uncomputed_ancillas:     
+        return uncomp_circuit_graph, uncomp_ancillas_list 
+    else: 
+        return uncomp_circuit_graph
 
 
 # Greedily remove uncomputation - ALL UNCOMP NODES FOR VALID ANCILLA    
@@ -436,10 +446,12 @@ def remove_uncomputation_partial(uncomp_circuit_graph:rustworkx.PyDiGraph, ancil
 # Greedy - Partial Uncomp 
 # Same as Greedy - Full, but has an addition dictionary that stores 
 # the nodes of a qubit that are in the cycle
-def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], max_cycles:int=10**5):
+def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], max_cycles:int=10**5, return_uncomputed_ancillas=False):
 
     # ancillas = list(range(num_qubit, num_qubit+num_ancilla))
     uncomp_circuit_graph, has_cycle = add_uncomputation(circuit_graph, ancillas, allow_cycle=True)
+    
+    uncomp_ancillas_list = copy.deepcopy(ancillas)
 
     cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
@@ -475,9 +487,15 @@ def greedy_uncomputation_partial(circuit_graph: rustworkx.PyDiGraph, ancillas:Li
 
         uncomp_circuit_graph = remove_uncomputation_partial(uncomp_circuit_graph, qubit, uncomp_cycle_nodes[qubit])
 
+        if qubit in uncomp_ancillas_list:
+            uncomp_ancillas_list.remove(qubit)
+
         cycle_check = rustworkx.digraph_find_cycle(uncomp_circuit_graph)
 
-    return uncomp_circuit_graph
+    if return_uncomputed_ancillas:     
+        return uncomp_circuit_graph, uncomp_ancillas_list 
+    else: 
+        return uncomp_circuit_graph
 
 
 
