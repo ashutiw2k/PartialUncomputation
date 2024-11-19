@@ -12,11 +12,10 @@ if not '../' in sys.path:
     sys.path.insert(1, '../')
 print(sys.path)
 
-from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
-from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding_reverse, greedy_uncomputation_full, greedy_uncomputation_partial
-from helperfunctions.graphhelper import edge_attr, edge_matcher,node_attr,node_matcher, breakdown_qubit
-# from helperfunctions.measurecircuit import get_statevector, get_probability_from_statevector, zero_ancillas_in_statevector
-# from helperfunctions.constants import UncompType
+from helperfunctions.circuitgraphfunctions import get_computation_graph
+from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
+from helperfunctions.graphhelper import edge_matcher,node_matcher, breakdown_qubit
+
 
 
 VALID_NUM_CIRCUITS = 1
@@ -97,26 +96,6 @@ def random_quantum_circuit_large_distinct_nums(num_q, num_a, num_g) -> tuple[Qua
     
     return circuit, num_q, num_a, num_g
 
-# def get_eval_results(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_a):
-#     eq4_comp_statevector = get_statevector(comp_circuit)
-#     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
-#     # logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
-
-#     eq5_comp_statevector = zero_ancillas_in_statevector(eq4_comp_statevector, num_a)
-#     eq5_comp_prob_dist = get_probability_from_statevector(eq5_comp_statevector)
-#     # logger.info(f'Comp Circuit {name_str} Eq5 Probability Distribution: \n{print_probs(eq5_comp_prob_dist)}')
-
-#     eq4_uncomp_statevector = get_statevector(uncomp_circuit)
-#     eq4_uncomp_prob_dist = get_probability_from_statevector(eq4_uncomp_statevector)
-#     # logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
-
-#     distance_probs_eq5_4_comp = numpy.linalg.norm(eq5_comp_prob_dist - eq4_comp_prob_dist)
-#     distance_probs_eq5_4_uncomp = numpy.linalg.norm(eq4_uncomp_prob_dist - eq5_comp_prob_dist)
-    
-#     distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp = numpy.round((distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp), decimals=10)
-
-#     return distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp, eq4_comp_prob_dist, eq5_comp_prob_dist, eq4_uncomp_prob_dist
-
 class NumAncillaUncomped:
     def __init__(self) -> None:
         self.exhaustive = []
@@ -175,7 +154,7 @@ def get_ancilla_metrics(num_q, num_a, num_g, results:NumAncillaUncomped, max_cyc
             # logger.warning(f'Trying to uncompute circuit {name_str} produces a cycle')
 
             # logger.info(f'Attempting to run exhaustive uncomp on {name_str}')
-            largest_set = exhaustive_uncomputation_adding_reverse(_circuit_graph, ancillas_list)
+            largest_set = exhaustive_uncomputation_adding(_circuit_graph, ancillas_list)
             print(f'Largest Set of ancilla for {name_str} that can be uncomputed is {largest_set}')
             results.add_exhaustive(largest_set)
 
@@ -276,12 +255,13 @@ if __name__ == '__main__':
     
     # Variable Number of Ancilla
     num_q = 10
-    num_a_min = 10
-    num_a_max = 25
+    num_a_min = 50
+    num_a_max = 550
+    num_a_step = 20
     num_g = 100
     var_ancilla_results_dict = {}
 
-    for var in range(num_a_min, num_a_max+1):
+    for var in range(num_a_min, num_a_max+num_a_step, num_a_step):
         filled_results = get_ancilla_metrics(num_q=num_q, num_g=num_g, num_a=var, results=NumAncillaUncomped())
         var_ancilla_results_dict.update({var:filled_results})    
 
