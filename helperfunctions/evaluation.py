@@ -110,7 +110,8 @@ class ProbDiffResults:
                 '''
 
         
-def get_eval_results(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_a):
+def get_eval_results(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_a,
+                     distance='euclidean'):
     eq4_comp_statevector = get_statevector(comp_circuit)
     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
     # logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
@@ -123,6 +124,11 @@ def get_eval_results(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit
     eq4_uncomp_prob_dist = get_probability_from_statevector(eq4_uncomp_statevector)
     # logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
 
+    
+    distance_probs_eq5_4_comp = 0
+    distance_probs_eq5_4_uncomp = 0
+    
+    
     distance_probs_eq5_4_comp = numpy.linalg.norm(eq5_comp_prob_dist - eq4_comp_prob_dist)
     distance_probs_eq5_4_uncomp = numpy.linalg.norm(eq4_uncomp_prob_dist - eq5_comp_prob_dist)
     
