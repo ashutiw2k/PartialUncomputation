@@ -157,7 +157,7 @@ def get_uncomp_circuit(circuit_graph: rustworkx.PyDiGraph):
         if opname == 'mcx':
             controls = [control_nodes_wires[i] for i in range(len(control_nodes_wires))]
             new_uncomp_circuit.mcx(controls, prev_node_wire)
-        if opname == 'ccx':
+        elif opname == 'ccx':
             assert len(control_nodes_wires) == 2
             new_uncomp_circuit.ccx(control_nodes_wires[0], control_nodes_wires[1], prev_node_wire)
         elif opname == 'cx':

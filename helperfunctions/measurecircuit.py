@@ -34,17 +34,17 @@ def get_statevector(circuit: QuantumCircuit):
     return statevector
 
 def get_probability_from_statevector(statevector: AerStatevector):
-    norm_state_vector = np.pow(statevector, 2)
+    norm_state_vector = np.abs(np.pow(statevector, 2))
 
-    if np.sum(norm_state_vector) > 1:
-        return norm_state_vector/np.sum(norm_state_vector)
+    # if np.sum(norm_state_vector) > 1:
+    return np.real(norm_state_vector/np.sum(norm_state_vector))
 
-    return norm_state_vector
+    # return np.real(norm_state_vector)
 
 # Using Kullback-Leibler-Divergence to measure the difference between the probability distributions of 2 numpy arrays
 # https://hanj.cs.illinois.edu/cs412/bk3/KL-divergence.pdf
-def measure_difference_in_probability(a, b):
-    return sum(a[i] * np.log(a[i]/b[i]) for i in range(len(a)))
+# def measure_difference_in_probability(a, b):
+#     return sum(a[i] * np.log(a[i]/b[i]) for i in range(len(a)))
 
 def zero_ancillas_in_statevector(statevector: AerStatevector, num_a: int):
     vec_len = len(statevector)

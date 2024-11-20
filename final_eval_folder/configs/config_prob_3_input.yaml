@@ -1,0 +1,18 @@
+evaluation: 'input'
+# Paths to store result outputs in
+paths:
+  image: 'final_eval_folder/plots/'
+  json: '' 
+
+# Parameters for Generating Circuits
+num_a: 5
+num_g: 40
+num_q_min: 3
+num_q_max: 10
+num_q_step: 1
+
+# Parameters for running evaluations
+num_circuits: 10
+
+# Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
+distance: 'wasserstein'

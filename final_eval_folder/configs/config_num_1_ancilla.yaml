@@ -1,0 +1,19 @@
+evaluation: 'ancilla'
+
+# Paths to store result outputs in
+paths:
+  image: 'final_eval_folder/plots/'
+  json: '' 
+
+# Parameters for Generating Circuits
+num_q: 10
+num_g: 40
+num_a_min: 3
+num_a_max: 13
+num_a_step: 1
+
+# Parameters for running evaluations
+num_circuits: 10
+
+# Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
+distance: 'manhattan'
