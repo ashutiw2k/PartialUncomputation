@@ -43,7 +43,7 @@ run_for_all_config() {
     mkdir -p $new_run_folder
 
     # Move generated output files to the new folder
-    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_prob_dist_diff*" -exec mv {} "$new_run_folder" \;
+    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_*" -exec mv {} "$new_run_folder" \;
 
     echo "Script completed. Output files moved to $new_run_folder"
 }
