@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit, QuantumRegister
 import os, sys
 import json
+import yaml
 import numpy
 import random
 from tqdm import tqdm
@@ -21,7 +22,8 @@ from helperfunctions.graphhelper import edge_attr, edge_matcher,node_attr,node_m
 
 VALID_NUM_CIRCUITS = 1
 JSON_WRITE_PATH = ''
-IMAGE_WRITE_PATH = ''
+
+image_write_path = ''
 
 # assert os.path.exists(JSON_WRITE_PATH)
 # assert os.path.exists(IMAGE_WRITE_PATH)
@@ -148,10 +150,10 @@ class NumAncillaUncomped:
         return self.num_exhaustive, self.num_greedy_full, self.num_greedy_partial
         
 
-def get_ancilla_metrics(num_q, num_a, num_g, results:NumAncillaUncomped, max_cycles=10**5):
+def get_ancilla_metrics(num_q, num_a, num_g, results:NumAncillaUncomped,  num_circuits=1, max_cycles=10**5):
     print('****************************************************************************')
     # filled_results = []
-    for idx in range(VALID_NUM_CIRCUITS):
+    for idx in range(num_circuits):
 
         _circuit, num_q, num_a, num_g = random_quantum_circuit_large_distinct_nums(num_q, num_a, num_g)
 
@@ -249,11 +251,11 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME',
         # print('-------------------------------')
         x_axis.append(i)
         # ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
-        ex_uncomp_avg.append(numpy.average(x.num_exhaustive))
+        ex_uncomp_avg.append(numpy.trunc(numpy.average(x.num_exhaustive)))
         # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
-        gf_uncomp_avg.append(numpy.average(x.num_greedy_full))
+        gf_uncomp_avg.append(numpy.trunc(numpy.average(x.num_greedy_full)))
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
-        gp_uncomp_avg.append(numpy.average(x.num_greedy_partial))
+        gp_uncomp_avg.append(numpy.trunc(numpy.average(x.num_greedy_partial)))
 
     # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='Original')
     plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
@@ -269,20 +271,42 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME',
     plt.xlim(x_axis[0]-1, x_axis[-1]+1)
     plt.autoscale(False, axis='x')
     # plt.xscale('linear')
-    plt.savefig(f'{IMAGE_WRITE_PATH}{figname}')
+    plt.savefig(f'{image_write_path}{figname}')
 
 
 if __name__ == '__main__':
-    
+
+    config_path = 'configs/default_config.yaml'
+    if len(sys.argv) < 2:
+        print(f'Config File not provided, using default')
+    else:
+        config_path = sys.argv[1]
+
+    with open(config_path) as f:
+        # config = json.load(f)
+        config = yaml.safe_load(f)
+
+    print(config)
+
+    # exit(0)
+
     # Variable Number of Ancilla
-    num_q = 10
-    num_a_min = 10
-    num_a_max = 25
-    num_g = 100
+    num_q = config['num_q']
+    num_a_min = config['num_a_min']
+    num_a_max = config['num_a_max']
+    num_a_step = config['num_a_step']
+    num_g = config['num_g']
+    num_circuits = config['num_circuits']
+    # global image_write_path
+    image_write_path = config['paths']['image']
+    # global image_write_path
+    # global VALID_NUM_CIRCUITS
+
     var_ancilla_results_dict = {}
 
-    for var in range(num_a_min, num_a_max+1):
-        filled_results = get_ancilla_metrics(num_q=num_q, num_g=num_g, num_a=var, results=NumAncillaUncomped())
+    for var in range(num_a_min, num_a_max+num_a_step, num_a_step):
+        filled_results = get_ancilla_metrics(num_q=num_q, num_g=num_g, num_a=var, 
+                                             results=NumAncillaUncomped(), num_circuits=num_circuits)
         var_ancilla_results_dict.update({var:filled_results})    
 
     plot_ancilla_results(var_ancilla_results_dict, figname=f'Plot_num_ancillas_uncomputed_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a')
