@@ -22,7 +22,7 @@ run_for_all_config() {
     echo "Running Python Scripts for variable ancillas"
     for i in {1..4}; do
         run_python_prob_script "$i"_ancilla &
-        # run_python_num_script "$i"_ancilla &        
+        run_python_num_script "$i"_ancilla &        
     done
 
     wait
@@ -30,7 +30,7 @@ run_for_all_config() {
     echo "Running Python Scripts for variable inputs"
     for i in {1..4}; do
         run_python_prob_script "$i"_gate &
-        # run_python_num_script "$i"_gate &
+        run_python_num_script "$i"_gate &
     done
 
     wait
@@ -38,7 +38,7 @@ run_for_all_config() {
     echo "Running Python Scripts for variable gates"
     for i in {1..4}; do
         run_python_prob_script "$i"_input &
-        # run_python_num_script "$i"_input &
+        run_python_num_script "$i"_input &
     done
 
     # Wait for all background processes to finish
@@ -59,7 +59,7 @@ run_for_all_config() {
 
 > "$OUT_TEXT_FILE"
 
-for j in {1..10}; do
+for j in {1..15}; do
     echo "Run: $j running"
     run_for_all_config >> $OUT_TEXT_FILE 
 done

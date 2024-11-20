@@ -35,6 +35,15 @@ class NumAncillaUncomped:
 
     def get_all_nums(self):
         return self.num_exhaustive, self.num_greedy_full, self.num_greedy_partial
+    
+    def __str__(self):
+        vals = numpy.round(numpy.average(self.get_all_nums(), axis=1))
+        assert len(vals) == 3
+        return f'''
+            Avg Ancilla Uncomped Exhaustive: {vals[0]}
+            Avg Ancilla Uncomped Greedy-Full: {vals[1]}
+            Avg Ancilla Uncomped Greedy-Partial: {vals[2]}
+            '''
         
 class ProbDiffResults:
     def __init__(self, valid_num_circuits):
@@ -178,11 +187,11 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
         # print('-------------------------------')
         x_axis.append(i)
         # ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
-        ex_uncomp_avg.append(numpy.trunc(numpy.average(x.num_exhaustive)))
+        ex_uncomp_avg.append(numpy.round(numpy.average(x.num_exhaustive)))
         # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
-        gf_uncomp_avg.append(numpy.trunc(numpy.average(x.num_greedy_full)))
+        gf_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_full)))
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
-        gp_uncomp_avg.append(numpy.trunc(numpy.average(x.num_greedy_partial)))
+        gp_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_partial)))
 
     # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='Original')
     plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')

@@ -109,7 +109,7 @@ def metrics_for_ancillas(config):
 
     for var in range(num_a_min, num_a_max+num_a_step, num_a_step):
         filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=var, 
-                                             results=NumAncillaUncomped(num_circuits), num_circuits=num_circuits)
+                                             results=NumAncillaUncomped(), num_circuits=num_circuits)
         results_dict.update({var:filled_results})  
         gc.collect()
 
@@ -139,7 +139,7 @@ def metrics_for_inputs(config):
 
     for var in range(num_q_min, num_q_max+num_q_step, num_q_step):
         filled_results = get_probability_metrics(num_q=var, num_g=num_g, num_a=num_a, 
-                                             results=NumAncillaUncomped(num_circuits), num_circuits=num_circuits)
+                                             results=NumAncillaUncomped(), num_circuits=num_circuits)
         results_dict.update({var:filled_results})  
         gc.collect()
 
@@ -169,7 +169,7 @@ def metrics_for_gates(config):
 
     for var in range(num_g_min, num_g_max+num_g_step, num_g_step):
         filled_results = get_probability_metrics(num_q=num_q, num_g=var, num_a=num_a, 
-                                             results=NumAncillaUncomped(num_circuits), num_circuits=num_circuits)
+                                             results=NumAncillaUncomped(), num_circuits=num_circuits)
         results_dict.update({var:filled_results}) 
         gc.collect() 
 
