@@ -1,0 +1,14 @@
+# Paths to store result outputs in
+paths:
+  image: 'plots/'
+  json: '' 
+
+# Parameters for Generating Circuits
+num_q: 10
+num_g: 25
+num_a_min: 3
+num_a_max: 10
+num_a_step: 1
+
+# Parameters for running evaluations
+num_circuits: 3
