@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the Python script and output directory
-PYTHON=".venv/bin/python"
+# PYTHON=".venv/bin/python"
 PYTHON_SCRIPT_PROB="final_eval_folder/plot_probability_distance.py"
 PYTHON_SCRIPT_NUM="final_eval_folder/plot_num_ancilla_uncomputed.py"
 OUTPUT_DIR="final_eval_folder/plots"
@@ -11,10 +11,10 @@ OUT_TEXT_FILE="prob_diff_output.txt"
 
 # Function to run Python script with a config file
 run_python_prob_script() {
-    $PYTHON "$PYTHON_SCRIPT_PROB" "$CONFIG_PATH_PROB"_"$1".yaml
+    python3 "$PYTHON_SCRIPT_PROB" "$CONFIG_PATH_PROB"_"$1".yaml
 }
 run_python_num_script() {
-    $PYTHON "$PYTHON_SCRIPT_NUM" "$CONFIG_PATH_NUM"_"$1".yaml
+    python3 "$PYTHON_SCRIPT_NUM" "$CONFIG_PATH_NUM"_"$1".yaml
 }
 
 run_for_all_config() {
@@ -52,7 +52,7 @@ run_for_all_config() {
     mkdir -p $new_run_folder
 
     # Move generated output files to the new folder
-    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_prob_dist_diff*" -exec mv {} "$new_run_folder" \;
+    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_*" -exec mv {} "$new_run_folder" \;
 
     echo "Script completed. Output files moved to $new_run_folder"
 }
