@@ -34,11 +34,23 @@ class NumAncillaUncomped:
         self.regular.append(ancillas)
         self.num_regular.append(len(ancillas))
 
+        
+        self.exhaustive.append(ancillas)
+        self.num_exhaustive.append(len(ancillas))
+
+        self.greedy_full.append(ancillas)
+        self.num_greedy_full.append(len(ancillas))
+
+        self.greedy_partial.append(ancillas)
+        self.num_greedy_partial.append(len(ancillas))
+
+
+
     def get_all_nums(self):
         return self.num_exhaustive, self.num_greedy_full, self.num_greedy_partial
     
     def __str__(self):
-        vals = numpy.round(numpy.average(self.get_all_nums(), axis=1))
+        vals = numpy.round(numpy.mean(self.get_all_nums(), axis=1))
         assert len(vals) == 3
         return f'''
             Avg Ancilla Uncomped Exhaustive: {vals[0]}
@@ -192,11 +204,11 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
         # print('-------------------------------')
         x_axis.append(i)
         # ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
-        ex_uncomp_avg.append(numpy.round(numpy.average(x.num_exhaustive)))
+        ex_uncomp_avg.append(numpy.round(numpy.mean(x.num_exhaustive)))
         # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
-        gf_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_full)))
+        gf_uncomp_avg.append(numpy.round(numpy.mean(x.num_greedy_full)))
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
-        gp_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_partial)))
+        gp_uncomp_avg.append(numpy.round(numpy.mean(x.num_greedy_partial)))
 
     # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation')
     # plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
@@ -257,6 +269,7 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
     # Show the plot
     plt.tight_layout()
     plt.savefig(f'{image_write_path}/{figname}')
+    plt.close()
     
 
 
@@ -277,12 +290,13 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
         # print(x)
         # print('-------------------------------')
         x_axis.append(i)
+        # nums = x.get_all_nums()
         # ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
-        ex_uncomp_avg.append(numpy.round(numpy.average(x.num_exhaustive)))
+        ex_uncomp_avg.append(numpy.round(numpy.mean(x.num_exhaustive)))
         # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
-        gf_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_full)))
+        gf_uncomp_avg.append(numpy.round(numpy.mean(x.num_greedy_full)))
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
-        gp_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_partial)))
+        gp_uncomp_avg.append(numpy.round(numpy.mean(x.num_greedy_partial)))
 
     # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='Original')
     plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
@@ -299,6 +313,7 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
     plt.autoscale(False, axis='x')
     # plt.xscale('linear')
     plt.savefig(f'{image_write_path}{figname}')
+    plt.close()
 
 def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
                  title='Difference In Probability - All Methods', 
@@ -382,6 +397,7 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     # Show the plot
     plt.tight_layout()
     plt.savefig(f'{image_write_path}/{figname}')
+    plt.close()
     
 
 def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
@@ -401,12 +417,12 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
         # print(x)
         # print('-------------------------------')
         x_axis.append(i)
-        ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
-        ex_uncomp_avg.append(numpy.average(x.exhaustive_uncomp_diff))
-        gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
-        gf_uncomp_avg.append(numpy.average(x.greedy_full_uncomp_diff))
-        gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
-        gp_uncomp_avg.append(numpy.average(x.greedy_partial_uncomp_diff))
+        ex_comp_avg.append(numpy.mean(x.exhaustive_comp_diff))
+        ex_uncomp_avg.append(numpy.mean(x.exhaustive_uncomp_diff))
+        # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
+        gf_uncomp_avg.append(numpy.mean(x.greedy_full_uncomp_diff))
+        # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
+        gp_uncomp_avg.append(numpy.mean(x.greedy_partial_uncomp_diff))
 
     plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
     plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
@@ -423,6 +439,7 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
     plt.autoscale(False, axis='x')
     # plt.xscale('linear')
     plt.savefig(f'{image_write_path}/{figname}')
+    plt.close()
     
 
 def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',

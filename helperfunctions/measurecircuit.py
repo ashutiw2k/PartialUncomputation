@@ -81,7 +81,7 @@ def zero_ancillas_in_statevector(statevector: AerStatevector, num_a: int):
         idx = i & get_index_bitmask(num_a, vec_len)
         zero_ancilla_statevec[idx] += x
 
-    zero_ancilla_statevec[zero_ancilla_statevec < 10**(-8)] = 10**(-8)
+    zero_ancilla_statevec[zero_ancilla_statevec < 10**(-7)] = 10**(-7)
     return zero_ancilla_statevec
 
 
