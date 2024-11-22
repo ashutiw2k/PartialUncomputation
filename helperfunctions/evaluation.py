@@ -2,6 +2,7 @@ from typing import Literal
 import numpy
 from qiskit import QuantumCircuit
 from matplotlib import pyplot as plt
+import matplotlib.colors as mcolors
 from scipy.spatial.distance import euclidean, cityblock, jensenshannon
 from scipy.stats import wasserstein_distance
 from helperfunctions.measurecircuit import get_computation_qubit_probabilty, get_probability_from_statevector, get_statevector, print_probs, zero_ancillas_in_statevector
@@ -224,9 +225,9 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
 
     fig, ax = plt.subplots(figsize=(total_width, 6))
     # rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width, label='No Uncomputation')
-    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width/3, label='Exhaustive')
-    rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full')
-    rects4 = ax.bar(x + 0.5 * width, gp_uncomp_avg, width/3, label='Greedy-Partial')
+    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width/3, label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
+    rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreed'])
+    rects4 = ax.bar(x + 0.5 * width, gp_uncomp_avg, width/3, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -342,11 +343,16 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     x = numpy.arange(len(x_axis))  # the label locations
     width = 0.2  # the width of the bars
 
-    fig, ax = plt.subplots(figsize=(12, 6))
-    rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width*0.75, label='No Uncomputation')
-    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width*0.75, label='Exhaustive')
-    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full')
-    rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width*0.75, label='Greedy-Partial')
+    num_elements = len(x_axis)
+    base_width = 6  # Minimum width
+    width_per_element = 0.5  # Additional width per element
+    total_width = max(base_width, base_width + (num_elements - 10) * width_per_element)  
+    fig, ax = plt.subplots(figsize=(total_width, 6))
+
+    rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width*0.75, label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
+    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width*0.75, label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
+    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreed'])
+    rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width*0.75, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
