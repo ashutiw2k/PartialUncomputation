@@ -1,0 +1,737 @@
+['/home/ashutosh/Research-Code/Uncomputation/PartialUncomputation/final_eval_folder', '../helperfunctions', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/home/ashutosh/Research-Code/Uncomputation/PartialUncomputation/.venv/lib/python3.10/site-packages', '/home/ashutosh/Research-Code/Uncomputation/PartialUncomputation']
+{'evaluation': 'ancilla', 'paths': {'image': 'final_eval_folder/specific_plots/', 'json': ''}, 'num_q': 10, 'num_g': 50, 'num_a_min': 3, 'num_a_max': 13, 'num_a_step': 1, 'num_circuits': 10, 'distance': 'manhattan', 'num': 1}
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ()
+aq1 399672
+aq0 149920
+aq2 100002
+aq1 399672
+aq0 100002
+aq0 100002
+aq1 100002
+aq2 100002
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ()
+aq2 246944
+aq0 274038
+aq1 227930
+aq2 246944
+aq2 188249
+aq1 266334
+aq0 200004
+aq0 1
+***********************Circuit_2***************************
+Largest Set of ancilla for Circuit_2 that can be uncomputed is ('aq0', 'aq1')
+aq2 300006
+aq2 300006
+***********************Circuit_3***************************
+***********************Circuit_4***************************
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ()
+aq0 9
+aq2 8
+aq1 1
+aq0 9
+***********************Circuit_6***************************
+***********************Circuit_7***************************
+Largest Set of ancilla for Circuit_7 that can be uncomputed is ()
+aq1 250042
+aq0 199988
+aq2 100002
+aq1 250042
+aq0 199988
+aq2 100002
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq1',)
+aq2 165054
+aq0 266764
+aq2 165054
+***********************Circuit_9***************************
+***********************Circuit_0***************************
+***********************Circuit_1***************************
+***********************Circuit_2***************************
+Largest Set of ancilla for Circuit_2 that can be uncomputed is ('aq3',)
+aq2 191912
+aq1 358172
+aq0 336627
+aq2 191912
+aq2 191912
+aq1 358172
+aq1 297048
+aq0 336627
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq1', 'aq3')
+aq3 8202
+aq0 537
+aq2 7917
+aq1 3
+aq3 8202
+aq0 537
+aq0 537
+aq2 7935
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq3',)
+aq0 214797
+aq1 264635
+aq2 1
+aq0 214797
+aq1 174984
+aq0 73104
+aq1 85334
+aq2 1
+***********************Circuit_5***************************
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq0', 'aq1', 'aq3')
+aq2 98608
+aq2 98608
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq1', 'aq3')
+aq0 183337
+aq3 4
+aq2 1
+aq0 183337
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ()
+aq3 200004
+aq2 127122
+aq0 100002
+aq1 12147
+aq3 200004
+aq2 200004
+aq1 12147
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ()
+aq4 196798
+aq1 133090
+aq2 100002
+aq0 15845
+aq3 122292
+aq4 196798
+aq1 156766
+aq2 100002
+aq0 15845
+aq0 15845
+aq3 150947
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq3', 'aq4')
+aq2 199974
+aq1 200004
+aq0 150003
+aq2 199974
+aq1 10088
+aq1 10088
+aq0 150001
+aq2 5
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq4')
+aq3 100002
+aq3 100002
+***********************Circuit_4***************************
+***********************Circuit_5***************************
+***********************Circuit_6***************************
+***********************Circuit_7***************************
+Largest Set of ancilla for Circuit_7 that can be uncomputed is ('aq1', 'aq2')
+aq3 300108
+aq4 6240
+aq0 3
+aq3 300108
+aq4 3744
+***********************Circuit_8***************************
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ('aq1',)
+aq4 2376
+aq0 63387
+aq3 1072
+aq2 11
+aq4 2376
+aq4 792
+aq3 697
+aq3 697
+aq0 5180
+aq0 6
+aq2 11
+***********************Circuit_0***************************
+***********************Circuit_1***************************
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq0', 'aq1', 'aq4', 'aq5')
+aq3 300006
+aq2 100002
+aq3 300006
+***********************Circuit_4***************************
+***********************Circuit_5***************************
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq1', 'aq5')
+aq4 325008
+aq0 188289
+aq3 190048
+aq2 102
+aq4 325008
+***********************Circuit_7***************************
+Largest Set of ancilla for Circuit_7 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq5')
+aq0 100002
+aq4 163638
+aq0 100002
+aq0 100002
+aq4 163638
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq5')
+aq0 100002
+aq4 157156
+aq0 100002
+aq0 100002
+aq4 157156
+***********************Circuit_9***************************
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ('aq0', 'aq2')
+aq3 169038
+aq1 292133
+aq5 100002
+aq4 160000
+aq6 16
+aq3 169038
+aq3 169038
+aq1 292133
+aq6 190439
+aq6 190439
+aq5 100002
+aq4 67188
+aq1 27945
+aq2 2
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq0', 'aq2', 'aq4', 'aq5')
+aq3 255234
+aq1 124008
+aq6 100002
+aq3 255234
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq1', 'aq2', 'aq3')
+aq5 106458
+aq6 155577
+aq4 100002
+aq0 128890
+aq5 106458
+aq4 100002
+aq4 100002
+aq6 199948
+aq0 128890
+***********************Circuit_4***************************
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq6')
+aq5 100002
+aq4 124654
+aq0 100002
+aq5 100002
+aq5 100002
+aq4 124654
+aq0 100002
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq5')
+aq6 188716
+aq0 11
+aq6 188716
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq1', 'aq2', 'aq5', 'aq6')
+aq0 223830
+aq3 200004
+aq2 130614
+aq4 100002
+aq0 223830
+aq3 200004
+aq2 200004
+***********************Circuit_9***************************
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ('aq0', 'aq4', 'aq5', 'aq6', 'aq7')
+aq2 200004
+aq1 100002
+aq6 146888
+aq5 175396
+aq3 100002
+aq2 200004
+aq1 100002
+aq1 100002
+aq6 146888
+aq5 127235
+aq3 100002
+***********************Circuit_1***************************
+***********************Circuit_2***************************
+Largest Set of ancilla for Circuit_2 that can be uncomputed is ('aq0', 'aq2', 'aq3', 'aq5', 'aq7')
+aq1 100002
+aq4 50937
+aq6 100002
+aq1 100002
+aq1 100002
+aq4 50937
+aq6 100002
+***********************Circuit_3***************************
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq4', 'aq5', 'aq6', 'aq7')
+aq1 100002
+aq0 4
+aq2 256
+aq3 5
+aq1 100002
+aq0 4
+aq0 4
+aq2 256
+aq3 5
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ('aq0', 'aq3', 'aq4')
+aq2 119126
+aq5 198568
+aq6 68940
+aq1 517
+aq7 1
+aq2 119126
+aq5 70442
+aq5 70442
+aq2 109411
+aq6 94304
+aq6 94304
+aq7 151061
+aq3 35584
+aq1 12971
+aq1 12971
+aq3 22
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq0', 'aq1', 'aq4', 'aq7')
+aq3 166670
+aq6 17622
+aq2 23550
+aq5 1
+aq3 166670
+aq6 35244
+aq6 35244
+aq2 52955
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq0', 'aq3', 'aq4', 'aq6', 'aq7')
+aq5 100002
+aq2 166671
+aq1 30
+aq5 100002
+aq5 100002
+aq2 166671
+***********************Circuit_9***************************
+***********************Circuit_0***************************
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq6',)
+aq1 18589
+aq2 150667
+aq3 101836
+aq7 104448
+aq0 100002
+aq5 5083
+aq8 738
+aq4 763
+aq1 18589
+aq1 18589
+aq2 150667
+aq3 106144
+aq3 106144
+aq7 166522
+aq7 92756
+aq0 89798
+aq2 97915
+aq5 5083
+aq8 738
+aq8 738
+aq4 763
+***********************Circuit_2***************************
+Largest Set of ancilla for Circuit_2 that can be uncomputed is ('aq0', 'aq3', 'aq5', 'aq6', 'aq7')
+aq1 199992
+aq2 200004
+aq4 190907
+aq8 100002
+aq1 199992
+aq2 200003
+aq8 100002
+aq2 14446
+aq1 43362
+aq4 57809
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq6', 'aq7', 'aq8')
+aq5 257698
+aq1 173376
+aq0 14226
+aq4 127993
+aq8 1
+aq6 7109
+aq5 257698
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq2', 'aq3', 'aq4', 'aq7', 'aq8')
+aq0 200004
+aq4 200004
+aq6 252
+aq3 124
+aq1 4
+aq0 200004
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ('aq2', 'aq4', 'aq6', 'aq8')
+aq5 100002
+aq3 100002
+aq0 2
+aq1 6
+aq6 2
+aq5 100002
+aq5 100002
+aq3 100002
+aq0 2
+aq0 2
+aq1 6
+aq6 2
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq6', 'aq7')
+aq0 100002
+aq8 1
+aq0 100002
+aq0 100002
+aq8 1
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq4', 'aq5', 'aq7', 'aq8')
+aq1 156827
+aq3 166630
+aq6 131059
+aq7 1
+aq1 156827
+aq1 156827
+aq3 166630
+aq6 43
+aq6 43
+aq3 180977
+aq7 1
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ('aq2', 'aq4')
+aq8 200004
+aq6 152916
+aq7 155140
+aq1 100002
+aq0 6
+aq3 918
+aq5 1
+aq8 200004
+aq6 152916
+aq7 153094
+aq1 100002
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq6', 'aq7', 'aq8')
+aq9 100002
+aq9 100002
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq2', 'aq3', 'aq4', 'aq6')
+aq7 172998
+aq9 191514
+aq8 200004
+aq5 4866
+aq0 1
+aq1 3
+aq7 172998
+aq7 172998
+aq9 191514
+aq5 4866
+aq5 4866
+aq6 100002
+aq6 100002
+aq1 9288
+aq8 552
+aq0 1
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+***********************Circuit_4***************************
+***********************Circuit_5***************************
+***********************Circuit_6***************************
+***********************Circuit_7***************************
+Largest Set of ancilla for Circuit_7 that can be uncomputed is ('aq1', 'aq3', 'aq4', 'aq7', 'aq8', 'aq9')
+aq5 165599
+aq6 131284
+aq0 183337
+aq2 100002
+aq5 165599
+aq0 100002
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq0', 'aq1', 'aq3', 'aq4', 'aq5', 'aq7')
+aq7 22088
+aq1 8820
+aq8 17302
+aq2 23
+aq9 10
+aq6 2
+aq7 22088
+aq7 22088
+aq1 8820
+aq1 8820
+aq8 17302
+aq2 28
+aq8 13
+aq6 4
+aq6 4
+aq9 6
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq8', 'aq9')
+aq0 200004
+aq7 100002
+aq5 1
+aq6 5
+aq0 200004
+aq5 1
+aq5 1
+aq6 5
+aq6 5
+aq7 232
+***********************Circuit_0***************************
+Largest Set of ancilla for Circuit_0 that can be uncomputed is ('aq3', 'aq6', 'aq8', 'aq10')
+aq1 134736
+aq0 100002
+aq2 235609
+aq7 109683
+aq4 37
+aq5 32
+aq9 19
+aq1 134736
+aq1 134736
+aq0 100002
+aq0 100002
+aq2 235609
+aq7 109683
+aq4 37
+aq4 37
+aq5 32
+aq5 32
+aq9 19
+***********************Circuit_1***************************
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq7', 'aq9', 'aq10')
+aq6 100002
+aq8 100002
+aq6 100002
+aq6 100002
+aq8 100002
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq5', 'aq6', 'aq7', 'aq8', 'aq9', 'aq10')
+aq4 267015
+aq0 100003
+aq3 100002
+aq4 267015
+aq0 100002
+aq3 100002
+***********************Circuit_5***************************
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq3', 'aq5', 'aq6', 'aq7', 'aq9', 'aq10')
+aq8 121762
+aq2 100002
+aq4 100002
+aq1 15661
+aq0 3
+aq8 121762
+aq2 100002
+aq2 100002
+aq3 108845
+aq4 100002
+aq1 26660
+aq1 26660
+aq2 20
+aq0 3
+aq0 3
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+Largest Set of ancilla for Circuit_8 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq4', 'aq7', 'aq8', 'aq9', 'aq10')
+aq9 109897
+aq4 108574
+aq6 100002
+aq5 100002
+aq9 109897
+aq6 100002
+aq6 100002
+aq5 100002
+***********************Circuit_9***************************
+***********************Circuit_0***************************
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq4', 'aq6', 'aq7', 'aq8', 'aq9', 'aq10', 'aq11')
+aq2 158806
+aq8 138008
+aq5 100002
+aq9 82
+aq2 158806
+aq5 100002
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+Largest Set of ancilla for Circuit_3 that can be uncomputed is ('aq0', 'aq2', 'aq3', 'aq5', 'aq7', 'aq11')
+aq8 10508
+aq6 126467
+aq4 29274
+aq10 4913
+aq9 596
+aq1 1
+aq8 10508
+aq8 10508
+aq6 126467
+aq4 44322
+aq10 13124
+aq9 3431
+aq4 1
+aq1 5
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq2', 'aq3', 'aq4', 'aq5', 'aq6', 'aq8', 'aq9', 'aq10')
+aq9 200004
+aq1 100002
+aq0 100002
+aq11 3281
+aq7 149997
+aq9 200004
+aq1 100002
+aq11 100002
+aq11 100002
+aq7 131579
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ('aq1', 'aq2', 'aq5', 'aq6', 'aq7', 'aq8', 'aq11')
+aq0 298680
+aq3 100002
+aq10 100002
+aq4 100002
+aq9 508
+aq0 298680
+aq4 100002
+aq4 100002
+aq10 100002
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq4', 'aq5', 'aq6', 'aq7', 'aq10', 'aq11')
+aq9 100002
+aq3 157146
+aq8 14
+aq9 100002
+aq9 100002
+aq3 157146
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq4', 'aq6', 'aq7', 'aq8', 'aq9', 'aq11')
+aq10 100002
+aq5 100002
+aq10 100002
+aq5 100002
+***********************Circuit_0***************************
+***********************Circuit_1***************************
+Largest Set of ancilla for Circuit_1 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq4', 'aq5', 'aq7', 'aq8', 'aq12')
+aq11 100002
+aq3 100002
+aq10 9
+aq6 1782
+aq9 1833
+aq11 100002
+aq11 100002
+aq3 100002
+aq10 9
+aq10 9
+aq6 1782
+aq6 1782
+aq9 1833
+***********************Circuit_2***************************
+***********************Circuit_3***************************
+***********************Circuit_4***************************
+Largest Set of ancilla for Circuit_4 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq7', 'aq8', 'aq9', 'aq10', 'aq11', 'aq12')
+aq8 131259
+aq3 120541
+aq0 100002
+aq6 537
+aq2 24
+aq11 13
+aq8 131259
+aq8 131259
+aq3 120541
+aq0 100002
+aq6 517
+aq2 22
+aq2 22
+aq11 13
+***********************Circuit_5***************************
+Largest Set of ancilla for Circuit_5 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq5', 'aq6', 'aq7', 'aq8', 'aq10', 'aq11', 'aq12')
+aq4 150000
+aq9 100002
+aq4 150000
+***********************Circuit_6***************************
+Largest Set of ancilla for Circuit_6 that can be uncomputed is ('aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq6', 'aq7', 'aq8', 'aq9', 'aq10', 'aq11', 'aq12')
+aq0 8464
+aq0 8464
+***********************Circuit_7***************************
+***********************Circuit_8***************************
+***********************Circuit_9***************************
+Largest Set of ancilla for Circuit_9 that can be uncomputed is ('aq0', 'aq1', 'aq2', 'aq3', 'aq5', 'aq6', 'aq7', 'aq8', 'aq10', 'aq11', 'aq12')
+aq9 177
+aq4 178
+aq9 177
+aq9 177
+aq4 178
+aq4 178
+aq9 185
+3:
+	
+            Avg Ancilla Uncomped Exhaustive: 2.0
+            Avg Ancilla Uncomped Greedy-Full: 2.0
+            Avg Ancilla Uncomped Greedy-Partial: 2.0
+            
+4:
+	
+            Avg Ancilla Uncomped Exhaustive: 2.0
+            Avg Ancilla Uncomped Greedy-Full: 2.0
+            Avg Ancilla Uncomped Greedy-Partial: 3.0
+            
+5:
+	
+            Avg Ancilla Uncomped Exhaustive: 3.0
+            Avg Ancilla Uncomped Greedy-Full: 3.0
+            Avg Ancilla Uncomped Greedy-Partial: 4.0
+            
+6:
+	
+            Avg Ancilla Uncomped Exhaustive: 5.0
+            Avg Ancilla Uncomped Greedy-Full: 5.0
+            Avg Ancilla Uncomped Greedy-Partial: 5.0
+            
+7:
+	
+            Avg Ancilla Uncomped Exhaustive: 5.0
+            Avg Ancilla Uncomped Greedy-Full: 5.0
+            Avg Ancilla Uncomped Greedy-Partial: 5.0
+            
+8:
+	
+            Avg Ancilla Uncomped Exhaustive: 6.0
+            Avg Ancilla Uncomped Greedy-Full: 6.0
+            Avg Ancilla Uncomped Greedy-Partial: 6.0
+            
+9:
+	
+            Avg Ancilla Uncomped Exhaustive: 6.0
+            Avg Ancilla Uncomped Greedy-Full: 5.0
+            Avg Ancilla Uncomped Greedy-Partial: 6.0
+            
+10:
+	
+            Avg Ancilla Uncomped Exhaustive: 8.0
+            Avg Ancilla Uncomped Greedy-Full: 8.0
+            Avg Ancilla Uncomped Greedy-Partial: 8.0
+            
+11:
+	
+            Avg Ancilla Uncomped Exhaustive: 9.0
+            Avg Ancilla Uncomped Greedy-Full: 9.0
+            Avg Ancilla Uncomped Greedy-Partial: 9.0
+            
+12:
+	
+            Avg Ancilla Uncomped Exhaustive: 10.0
+            Avg Ancilla Uncomped Greedy-Full: 10.0
+            Avg Ancilla Uncomped Greedy-Partial: 10.0
+            
+13:
+	
+            Avg Ancilla Uncomped Exhaustive: 12.0
+            Avg Ancilla Uncomped Greedy-Full: 11.0
+            Avg Ancilla Uncomped Greedy-Partial: 12.0
+            

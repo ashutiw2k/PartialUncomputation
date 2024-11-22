@@ -23,16 +23,16 @@ def static_circuit_1(theta):
     circuit = QuantumCircuit(QuantumRegister(3, name='cq'), QuantumRegister(3, name='aq'))
     
     for i in range(3):
-        # circuit.rx(theta*numpy.pi, i)
-        circuit.h(i)
-        # circuit.rx(theta*numpy.pi, i)
         circuit.ry(theta*numpy.pi, i)
+        # circuit.h(i)
+        # circuit.rx(theta*numpy.pi, i)
+        # circuit.ry(theta*numpy.pi, i)
         # circuit.rx(theta*numpy.pi/2, i)
     
     circuit.cx(0,3)
     circuit.cx(1,3)
     
-    circuit.cx(3,0)
+    circuit.cz(3,0)
     
     circuit.cx(0,5)
     
@@ -46,6 +46,10 @@ def static_circuit_1(theta):
     circuit.cx(4,3)
     circuit.cx(5,2)
 
+    for i in range(3):
+        circuit.h(i)
+
+
     return circuit, 3, 3, 11
 
 def static_circuit_2(theta):
@@ -53,7 +57,7 @@ def static_circuit_2(theta):
     circuit = QuantumCircuit(QuantumRegister(5, name='cq'), QuantumRegister(5, name='aq'))
     
     for i in range(5):
-        circuit.rx(theta*numpy.pi, i)
+        # circuit.rx(theta*numpy.pi, i)
         circuit.h(i)
         if i < 4:
             circuit.ry(theta*numpy.pi*(i+1)/10, i)
@@ -82,9 +86,12 @@ def static_circuit_2(theta):
     circuit.ccx(8,9,6)
     circuit.cz(6,4)
 
+    for i in range(5):
+        circuit.h(i)
+
     return circuit, 5, 5, 11
 
-def get_probability_metrics(_circuit:QuantumCircuit, num_a:int, 
+def get_probability_metrics(_circuit:QuantumCircuit, num_q: int, num_a:int, 
                             results:ProbDiffResults, max_cycles=10**5,
                             distance='jensenshannon'):
     name_str='Circuit'
@@ -103,7 +110,7 @@ def get_probability_metrics(_circuit:QuantumCircuit, num_a:int,
             print(f'Exhaustive Uncomp of {name_str} still has cycle')
         
         _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
-        ex_vals = get_difference_in_prob(_circuit, _exhaustive_uncomp_circuit, num_a, distance=distance)
+        ex_vals = get_difference_in_prob(_circuit, _exhaustive_uncomp_circuit, num_q, num_a, distance=distance)
         results.add_to_exhaustive(*ex_vals, idx=idx)
 
 
@@ -113,7 +120,7 @@ def get_probability_metrics(_circuit:QuantumCircuit, num_a:int,
                                                                     max_cycles=max_cycles, return_uncomputed_ancillas=True)
         
         _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
-        gf_vals = get_difference_in_prob(_circuit, _greedy_uncomp_circuit, num_a, distance=distance)
+        gf_vals = get_difference_in_prob(_circuit, _greedy_uncomp_circuit, num_q, num_a, distance=distance)
         results.add_to_greedy_full(*gf_vals, idx=idx)
 
 #**************************************************************************************************************#
@@ -121,7 +128,7 @@ def get_probability_metrics(_circuit:QuantumCircuit, num_a:int,
                                                                             max_cycles=max_cycles, return_uncomputed_ancillas=True)
         
         _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
-        gp_vals = get_difference_in_prob(_circuit, _greedy_partial_uncomp_circuit, num_a, distance=distance)
+        gp_vals = get_difference_in_prob(_circuit, _greedy_partial_uncomp_circuit, num_q, num_a, distance=distance)
         results.add_to_greedy_partial(*gp_vals, idx=idx)
 
         # results.add_greedy_partial(gp_uncomp_ancillas)
@@ -129,7 +136,7 @@ def get_probability_metrics(_circuit:QuantumCircuit, num_a:int,
 #**************************************************************************************************************#
     else:
         _uncomp_circuit = get_uncomp_circuit(_regular_uncomp_circuit_graph)
-        reg_vals = get_difference_in_prob(_circuit, _uncomp_circuit, num_a, distance=distance)
+        reg_vals = get_difference_in_prob(_circuit, _uncomp_circuit, num_q, num_a, distance=distance)
         results.add_to_regular(*reg_vals, idx=idx)
 
         # results.add_regular(ancillas_list)
@@ -141,11 +148,11 @@ def metrics_for_angles(circ_func):
     circ_name= "circuit_1" if circ_func is static_circuit_1 else "circuit_2"
     for i in range(20):
         circ, a,q,g = circ_func(i/20)
-        filled_results = get_probability_metrics(circ, a, ProbDiffResults(1))
+        filled_results = get_probability_metrics(circ, q, a, ProbDiffResults(1))
         results_dict.update({i/20:filled_results})
 
     plot_results_angles(results_dict, figname=f'Plot_var_angles_{circ_name}',
-                 image_write_path="final_eval_folder/plots/plots_var_angles", xlabel='Input Angle')
+                 image_write_path="final_eval_folder/specific_plots/plots_var_angles", xlabel='Input Angle')
     
 
 if __name__=="__main__":

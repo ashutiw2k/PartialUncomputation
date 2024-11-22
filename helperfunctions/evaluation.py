@@ -303,10 +303,15 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
     plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
-    plt.legend()
+    # plt.xticks(numpy.arange(len(x_axis)), x_axis)
+    # plt.set_xticklabels(x_axis)
+
+    plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+            ncol=5, mode="expand", borderaxespad=0)
+    
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.title(title)
+    # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
     plt.xlim(x_axis[0]-1, x_axis[-1]+1)
@@ -429,14 +434,25 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
     plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
-    plt.legend()
+    # xdiff = x_axis[1] - x_axis[0]
+    # x_axis.append(x_axis[-1]+xdiff)
+    # x_axis.insert(0, x_axis[0]-xdiff)
+    
+    # plt.xticks(numpy.arange(len(x_axis)), x_axis)
+    # plt.set_xticklabels(x_axis)
+
+    plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+            ncol=5, mode="expand", borderaxespad=0)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.title(title)
+    # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
     plt.xlim(x_axis[0]-1, x_axis[-1]+1)
     plt.autoscale(False, axis='x')
+
+
+
     # plt.xscale('linear')
     plt.savefig(f'{image_write_path}/{figname}')
     plt.close()
@@ -471,15 +487,19 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
     plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
     plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
 
-    plt.legend()
+
+    plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+            ncol=5, mode="expand", borderaxespad=0)    
+    
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.title(title)
+    # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
     # plt.xlim(x_axis[0]-1, x_axis[-1]+1)
     # plt.autoscale(False, axis='x')
     # plt.xscale('linear')
+    plt.tight_layout()
     plt.savefig(f'{image_write_path}/{figname}')
     plt.close()
     
