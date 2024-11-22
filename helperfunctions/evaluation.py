@@ -172,6 +172,93 @@ def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumC
 
     return distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp, eq4_comp_prob_dist_comp, eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp
 
+
+def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
+                 title='Number of Ancillas Uncomputed', 
+                 xlabel = 'Total Number of Ancillas', 
+                 ylabel = 'Average Number of Ancillas Uncomputed'):
+    x_axis = []
+    # ex_comp_avg = []
+    ex_uncomp_avg = []
+    # gf_comp_avg = []
+    gf_uncomp_avg = []
+    # gp_comp_avg = []
+    gp_uncomp_avg = []
+    
+    for i,x in results_dict.items():
+        # print(i)
+        # print(x)
+        # print('-------------------------------')
+        x_axis.append(i)
+        # ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
+        ex_uncomp_avg.append(numpy.round(numpy.average(x.num_exhaustive)))
+        # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
+        gf_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_full)))
+        # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
+        gp_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_partial)))
+
+    # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation')
+    # plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
+    # plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
+    # plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
+
+    # plt.legend()
+    # plt.xlabel(xlabel)
+    # plt.ylabel(ylabel)
+    # plt.title(title)
+    # # fig = plt.show()
+    # # plt.figure(figsize=)
+    # plt.xlim(x_axis[0]-1, x_axis[-1]+1)
+    # plt.autoscale(False, axis='x')
+    # # plt.xscale('linear')
+    # plt.savefig(f'{image_write_path}/{figname}')
+
+    x = numpy.arange(len(x_axis))  # the label locations
+    width = 0.3  # the width of the bars
+
+    num_elements = len(x_axis)
+    base_width = 6  # Minimum width
+    width_per_element = 0.5  # Additional width per element
+    total_width = max(base_width, base_width + (num_elements - 10) * width_per_element)
+    
+
+    fig, ax = plt.subplots(figsize=(total_width, 6))
+    # rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width, label='No Uncomputation')
+    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width/3, label='Exhaustive')
+    rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full')
+    rects4 = ax.bar(x + 0.5 * width, gp_uncomp_avg, width/3, label='Greedy-Partial')
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    # ax.set_title('Multiple Bar Plots')
+    ax.set_xticks(x)
+    uni_I = ''
+    uni_K = ''
+
+    ax.set_xticklabels(x_axis)
+    ax.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+            ncol=5, mode="expand", borderaxespad=0)
+    
+    all_data = ex_uncomp_avg+gf_uncomp_avg+gp_uncomp_avg  # Combine all data
+    min_value = min(all_data)
+    max_value = max(all_data)
+
+    # Calculate the y-axis limits
+    y_min = min(0, min_value - 0.1 * min_value)  # 10% below the smallest value or 0, whichever is smaller
+    y_max = max_value + 0.1 * max_value  # 10% above the largest value
+
+    # Set the y-axis limits
+    ax.set_ylim(y_min, y_max)
+
+    # Add some padding to the top and bottom of the plot
+    plt.margins(y=0.1)
+
+    # Show the plot
+    plt.tight_layout()
+    plt.savefig(f'{image_write_path}/{figname}')
+    
+
+
 def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
                  title='Number of Ancillas Uncomputed', 
                  xlabel = 'Total Number of Ancillas', 
@@ -256,10 +343,10 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     width = 0.2  # the width of the bars
 
     fig, ax = plt.subplots(figsize=(12, 6))
-    rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width, label='No Uncomputation')
-    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width, label='Exhaustive')
-    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width, label='Greedy-Full')
-    rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width, label='Greedy-Partial')
+    rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width*0.75, label='No Uncomputation')
+    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width*0.75, label='Exhaustive')
+    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full')
+    rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width*0.75, label='Greedy-Partial')
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -268,12 +355,26 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     uni_I = ''
     uni_K = ''
 
-    ax.set_xticklabels([f'{uni_I}{i}{uni_K}' for i in x])
+    ax.set_xticklabels([f'{uni_I}{i}{uni_K}' for i in x_axis])
     ax.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0)
+    
+    all_data = ex_comp_avg+ex_uncomp_avg+gf_uncomp_avg+gp_uncomp_avg  # Combine all data
+    min_value = min(all_data)
+    max_value = max(all_data)
+
+    # Calculate the y-axis limits
+    y_min = min(0, min_value - 0.1 * min_value)  # 10% below the smallest value or 0, whichever is smaller
+    y_max = max_value + 0.1 * max_value  # 10% above the largest value
+
+    # Set the y-axis limits
+    ax.set_ylim(y_min, y_max)
+
+    # Add some padding to the top and bottom of the plot
+    plt.margins(y=0.1)
 
     # Show the plot
-    # plt.tight_layout()
+    plt.tight_layout()
     plt.savefig(f'{image_write_path}/{figname}')
     
 

@@ -16,7 +16,7 @@ from helperfunctions.graphhelper import breakdown_qubit, edge_matcher, node_matc
 from helperfunctions.randomcircuit import random_quantum_circuit_large_with_params
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
-from helperfunctions.evaluation import NumAncillaUncomped, plot_ancilla_results
+from helperfunctions.evaluation import NumAncillaUncomped, plot_ancillas_bar
 
 def get_probability_metrics(num_q, num_a, num_g, results=NumAncillaUncomped,
                             num_circuits=1, max_cycles=10**5, 
@@ -103,7 +103,7 @@ def metrics_for_ancillas(config):
     # global image_write_path
     # global VALID_NUM_CIRCUITS
 
-    # distance=config['distance']
+    num=config['num']
 
     results_dict = {}
 
@@ -115,8 +115,9 @@ def metrics_for_ancillas(config):
 
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
-
-    plot_ancilla_results(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a',
+    
+    num=config['num']
+    plot_ancillas_bar(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_circ_{num}',
                  image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
     
     
@@ -146,7 +147,8 @@ def metrics_for_inputs(config):
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
 
-    plot_ancilla_results(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a',
+    num = config['num']
+    plot_ancillas_bar(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a_circ_{num}',
                  image_write_path=image_write_path, xlabel='Number of Input Qubits')
     
 
@@ -176,7 +178,8 @@ def metrics_for_gates(config):
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
 
-    plot_ancilla_results(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a',
+    num = config['num']
+    plot_ancillas_bar(results_dict, figname=f'Plot_num_ancilla_uncomp_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a_circ_{num}',
                  image_write_path=image_write_path, xlabel='Number of (C-Not) Gates')
 
 

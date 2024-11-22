@@ -17,3 +17,4 @@ num_circuits: 10
 
 # Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
 distance: 'wasserstein'
+num: 3

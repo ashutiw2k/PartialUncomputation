@@ -6,7 +6,7 @@ paths:
   json: '' 
 
 # Parameters for Generating Circuits
-num_q: 10
+num_q: 5
 num_g: 40
 num_a_min: 3
 num_a_max: 13
@@ -17,3 +17,4 @@ num_circuits: 10
 
 # Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
 distance: 'euclidean'
+num: 2
