@@ -1,5 +1,6 @@
 from qiskit import QuantumCircuit
-from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_probs
+from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_probs, get_computation_qubit_probabilty
+from helperfunctions.circuitgraphfunctions import breakdown_qubit
 
 def h_2_circuit():
     circuit = QuantumCircuit(2)
@@ -55,8 +56,10 @@ def main():
     # print(zero_ancilla_circ_one_uncomp_statevec)
     # print(zero_ancilla_circ_red_uncomp_statevec)
 
-    print('Circuit State Vector Probabilities')
+    print('Circuit State Vector')
     print_probs(circ_statevec)
+    print('Circuit State Vector Probabilities')
+    print_probs(circ_statevec, is_statevector=True)
 
     # print('Uncomputed Circuit State Vector Probabilities')
     # print_prob_from_statevector(circ_all_uncomp_statevec)
@@ -70,8 +73,11 @@ def main():
 
     print('----------------------------------------------------------')
 
-    print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print('Circuit State Vector (Ancillas Zero\'d)')
     print_probs(zero_ancilla_circ_statevec)    
+    
+    print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_circ_statevec, is_statevector=True)    
     
     # print('Uncomputed Circuit State Vector Probabilities (Ancillas Zero\'d)')
     # print_prob_from_statevector(zero_ancilla_circ_all_uncomp_statevec)
@@ -81,6 +87,24 @@ def main():
 
     # print('Only One Uncomp Possible Done Circuit State Vector Probabilities (Ancillas Zero\'d)')
     # print_prob_from_statevector(zero_ancilla_circ_red_uncomp_statevec)
+
+    ancillas_list = [breakdown_qubit(q)['label'] for q in circuit.qubits][-num_a:]
+    regular_computation_qubit_probs = get_computation_qubit_probabilty(circ_statevec,range(num_q))
+    zero_ancilla_computation_qubit_probs = get_computation_qubit_probabilty(zero_ancilla_circ_statevec, range(num_q))
+
+    
+    print('----------------------------------------------------------')
+    print('New Method')
+    
+    print('----------------------------------------------------------')
+
+    print('Circuit State Vector Probabilities')
+    print_probs(regular_computation_qubit_probs)
+    print('----------------------------------------------------------')
+
+    print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_computation_qubit_probs)
+
 
 
 if __name__=='__main__':

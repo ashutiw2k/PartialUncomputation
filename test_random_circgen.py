@@ -1,6 +1,9 @@
-from helperfunctions.randomcircuit import random_quantum_circuit_basic
+from helperfunctions.randomcircuit import random_quantum_circuit_large_with_params
+import matplotlib.pyplot as plt
+import gc
 
-
-circuit = random_quantum_circuit_basic(3,3,5)
-
-circuit.draw('mpl', filename='random_circgen_test')
+for i in range(10):
+    circuit,q,a,g = random_quantum_circuit_large_with_params(3,5,15,add_random_h=True)
+    circuit.draw('latex', filename=f'qcnc_paper_figures/Circuit_RandomCircuitExample_{i}.png')
+    plt.close()
+    gc.collect()

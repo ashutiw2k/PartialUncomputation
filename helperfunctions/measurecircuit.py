@@ -1,6 +1,7 @@
 import qiskit
 from qiskit import QuantumCircuit, transpile
-import qiskit_aer
+from qiskit.quantum_info import Statevector, partial_trace
+
 from qiskit_aer import AerSimulator
 from qiskit_aer.quantum_info import AerStatevector
 import numpy as np
@@ -40,6 +41,21 @@ def get_probability_from_statevector(statevector: AerStatevector):
     return np.real(norm_state_vector/np.sum(norm_state_vector))
 
     # return np.real(norm_state_vector)
+
+def get_computation_qubit_probabilty(data: Statevector, inputs):
+    full_statevector = Statevector(data)
+
+    # # get the density matrix for the first qubit by taking the partial trace
+    # partial_density_matrix = partial_trace(full_statevector, ancillas)
+
+    # partial_statevector = np.real(np.diagonal(partial_density_matrix))
+
+    # if np.sum(partial_statevector) > 1:
+    #     return partial_statevector / np.sum(partial_statevector)
+    # elif 
+    # return np.real(partial_statevector)
+    return full_statevector.probabilities(qargs=inputs)
+
 
 # Using Kullback-Leibler-Divergence to measure the difference between the probability distributions of 2 numpy arrays
 # https://hanj.cs.illinois.edu/cs412/bk3/KL-divergence.pdf

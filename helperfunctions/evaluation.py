@@ -4,7 +4,7 @@ from qiskit import QuantumCircuit
 from matplotlib import pyplot as plt
 from scipy.spatial.distance import euclidean, cityblock, jensenshannon
 from scipy.stats import wasserstein_distance
-from helperfunctions.measurecircuit import get_probability_from_statevector, get_statevector, print_probs, zero_ancillas_in_statevector
+from helperfunctions.measurecircuit import get_computation_qubit_probabilty, get_probability_from_statevector, get_statevector, print_probs, zero_ancillas_in_statevector
 
 class NumAncillaUncomped:
     def __init__(self) -> None:
@@ -122,18 +122,21 @@ class ProbDiffResults:
                 '''
 
         
-def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_a,
+def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_q, num_a,
                      distance:Literal['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']='manhattan'):
     eq4_comp_statevector = get_statevector(comp_circuit)
     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
+    eq4_comp_prob_dist_comp = get_computation_qubit_probabilty(eq4_comp_statevector, range(num_q))
     # logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
 
     eq5_comp_statevector = zero_ancillas_in_statevector(eq4_comp_statevector, num_a)
     eq5_comp_prob_dist = get_probability_from_statevector(eq5_comp_statevector)
+    eq5_comp_prob_dist_comp = get_computation_qubit_probabilty(eq5_comp_statevector, range(num_q))
     # logger.info(f'Comp Circuit {name_str} Eq5 Probability Distribution: \n{print_probs(eq5_comp_prob_dist)}')
 
     eq4_uncomp_statevector = get_statevector(uncomp_circuit)
     eq4_uncomp_prob_dist = get_probability_from_statevector(eq4_uncomp_statevector)
+    eq4_uncomp_prob_dist_comp = get_computation_qubit_probabilty(eq4_uncomp_statevector, range(num_q))
     # logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
     
     # print(numpy.sum(eq4_comp_prob_dist))
@@ -150,24 +153,24 @@ def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumC
     distance_probs_eq5_4_uncomp = 0
 
     if distance == 'euclidean':
-        distance_probs_eq5_4_comp = euclidean(eq5_comp_prob_dist, eq4_comp_prob_dist)
-        distance_probs_eq5_4_uncomp = euclidean(eq5_comp_prob_dist, eq4_uncomp_prob_dist)
+        distance_probs_eq5_4_comp = euclidean(eq5_comp_prob_dist_comp, eq4_comp_prob_dist_comp)
+        distance_probs_eq5_4_uncomp = euclidean(eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp)
     elif distance == 'manhattan':
-        distance_probs_eq5_4_comp = cityblock(eq5_comp_prob_dist, eq4_comp_prob_dist)
-        distance_probs_eq5_4_uncomp = cityblock(eq5_comp_prob_dist, eq4_uncomp_prob_dist)
+        distance_probs_eq5_4_comp = cityblock(eq5_comp_prob_dist_comp, eq4_comp_prob_dist_comp)
+        distance_probs_eq5_4_uncomp = cityblock(eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp)
     # This is the Earth Movers Distance. 
     elif distance == 'wasserstein':
-        distance_probs_eq5_4_comp = wasserstein_distance(eq5_comp_prob_dist, eq4_comp_prob_dist)
-        distance_probs_eq5_4_uncomp = wasserstein_distance(eq5_comp_prob_dist, eq4_uncomp_prob_dist)
+        distance_probs_eq5_4_comp = wasserstein_distance(eq5_comp_prob_dist_comp, eq4_comp_prob_dist_comp)
+        distance_probs_eq5_4_uncomp = wasserstein_distance(eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp)
     elif distance == 'jensenshannon':
-        distance_probs_eq5_4_comp = jensenshannon(eq5_comp_prob_dist, eq4_comp_prob_dist)
-        distance_probs_eq5_4_uncomp = jensenshannon(eq5_comp_prob_dist, eq4_uncomp_prob_dist)
+        distance_probs_eq5_4_comp = jensenshannon(eq5_comp_prob_dist_comp, eq4_comp_prob_dist_comp)
+        distance_probs_eq5_4_uncomp = jensenshannon(eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp)
 
     
     
     distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp = numpy.round((distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp), decimals=10)
 
-    return distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp, eq4_comp_prob_dist, eq5_comp_prob_dist, eq4_uncomp_prob_dist
+    return distance_probs_eq5_4_comp, distance_probs_eq5_4_uncomp, eq4_comp_prob_dist_comp, eq5_comp_prob_dist_comp, eq4_uncomp_prob_dist_comp
 
 def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
                  title='Number of Ancillas Uncomputed', 

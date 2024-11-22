@@ -1,5 +1,5 @@
 from qiskit import QuantumCircuit
-from helperfunctions.measurecircuit import get_statevector, zero_ancillas_in_statevector, print_probs
+from helperfunctions.measurecircuit import get_computation_qubit_probabilty, get_statevector, zero_ancillas_in_statevector, print_probs
 
 def h_2_circuit():
     circuit = QuantumCircuit(4)
@@ -69,9 +69,9 @@ def h_2_circuit_one_uncomp():
 
 def main():
     circuit, num_q, num_a, num_g = h_2_circuit()
-    circuit_all_uncomp, num_q, num_ua, num_g = h_2_circuit_all_uncomp()
-    circuit_one_uncomp, num_q, num_oa, num_g = h_2_circuit_one_uncomp()
-    circuit_red_uncomp, num_q, num_ra, num_g = h_2_circuit_one_uncomp_done()
+    circuit_all_uncomp, num_uq, num_ua, num_g = h_2_circuit_all_uncomp()
+    circuit_one_uncomp, num_oq, num_oa, num_g = h_2_circuit_one_uncomp()
+    circuit_red_uncomp, num_rq, num_ra, num_g = h_2_circuit_one_uncomp_done()
     
     circ_statevec = get_statevector(circuit)
     circ_all_uncomp_statevec = get_statevector(circuit_all_uncomp)
@@ -131,6 +131,59 @@ def main():
 
     print('Only One Uncomp Possible Done Circuit State Vector Probabilities (Ancillas Zero\'d)')
     print_probs(zero_ancilla_circ_red_uncomp_statevec, is_statevector=True)
+
+    
+    print('----------------------------------------------------------')
+    # regular_computation_qubit_probs = get_computation_qubit_probabilty(circ_statevec,range(num_q,num_q+num_a))
+    # regular_computation_qubit_probs_all = get_computation_qubit_probabilty(circ_all_uncomp_statevec,range(num_uq,num_uq+num_ua))
+    # regular_computation_qubit_probs_one = get_computation_qubit_probabilty(circ_one_uncomp_statevec,range(num_oq,num_oq+num_oa))
+    # regular_computation_qubit_probs_red = get_computation_qubit_probabilty(circ_red_uncomp_statevec,range(num_rq,num_rq+num_ra))
+    
+    # zero_ancilla_computation_qubit_probs = get_computation_qubit_probabilty(zero_ancilla_circ_statevec, range(num_q,num_q+num_a))
+    # zero_ancilla_computation_qubit_probs_all = get_computation_qubit_probabilty(zero_ancilla_circ_all_uncomp_statevec, range(num_uq,num_uq+num_ua))
+    # zero_ancilla_computation_qubit_probs_one = get_computation_qubit_probabilty(zero_ancilla_circ_one_uncomp_statevec, range(num_oq,num_oq+num_oa))
+    # zero_ancilla_computation_qubit_probs_red = get_computation_qubit_probabilty(zero_ancilla_circ_red_uncomp_statevec, range(num_rq,num_rq+num_ra))
+
+    regular_computation_qubit_probs = get_computation_qubit_probabilty(circ_statevec,range(num_q))
+    regular_computation_qubit_probs_all = get_computation_qubit_probabilty(circ_all_uncomp_statevec,range(num_uq))
+    regular_computation_qubit_probs_one = get_computation_qubit_probabilty(circ_one_uncomp_statevec,range(num_oq))
+    regular_computation_qubit_probs_red = get_computation_qubit_probabilty(circ_red_uncomp_statevec,range(num_rq))
+    
+    zero_ancilla_computation_qubit_probs = get_computation_qubit_probabilty(zero_ancilla_circ_statevec, range(num_q))
+    zero_ancilla_computation_qubit_probs_all = get_computation_qubit_probabilty(zero_ancilla_circ_all_uncomp_statevec, range(num_uq))
+    zero_ancilla_computation_qubit_probs_one = get_computation_qubit_probabilty(zero_ancilla_circ_one_uncomp_statevec, range(num_oq))
+    zero_ancilla_computation_qubit_probs_red = get_computation_qubit_probabilty(zero_ancilla_circ_red_uncomp_statevec, range(num_rq))    
+
+    print('---------------------New Method---------------------------')
+    print('Circuit State Vector Probabilities')
+    print_probs(regular_computation_qubit_probs)
+
+    print('Uncomputed Circuit State Vector Probabilities')
+    print_probs(regular_computation_qubit_probs_all)
+    
+    print('Only One Uncomp Possible Circuit State Vector Probabilities')
+    print_probs(regular_computation_qubit_probs_one)
+
+    print('Only One Uncomp Possible Done Circuit State Vector Probabilities')
+    print_probs(regular_computation_qubit_probs_red)
+
+
+    print('----------------------------------------------------------')
+
+    print('Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_computation_qubit_probs)    
+    
+    print('Uncomputed Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_computation_qubit_probs_all)    
+
+    print('Only One Uncomp Possible Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_computation_qubit_probs_one)    
+
+    print('Only One Uncomp Possible Done Circuit State Vector Probabilities (Ancillas Zero\'d)')
+    print_probs(zero_ancilla_computation_qubit_probs_red)    
+
+    
+
 
 
 if __name__=='__main__':

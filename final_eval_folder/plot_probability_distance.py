@@ -45,7 +45,7 @@ def get_probability_metrics(num_q, num_a, num_g, results=ProbDiffResults,
                 print(f'Exhaustive Uncomp of {name_str} still has cycle')
             
             _exhaustive_uncomp_circuit = get_uncomp_circuit(_exhaustive_uncomp_circuit_graph)
-            ex_vals = get_difference_in_prob(_circuit, _exhaustive_uncomp_circuit, num_a, distance=distance)
+            ex_vals = get_difference_in_prob(_circuit, _exhaustive_uncomp_circuit,num_q, num_a, distance=distance)
             results.add_to_exhaustive(*ex_vals, idx=idx)
 
 
@@ -55,7 +55,7 @@ def get_probability_metrics(num_q, num_a, num_g, results=ProbDiffResults,
                                                                      max_cycles=max_cycles, return_uncomputed_ancillas=True)
             
             _greedy_uncomp_circuit = get_uncomp_circuit(_greedy_uncomp_circuit_graph)
-            gf_vals = get_difference_in_prob(_circuit, _greedy_uncomp_circuit, num_a, distance=distance)
+            gf_vals = get_difference_in_prob(_circuit, _greedy_uncomp_circuit, num_q, num_a, distance=distance)
             results.add_to_greedy_full(*gf_vals, idx=idx)
 
             # results.add_greedy_full(gf_uncomp_ancillas)
@@ -75,7 +75,7 @@ def get_probability_metrics(num_q, num_a, num_g, results=ProbDiffResults,
                                                                                 max_cycles=max_cycles, return_uncomputed_ancillas=True)
             
             _greedy_partial_uncomp_circuit = get_uncomp_circuit(_greedy_partial_uncomp_circuit_graph)
-            gp_vals = get_difference_in_prob(_circuit, _greedy_partial_uncomp_circuit, num_a, distance=distance)
+            gp_vals = get_difference_in_prob(_circuit, _greedy_partial_uncomp_circuit, num_q, num_a, distance=distance)
             results.add_to_greedy_partial(*gp_vals, idx=idx)
 
             # results.add_greedy_partial(gp_uncomp_ancillas)
@@ -83,7 +83,7 @@ def get_probability_metrics(num_q, num_a, num_g, results=ProbDiffResults,
     #**************************************************************************************************************#
         else:
             _uncomp_circuit = get_uncomp_circuit(_regular_uncomp_circuit_graph)
-            reg_vals = get_difference_in_prob(_circuit, _uncomp_circuit, num_a, distance=distance)
+            reg_vals = get_difference_in_prob(_circuit, _uncomp_circuit, num_q, num_a, distance=distance)
             results.add_to_regular(*reg_vals, idx=idx)
 
             # results.add_regular(ancillas_list)

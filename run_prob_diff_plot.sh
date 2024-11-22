@@ -3,7 +3,7 @@
 # Define the Python script and output directory
 PYTHON_SCRIPT="final_eval_folder/plot_probability_distance.py"
 OUTPUT_DIR="final_eval_folder/plots"
-CONFIG_PATH="final_eval_folder/configs/config"
+CONFIG_PATH="final_eval_folder/configs/config_prob"
 OUT_TEXT_FILE="prob_diff_output.txt"
 
 # Function to run Python script with a config file
@@ -43,7 +43,7 @@ run_for_all_config() {
     mkdir -p $new_run_folder
 
     # Move generated output files to the new folder
-    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_*" -exec mv {} "$new_run_folder" \;
+    find $OUTPUT_DIR -maxdepth 1 -type f -name "Plot_prob_dist_diff*" -exec mv {} "$new_run_folder" \;
 
     echo "Script completed. Output files moved to $new_run_folder"
 }
