@@ -212,6 +212,71 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
     # plt.xscale('linear')
     plt.savefig(f'{image_write_path}{figname}')
 
+def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
+                 title='Difference In Probability - All Methods', 
+                 xlabel = 'Number of (C-Not) Gates', 
+                 ylabel = 'Difference in Probability Distribution'):
+    x_axis = []
+    ex_comp_avg = []
+    ex_uncomp_avg = []
+    gf_comp_avg = []
+    gf_uncomp_avg = []
+    gp_comp_avg = []
+    gp_uncomp_avg = []
+    
+    for i,x in results_dict.items():
+        # print(i)
+        # print(x)
+        # print('-------------------------------')
+        x_axis.append(i)
+        ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
+        ex_uncomp_avg.append(numpy.average(x.exhaustive_uncomp_diff))
+        gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
+        gf_uncomp_avg.append(numpy.average(x.greedy_full_uncomp_diff))
+        gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
+        gp_uncomp_avg.append(numpy.average(x.greedy_partial_uncomp_diff))
+
+    # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation')
+    # plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
+    # plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
+    # plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
+
+    # plt.legend()
+    # plt.xlabel(xlabel)
+    # plt.ylabel(ylabel)
+    # plt.title(title)
+    # # fig = plt.show()
+    # # plt.figure(figsize=)
+    # plt.xlim(x_axis[0]-1, x_axis[-1]+1)
+    # plt.autoscale(False, axis='x')
+    # # plt.xscale('linear')
+    # plt.savefig(f'{image_write_path}/{figname}')
+
+    x = numpy.arange(len(x_axis))  # the label locations
+    width = 0.2  # the width of the bars
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width, label='No Uncomputation')
+    rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width, label='Exhaustive')
+    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width, label='Greedy-Full')
+    rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width, label='Greedy-Partial')
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    # ax.set_title('Multiple Bar Plots')
+    ax.set_xticks(x)
+    uni_I = ''
+    uni_K = ''
+
+    ax.set_xticklabels([f'{uni_I}{i}{uni_K}' for i in x])
+    ax.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+            ncol=5, mode="expand", borderaxespad=0)
+
+    # Show the plot
+    # plt.tight_layout()
+    plt.savefig(f'{image_write_path}/{figname}')
+    
+
 def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
                  title='Difference In Probability - All Methods', 
                  xlabel = 'Number of (C-Not) Gates', 

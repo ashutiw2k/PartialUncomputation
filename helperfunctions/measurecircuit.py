@@ -42,7 +42,7 @@ def get_probability_from_statevector(statevector: AerStatevector):
 
     # return np.real(norm_state_vector)
 
-def get_computation_qubit_probabilty(data: Statevector, inputs):
+def get_computation_qubit_probabilty_from_statevector(data: Statevector, inputs):
     full_statevector = Statevector(data)
 
     # # get the density matrix for the first qubit by taking the partial trace
@@ -55,6 +55,15 @@ def get_computation_qubit_probabilty(data: Statevector, inputs):
     # elif 
     # return np.real(partial_statevector)
     return full_statevector.probabilities(qargs=inputs)
+
+def get_computation_qubit_probabilty(data: QuantumCircuit | Statevector, inputs):
+    full_statevector = Statevector(data)
+    probs = full_statevector.probabilities(qargs=inputs)
+    # normalized_probs = probs
+    if sum(probs) != 1:
+        probs = probs / sum(probs)
+
+    return probs
 
 
 # Using Kullback-Leibler-Divergence to measure the difference between the probability distributions of 2 numpy arrays
