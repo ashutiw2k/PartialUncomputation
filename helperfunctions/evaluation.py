@@ -226,7 +226,7 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
     fig, ax = plt.subplots(figsize=(total_width, 6))
     # rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width, label='No Uncomputation')
     rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width/3, label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
-    rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreed'])
+    rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     rects4 = ax.bar(x + 0.5 * width, gp_uncomp_avg, width/3, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     ax.set_xlabel(xlabel)
@@ -285,9 +285,9 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
         gp_uncomp_avg.append(numpy.round(numpy.average(x.num_greedy_partial)))
 
     # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='Original')
-    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
-    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
-    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
+    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
+    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
+    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     plt.legend()
     plt.xlabel(xlabel)
@@ -351,7 +351,7 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
 
     rects1 = ax.bar(x - 1.5 * width, ex_comp_avg, width*0.75, label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
     rects2 = ax.bar(x - 0.5 * width, ex_uncomp_avg, width*0.75, label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
-    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreed'])
+    rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width*0.75, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     ax.set_xlabel(xlabel)
@@ -408,10 +408,10 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
         gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
         gp_uncomp_avg.append(numpy.average(x.greedy_partial_uncomp_diff))
 
-    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation')
-    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
-    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
-    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
+    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
+    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
+    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
+    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
     plt.legend()
     plt.xlabel(xlabel)
