@@ -6,6 +6,7 @@ import matplotlib.colors as mcolors
 from scipy.spatial.distance import euclidean, cityblock, jensenshannon
 from scipy.stats import wasserstein_distance
 from helperfunctions.measurecircuit import get_computation_qubit_probabilty, get_probability_from_statevector, get_statevector, print_probs, zero_ancillas_in_statevector
+from helperfunctions.matplotlib_basic_units import radians
 
 class NumAncillaUncomped:
     def __init__(self) -> None:
@@ -457,10 +458,20 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
     plt.savefig(f'{image_write_path}/{figname}')
     plt.close()
     
+# def format_func(value, tick_number):
+#     if value == 0:
+#         return "0"
+#     elif value == numpy.pi:
+#         return "$\\pi$"
+#     elif value % (numpy.pi/6) == 0:
+#         return f"{int(value/(numpy.pi/6))}$\\pi/6$"
+#     else:
+#         return f"{value/numpy.pi:.2f}$\\pi$"
+
 
 def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMAGE_PATH',
                  title='Difference In Probability - All Methods', 
-                 xlabel = 'Number of (C-Not) Gates', 
+                 xlabel = 'Angle \u03B8 (radians)', 
                  ylabel = 'Difference in Probability Distribution'):
     x_axis = []
     ex_comp_avg = []
@@ -474,18 +485,18 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
         # print(i)
         # print(x)
         # print('-------------------------------')
-        x_axis.append(i)
+        x_axis.append(i*numpy.pi*radians)
         ex_comp_avg.append(numpy.average(x.exhaustive_comp_diff))
         ex_uncomp_avg.append(numpy.average(x.exhaustive_uncomp_diff))
-        gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
+        # gf_comp_avg.append(numpy.average(x.greedy_full_comp_diff))
         gf_uncomp_avg.append(numpy.average(x.greedy_full_uncomp_diff))
-        gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
+        # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
         gp_uncomp_avg.append(numpy.average(x.greedy_partial_uncomp_diff))
 
-    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation')
-    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive')
-    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full')
-    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
+    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'], xunits=radians)
+    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'], xunits=radians)
+    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'], xunits=radians)
+    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'], xunits=radians)
 
 
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',

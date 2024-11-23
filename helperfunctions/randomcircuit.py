@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit, QuantumRegister
 import random
 import logging
+import numpy as np
 from numpy import pi
 
 from tqdm import tqdm
@@ -213,6 +214,96 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
 
         else:
             cc_gates += 1 
+            
+
+        num_controls = 1 if control_q.size == 1 else random.randrange(1, control_q.size)
+        target = random.randrange(target_q.size) # Get target qubit
+        controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+        # target = random.randrange(target_q.size) # Get target qubit
+        if control_q == target_q:
+            target = random.randrange(target_q.size) # Get target qubit
+            valid_controls = list(range(control_q.size))
+            valid_controls.remove(target)
+            controls = random.sample(valid_controls, num_controls)  # Get control qubit/s
+        else:
+            target = random.randrange(target_q.size) # Get target qubit
+            controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+        
+        # print(num_controls, controls, target)
+        circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
+
+    logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
+    logger.info(f'There are {hc_gates} H gates acting on the control qubits, {cc_gates} gates acting between control qubits, {ca_gates} gates acting between control and ancilla, {ac_gates} gates acting between ancilla and control and {aa_gates} gates acting between just the ancillas.')
+    
+    return circuit, num_q, num_a, num_g
+
+def random_quantum_circuit_varied_percentages(num_q=10, num_a=12, num_g=50,
+                                            add_random_h = False,
+                                            percent_cc_gates = 0.8,
+                                            percent_aa_gates = 0.1,
+                                            percent_ca_gates = 0.05,
+                                            percent_ac_gates = 0.05,
+                                            percent_add_h = 0.5) -> tuple[QuantumCircuit,int,int,int]:
+    
+    # num_q = random.randint(3,10)
+    # num_a = random.randint(3,10)
+    # num_g = random.randint(50, 100)
+    # num_g = random.randint(10,50)
+    # num_g = 75
+    # print(f'{percent_cc_gates}+{percent_ca_gates}+{percent_ac_gates}+{percent_aa_gates} = {percent_cc_gates+percent_ca_gates+percent_ac_gates+percent_aa_gates}')
+    # assert percent_cc_gates+percent_ca_gates+percent_ac_gates+percent_aa_gates == 1.0
+
+    hc_gates = 0
+    cc_gates = 0
+    ca_gates = 0
+    ac_gates = 0
+    aa_gates = 0
+    
+    in_q = QuantumRegister(num_q, name='cq')
+    an_q = QuantumRegister(num_a, name='aq')
+    
+    circuit = QuantumCircuit(in_q, an_q)
+
+    for q in in_q:
+        circuit.x(q)
+        circuit.h(q)
+    
+    rng = np.random.default_rng()
+    gate_dist = rng.random(size=num_g)
+
+    for change_target_controls in tqdm(gate_dist, desc=f'Building Random Quantum Circuit with {num_q}q, {num_a}a, {num_g}g'):
+
+        if add_random_h:
+            if random.random() > percent_add_h:
+                wires = random.sample(list(in_q), random.randrange(num_q))
+                for w in wires:
+                    circuit.h(w)
+                    
+                hc_gates += len(wires) 
+        
+        # Default as control-control gates
+        control_q = in_q
+        target_q = in_q
+
+        if change_target_controls < percent_cc_gates:
+            control_q = in_q
+            target_q = in_q
+            cc_gates += 1
+
+        elif change_target_controls < percent_cc_gates + percent_ca_gates:
+            control_q = in_q
+            target_q = an_q
+            ca_gates += 1
+
+        elif change_target_controls < percent_cc_gates + percent_ca_gates + percent_ac_gates:
+            control_q = an_q
+            target_q = in_q
+            ac_gates += 1
+
+        else:
+            control_q = an_q
+            target_q = an_q
+            aa_gates += 1
             
 
         num_controls = 1 if control_q.size == 1 else random.randrange(1, control_q.size)

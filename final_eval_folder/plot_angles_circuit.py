@@ -146,13 +146,13 @@ def get_probability_metrics(_circuit:QuantumCircuit, num_q: int, num_a:int,
 def metrics_for_angles(circ_func):
     results_dict = {}
     circ_name= "circuit_1" if circ_func is static_circuit_1 else "circuit_2"
-    for i in range(20):
+    for i in range(21):
         circ, a,q,g = circ_func(i/20)
         filled_results = get_probability_metrics(circ, q, a, ProbDiffResults(1))
         results_dict.update({i/20:filled_results})
 
     plot_results_angles(results_dict, figname=f'Plot_var_angles_{circ_name}',
-                 image_write_path="final_eval_folder/specific_plots/plots_var_angles", xlabel='Input Angle')
+                 image_write_path="final_eval_folder/specific_plots/plots_var_angles")
     
 
 if __name__=="__main__":

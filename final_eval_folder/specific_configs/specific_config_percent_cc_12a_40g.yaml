@@ -1,18 +1,16 @@
-evaluation: 'input'
+evaluation: 'percent_cc'
 # Paths to store result outputs in
 paths:
-  image: 'final_eval_folder/specific_plots/'
+  image: 'final_eval_folder/specific_plots/plots_percentage'
   json: '' 
 
 # Parameters for Generating Circuits
 num_a: 12
 num_g: 40
-num_q_min: 5
-num_q_max: 15
-num_q_step: 1
+num_q: 10
 
 # Parameters for running evaluations
-num_circuits: 10
+num_circuits: 3
 
 # Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
 distance: 'manhattan'

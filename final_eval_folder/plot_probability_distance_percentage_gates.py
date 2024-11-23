@@ -13,7 +13,7 @@ if not '../helperfunctions' in sys.path:
 print(sys.path)
 
 from helperfunctions.graphhelper import breakdown_qubit, edge_matcher, node_matcher
-from helperfunctions.randomcircuit import random_quantum_circuit_large_with_params
+from helperfunctions.randomcircuit import random_quantum_circuit_varied_percentages
 from helperfunctions.uncompfunctions import add_uncomputation, exhaustive_uncomputation_adding, greedy_uncomputation_full, greedy_uncomputation_partial
 from helperfunctions.circuitgraphfunctions import get_computation_graph, get_uncomp_circuit
 from helperfunctions.evaluation import ProbDiffResults, get_difference_in_prob, plot_results, plot_results_bar
@@ -22,7 +22,8 @@ def get_probability_metrics(num_q, num_a, num_g,
                             results=ProbDiffResults,
                             percent_aa_gates = 0.1,
                             percent_cc_gates = 0.8,
-                            percent_switch_ca = 0.7,
+                            percent_ca_gates = 0.05,
+                            percent_ac_gates = 0.05,
                             percent_add_h = 0.5, 
                             num_circuits=1, max_cycles=10**5, 
                             distance='manhattan'):
@@ -30,11 +31,12 @@ def get_probability_metrics(num_q, num_a, num_g,
         name_str = f'Circuit_{idx}'
         print(f'***********************{name_str}***************************')
 
-        _circuit, num_q, num_a, num_g = random_quantum_circuit_large_with_params(
+        _circuit, num_q, num_a, num_g = random_quantum_circuit_varied_percentages(
                                             num_q, num_a, num_g, add_random_h=True,
                                             percent_aa_gates = percent_aa_gates,
                                             percent_cc_gates = percent_cc_gates,
-                                            percent_switch_ca = percent_switch_ca,
+                                            percent_ca_gates = percent_ca_gates,
+                                            percent_ac_gates = percent_ac_gates,
                                             percent_add_h = percent_add_h)
         
         ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
@@ -107,9 +109,7 @@ def metrics_for_cc_gates(config):
     num_a = config['num_a']
     num_g = config['num_g']
     num_circuits = config['num_circuits']
-    num_cc_min = config['num_cc_min']
-    num_cc_max = config['num_cc_max']
-    num_cc_step = config['num_cc_step']
+    
     # global image_write_path
     image_write_path = config['paths']['image']
     # global image_write_path
@@ -119,12 +119,21 @@ def metrics_for_cc_gates(config):
 
     results_dict = {}
 
-    for var in range(num_cc_min, num_cc_max+num_cc_step, num_cc_step):
-        filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=var, 
-                                             results=ProbDiffResults(num_circuits), num_circuits=num_circuits,
-                                             percent_cc_gates=var,
-                                             percent_aa_gates=0.9-var,
+    for var in range(0,100,10):
+        val=var/100
+        non_var=(1-val)/3
 
+        p_cc = val
+        p_ac = non_var
+        p_ca = non_var
+        p_aa = non_var
+        
+        filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=num_a, 
+                                             results=ProbDiffResults(num_circuits), num_circuits=num_circuits,
+                                             percent_cc_gates=p_cc,
+                                             percent_aa_gates=p_aa,
+                                             percent_ac_gates=p_ac,
+                                             percent_ca_gates=p_ca,
                                              distance=distance)
         results_dict.update({var:filled_results})  
         gc.collect()
@@ -135,8 +144,144 @@ def metrics_for_cc_gates(config):
     # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
     #              image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
     
-    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a}a_{distance}',
-                 image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a}a_{distance}_percent_cc',
+                 image_write_path=image_write_path, xlabel='Percentage Of Control-Control Gates')
+
+
+def metrics_for_ca_gates(config):
+    # Variable Number of Ancilla
+    num_q = config['num_q']
+    num_a = config['num_a']
+    num_g = config['num_g']
+    num_circuits = config['num_circuits']
+    
+    # global image_write_path
+    image_write_path = config['paths']['image']
+    # global image_write_path
+    # global VALID_NUM_CIRCUITS
+
+    distance=config['distance']
+
+    results_dict = {}
+
+    for var in range(0,100,10):
+        val=var/100
+        non_var=(1-val)/3
+
+        p_cc = non_var
+        p_ac = non_var
+        p_ca = val
+        p_aa = non_var
+        
+        filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=num_a, 
+                                             results=ProbDiffResults(num_circuits), num_circuits=num_circuits,
+                                             percent_cc_gates=p_cc,
+                                             percent_aa_gates=p_aa,
+                                             percent_ac_gates=p_ac,
+                                             percent_ca_gates=p_ca,
+                                             distance=distance)
+        results_dict.update({var:filled_results})  
+        gc.collect()
+
+    for a,r in results_dict.items():
+        print(f'{a}:\n\t{r}')  
+
+    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
+    #              image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
+    
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a}a_{distance}_percent_ca',
+                 image_write_path=image_write_path, xlabel='Percentage Of Control-Ancilla Gates')
+
+
+def metrics_for_ac_gates(config):
+    # Variable Number of Ancilla
+    num_q = config['num_q']
+    num_a = config['num_a']
+    num_g = config['num_g']
+    num_circuits = config['num_circuits']
+    
+    # global image_write_path
+    image_write_path = config['paths']['image']
+    # global image_write_path
+    # global VALID_NUM_CIRCUITS
+
+    distance=config['distance']
+
+    results_dict = {}
+
+    for var in range(0,100,10):
+        val=var/100
+        non_var=(1-val)/3
+
+        p_cc = non_var
+        p_ac = val
+        p_ca = non_var
+        p_aa = non_var
+        
+        filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=num_a, 
+                                             results=ProbDiffResults(num_circuits), num_circuits=num_circuits,
+                                             percent_cc_gates=p_cc,
+                                             percent_aa_gates=p_aa,
+                                             percent_ac_gates=p_ac,
+                                             percent_ca_gates=p_ca,
+                                             distance=distance)
+        results_dict.update({var:filled_results})  
+        gc.collect()
+
+    for a,r in results_dict.items():
+        print(f'{a}:\n\t{r}')  
+
+    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
+    #              image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
+    
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a}a_{distance}_percent_ac',
+                 image_write_path=image_write_path, xlabel='Percentage Of Ancilla-Control Gates')
+
+
+def metrics_for_aa_gates(config):
+    # Variable Number of Ancilla
+    num_q = config['num_q']
+    num_a = config['num_a']
+    num_g = config['num_g']
+    num_circuits = config['num_circuits']
+    
+    # global image_write_path
+    image_write_path = config['paths']['image']
+    # global image_write_path
+    # global VALID_NUM_CIRCUITS
+
+    distance=config['distance']
+
+    results_dict = {}
+
+    for var in range(0,100,10):
+        val=var/100
+        non_var=(1-val)/3
+        
+        p_cc = non_var
+        p_ac = non_var
+        p_ca = non_var
+        p_aa = val
+        
+        filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=num_a, 
+                                             results=ProbDiffResults(num_circuits), num_circuits=num_circuits,
+                                             percent_cc_gates=p_cc,
+                                             percent_aa_gates=p_aa,
+                                             percent_ac_gates=p_ac,
+                                             percent_ca_gates=p_ca,
+                                             distance=distance)
+        results_dict.update({var:filled_results})  
+        gc.collect()
+
+    for a,r in results_dict.items():
+        print(f'{a}:\n\t{r}')  
+
+    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
+    #              image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
+    
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a}a_{distance}_percent_aa',
+                 image_write_path=image_write_path, xlabel='Percentage Of Ancilla-Ancilla Gates')
+
 
 
 if __name__ == '__main__':
@@ -154,6 +299,12 @@ if __name__ == '__main__':
 
     if config['evaluation'] == 'percent_cc':
         metrics_for_cc_gates(config)
+    if config['evaluation'] == 'percent_ca':
+        metrics_for_ca_gates(config)
+    if config['evaluation'] == 'percent_ac':
+        metrics_for_ac_gates(config)
+    if config['evaluation'] == 'percent_aa':
+        metrics_for_aa_gates(config)
 
 
     
@@ -177,7 +328,7 @@ if __name__ == '__main__':
     # results_dict = {}
 
     # for var in range(num_a_min, num_a_max+num_a_step, num_a_step):
-    #     filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=var, 
+    #     filled_results = get_probability_metrics(num_q=num_q, num_g=num_g, num_a=num_a, 
     #                                          results=ProbDiffResults(num_circuits), num_circuits=num_circuits)
     #     results_dict.update({var:filled_results})  
 
