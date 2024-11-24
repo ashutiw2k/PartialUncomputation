@@ -217,7 +217,7 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
     # plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
 
     # plt.legend()
-    # plt.xlabel(xlabel)
+    # plt.xlabel(xlabel, fontsize=14)
     # plt.ylabel(ylabel)
     # plt.title(title)
     # # fig = plt.show()
@@ -310,7 +310,7 @@ def plot_ancilla_results(results_dict, figname='NEEDFIGNAME', image_write_path='
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0)
     
-    plt.xlabel(xlabel)
+    plt.xlabel(xlabel, fontsize=14)
     plt.ylabel(ylabel)
     # plt.title(title)
     # fig = plt.show()
@@ -351,7 +351,7 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     # plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial')
 
     # plt.legend()
-    # plt.xlabel(xlabel)
+    # plt.xlabel(xlabel, fontsize=14)
     # plt.ylabel(ylabel)
     # plt.title(title)
     # # fig = plt.show()
@@ -444,7 +444,7 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
 
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0)
-    plt.xlabel(xlabel)
+    plt.xlabel(xlabel, fontsize=14)
     plt.ylabel(ylabel)
     # plt.title(title)
     # fig = plt.show()
@@ -502,7 +502,7 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0)    
     
-    plt.xlabel(xlabel)
+    plt.xlabel(xlabel, fontsize=14)
     plt.ylabel(ylabel)
     # plt.title(title)
     # fig = plt.show()
