@@ -449,8 +449,8 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
     # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
-    plt.xlim(x_axis[0]-1, x_axis[-1]+1)
-    plt.autoscale(False, axis='x')
+    # plt.xlim(x_axis[0]-1, x_axis[-1]+1)
+    # plt.autoscale(False, axis='x')
 
 
 

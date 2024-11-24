@@ -25,7 +25,7 @@ def get_probability_metrics(num_q, num_a, num_g, results=ProbDiffResults,
         name_str = f'Circuit_{idx}'
         print(f'***********************{name_str}***************************')
 
-        _circuit, num_q, num_a, num_g = random_quantum_circuit_large_with_params(num_q, num_a, num_g, add_random_h=True)
+        _circuit, num_q, num_a, num_g = random_quantum_circuit_large_with_params(num_q, num_a, num_g, add_random_h=True, random_cz=0.5)
         ancillas_list = [breakdown_qubit(q)['label'] for q in _circuit.qubits][-num_a:]
         _circuit_graph = get_computation_graph(_circuit, ancillas_list)
 

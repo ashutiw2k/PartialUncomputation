@@ -157,6 +157,7 @@ def random_quantum_circuit_large() -> tuple[QuantumCircuit,int,int,int]:
 
 def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
                                             add_random_h = False,
+                                            random_cz = -1, # This will be a positive float between 0,1 to randomly replace mcx with cz. 
                                             percent_aa_gates = 0.1,
                                             percent_cc_gates = 0.8,
                                             percent_switch_ca = 0.7,
@@ -230,7 +231,12 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
             controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
         
         # print(num_controls, controls, target)
-        circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
+        if random_cz > random.random():
+            c = control_q[random.sample(controls,1)[0]]
+            t = target_q[target]
+            circuit.cz(c, t)
+        else:
+            circuit.mcx([control_q[cq] for cq in controls],target_q[target]) 
 
     logger.info(f'Built circuit with {num_q} input, {num_a} ancilla and {num_g} gates.')
     logger.info(f'There are {hc_gates} H gates acting on the control qubits, {cc_gates} gates acting between control qubits, {ca_gates} gates acting between control and ancilla, {ac_gates} gates acting between ancilla and control and {aa_gates} gates acting between just the ancillas.')

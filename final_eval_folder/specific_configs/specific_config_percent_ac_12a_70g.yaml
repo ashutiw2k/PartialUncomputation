@@ -1,7 +1,7 @@
 evaluation: 'percent_ac'
 # Paths to store result outputs in
 paths:
-  image: 'final_eval_folder/specific_plots/plots_percentage'
+  image: 'final_eval_folder/specific_plots/plots_percentage/'
   json: '' 
 
 # Parameters for Generating Circuits
