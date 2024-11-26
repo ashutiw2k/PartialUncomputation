@@ -53,7 +53,10 @@ class CGNode:
         if isinstance(__o, CGNode):
             return self.qubit == __o.qubit and self.qubit_wire == __o.qubit_wire and self.qubit_name == __o.qubit_name and self.index == __o.index
         pass
+    def simple_graph_label(self):
+        return f'{self.opname}:{self.label}({self.node_num}{"*" if self.node_type is UNCOMP else ""})' if self.opname else self.label
 
+    
 def breakdown_qubit(qubit: qiskit.circuit.Qubit):
     return {'name':qubit._register.name, 'wire':qubit._index, 'qubit':qubit, 'label':qubit._register.name+str(qubit._index)}
 
@@ -65,26 +68,26 @@ def get_pos_of_nodes(graph):
     return pos
 
 def node_attr(node: CGNode):
-    attribute_dict = {"label": node.graph_label()}
+    attribute_dict = {"label": node.simple_graph_label()}
     if node.node_type is INIT:
-        attribute_dict.update({'color': 'green', 'fillcolor': 'green', 'style': 'filled'})
+        attribute_dict.update({'color': 'darkgreen', 'fillcolor': 'lightgreen', 'style': 'filled'})
     elif node.node_type is COMP:
-        attribute_dict.update({'color': 'blue', 'fillcolor': 'blue', 'style': 'filled'})
+        attribute_dict.update({'color': 'blue', 'fillcolor': 'lightblue', 'style': 'filled'})
     elif node.node_type is UNCOMP:
-        attribute_dict.update({'color': 'red', 'fillcolor': 'red', 'style': 'filled'})
+        attribute_dict.update({'color': 'red', 'fillcolor': 'lightpink', 'style': 'filled'})
     else:
         attribute_dict.update({'color': 'yellow', 'fillcolor': 'yellow', 'style': 'filled'})
 
     return attribute_dict
 
 def edge_attr(edge):
-    attribute_dict = {"label": edge[0]}
+    attribute_dict = {}
     if edge == TARGET:
         attribute_dict.update({'color': 'blue', 'style': 'solid'})
     elif edge == CONTROL:
-        attribute_dict.update({'color': 'red', 'style': 'dotted', 'arrowtail':'o'})
+        attribute_dict.update({'color': 'red', 'style': 'solid', 'arrowtail':'dot', 'dir':'both'})
     elif edge == ANTIDEP:
-        attribute_dict.update({'color': 'green', 'style': 'dashed'})
+        attribute_dict.update({'color': 'darkgreen', 'style': 'dashed'})
     else:
         attribute_dict.update({'color': 'yellow', 'style': 'dashed'})
 

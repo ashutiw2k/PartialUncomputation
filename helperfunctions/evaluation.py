@@ -500,7 +500,7 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
 
 
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
-            ncol=5, mode="expand", borderaxespad=0)    
+            ncol=5, mode="expand", borderaxespad=0, fontsize=9)    
     
     plt.xlabel(xlabel, fontsize=14)
     plt.ylabel(ylabel)
