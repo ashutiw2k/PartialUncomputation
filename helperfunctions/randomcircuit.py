@@ -11,7 +11,7 @@ from helperfunctions.graphhelper import breakdown_qubit
 logger = logging.getLogger(__name__)
 
 def get_ancillas_of_circuit(circuit, num_a):
-    return [breakdown_qubit(q)['label'] for q in circuit.qubits]
+    return [breakdown_qubit(q)['label'] for q in circuit.qubits[-num_a:]]
 
 
 # Random quantum circuits generated that only allow for 
