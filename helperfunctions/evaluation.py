@@ -242,7 +242,7 @@ def plot_ancillas_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEE
     rects3 = ax.bar(x, gf_uncomp_avg, width/3, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     rects4 = ax.bar(x + 0.5 * width, gp_uncomp_avg, width/3, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
-    ax.set_xlabel(xlabel)
+    ax.set_xlabel(xlabel, fontsize=14)
     ax.set_ylabel(ylabel)
     # ax.set_title('Multiple Bar Plots')
     ax.set_xticks(x)
@@ -375,7 +375,7 @@ def plot_results_bar(results_dict, figname='NEEDFIGNAME', image_write_path='NEED
     rects3 = ax.bar(x + 0.5 * width, gf_uncomp_avg, width*0.75, label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
     rects4 = ax.bar(x + 1.5 * width, gp_uncomp_avg, width*0.75, label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
 
-    ax.set_xlabel(xlabel)
+    ax.set_xlabel(xlabel, fontsize=14)
     ax.set_ylabel(ylabel)
     # ax.set_title('Multiple Bar Plots')
     ax.set_xticks(x)

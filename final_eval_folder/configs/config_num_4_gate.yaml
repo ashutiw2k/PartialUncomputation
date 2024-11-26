@@ -6,10 +6,10 @@ paths:
 
 # Parameters for Generating Circuits
 num_q: 10
-num_a: 10
-num_g_min: 15
-num_g_max: 30
-num_g_step: 1
+num_a: 12
+num_g_min: 60
+num_g_max: 100
+num_g_step: 5
 
 # Parameters for running evaluations
 num_circuits: 10

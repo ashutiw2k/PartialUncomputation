@@ -117,10 +117,10 @@ def metrics_for_ancillas(config):
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
 
-    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
-    #              image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
+    plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_bar',
+                 image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
     
-    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}',
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g}g_{num_a_min}-{num_a_max}a_{distance}_line',
                  image_write_path=image_write_path, xlabel='Number of Ancillary Qubits')
     
     
@@ -151,10 +151,10 @@ def metrics_for_inputs(config):
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
 
-    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a_{distance}_bar',
-    #              image_write_path=image_write_path, xlabel='Number of Input Qubits')
+    plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a_{distance}_bar',
+                 image_write_path=image_write_path, xlabel='Number of Input Qubits')
     
-    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a_{distance}',
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q_min}-{num_q_max}q_{num_g}g_{num_a}a_{distance}_line',
                  image_write_path=image_write_path, xlabel='Number of Input Qubits')
     
 
@@ -184,10 +184,10 @@ def metrics_for_gates(config):
     for a,r in results_dict.items():
         print(f'{a}:\n\t{r}')  
 
-    # plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a_{distance}_bar',
-    #              image_write_path=image_write_path, xlabel='Number of (C-Not) Gates')
+    plot_results_bar(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a_{distance}_bar',
+                 image_write_path=image_write_path, xlabel='Number of (C-Not) Gates')
 
-    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a_{distance}',
+    plot_results(results_dict, figname=f'Plot_prob_dist_diff_{num_q}q_{num_g_min}-{num_g_max}g_{num_a}a_{distance}_line',
                  image_write_path=image_write_path, xlabel='Number of (C-Not) Gates')
 
 

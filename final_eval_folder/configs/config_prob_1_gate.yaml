@@ -5,10 +5,10 @@ paths:
   json: '' 
 
 # Parameters for Generating Circuits
-num_q: 5
-num_a: 5
-num_g_min: 5
-num_g_max: 20
+num_q: 10
+num_a: 12
+num_g_min: 40
+num_g_max: 60
 num_g_step: 1
 
 # Parameters for running evaluations
