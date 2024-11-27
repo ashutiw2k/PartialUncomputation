@@ -148,6 +148,15 @@ def add_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], al
 
     return uncomp_circuit_graph, False
 
+def exhaustive_uncomputation(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str], return_uncomputed_ancillas=False):
+    largest_set = exhaustive_uncomputation_adding(circuit_graph, ancillas)
+    uncomp_graph, has_cycle = add_uncomputation(circuit_graph, ancillas)
+    if has_cycle:
+        raise ValueError(f'Largest Set of Ancillas {largest_set} still causes cycles in uncomp graph')
+    if return_uncomputed_ancillas:
+        return uncomp_graph, largest_set
+    else:
+        return uncomp_graph  
 
 def exhaustive_uncomputation_adding(circuit_graph: rustworkx.PyDiGraph, ancillas:List[str]):
     '''
