@@ -496,17 +496,26 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
         gp_uncomp_avg.append(numpy.average(x.greedy_partial_uncomp_diff))
 
-    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'], xunits=radians)
-    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'], xunits=radians)
-    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'], xunits=radians)
-    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'], xunits=radians)
+    # plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'], xunits=radians)
+    # plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'], xunits=radians)
+    # plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'], xunits=radians)
+    # plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'], xunits=radians)
+    
+    plt.plot(x_axis, ex_comp_avg, marker='o', markersize=16,
+             linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['red'], xunits=radians)
+    plt.plot(x_axis, ex_uncomp_avg, marker='o', markersize=12, 
+             linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['darkorange'], xunits=radians)
+    plt.plot(x_axis, gf_uncomp_avg, marker='o', markersize=8,
+             linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'], xunits=radians)
+    plt.plot(x_axis, gp_uncomp_avg, marker='o', markersize=4,
+             linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['mediumblue'], xunits=radians)
 
 
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0, fontsize=9)    
     
     plt.xlabel(xlabel, fontsize=14)
-    plt.ylabel(ylabel)
+    plt.ylabel(ylabel, fontsize=14)
     # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
