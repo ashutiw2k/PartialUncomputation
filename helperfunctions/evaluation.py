@@ -137,20 +137,21 @@ class ProbDiffResults:
 
         
 def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_q, num_a,
-                     distance:Literal['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']='manhattan'):
+                     distance:Literal['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']='manhattan',
+                     normalized=True):
     eq4_comp_statevector = get_statevector(comp_circuit)
     eq4_comp_prob_dist = get_probability_from_statevector(eq4_comp_statevector)
-    eq4_comp_prob_dist_comp = get_computation_qubit_probabilty(eq4_comp_statevector, range(num_q))
+    eq4_comp_prob_dist_comp = get_computation_qubit_probabilty(eq4_comp_statevector, range(num_q), normalized)
     # logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
 
     eq5_comp_statevector = zero_ancillas_in_statevector(eq4_comp_statevector, num_a)
     eq5_comp_prob_dist = get_probability_from_statevector(eq5_comp_statevector)
-    eq5_comp_prob_dist_comp = get_computation_qubit_probabilty(eq5_comp_statevector, range(num_q))
+    eq5_comp_prob_dist_comp = get_computation_qubit_probabilty(eq5_comp_statevector, range(num_q), normalized)
     # logger.info(f'Comp Circuit {name_str} Eq5 Probability Distribution: \n{print_probs(eq5_comp_prob_dist)}')
 
     eq4_uncomp_statevector = get_statevector(uncomp_circuit)
     eq4_uncomp_prob_dist = get_probability_from_statevector(eq4_uncomp_statevector)
-    eq4_uncomp_prob_dist_comp = get_computation_qubit_probabilty(eq4_uncomp_statevector, range(num_q))
+    eq4_uncomp_prob_dist_comp = get_computation_qubit_probabilty(eq4_uncomp_statevector, range(num_q), normalized)
     # logger.info(f'{uncomp_type.capitalize()} Uncomp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_uncomp_prob_dist)}')
     
     # print(numpy.sum(eq4_comp_prob_dist))
@@ -430,6 +431,7 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
         gp_uncomp_avg.append(numpy.mean(x.greedy_partial_uncomp_diff))
 
+    plt.figure(figsize=(8,6))
     plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
     plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
     plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
@@ -455,6 +457,7 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
 
 
     # plt.xscale('linear')
+    plt.tight_layout()
     plt.savefig(f'{image_write_path}/{figname}')
     plt.close()
     

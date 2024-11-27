@@ -56,11 +56,11 @@ def get_computation_qubit_probabilty_from_statevector(data: Statevector, inputs)
     # return np.real(partial_statevector)
     return full_statevector.probabilities(qargs=inputs)
 
-def get_computation_qubit_probabilty(data: QuantumCircuit | Statevector, inputs):
+def get_computation_qubit_probabilty(data: QuantumCircuit | Statevector, inputs, normalized=True):
     full_statevector = Statevector(data)
     probs = full_statevector.probabilities(qargs=inputs)
     # normalized_probs = probs
-    if sum(probs) != 1:
+    if normalized and sum(probs) != 1:
         probs = probs / sum(probs)
 
     return probs

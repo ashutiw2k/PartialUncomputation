@@ -13,8 +13,8 @@ num_a_max: 13
 num_a_step: 1
 
 # Parameters for running evaluations
-num_circuits: 10
+num_circuits: 5
 
 # Distance Metric ['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']
-distance: 'manhattan'
+distance: 'euclidean'
 num: 1
