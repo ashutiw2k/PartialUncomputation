@@ -1,6 +1,7 @@
 from typing import Literal
 import numpy
 from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector, state_fidelity, partial_trace
 from matplotlib import pyplot as plt
 import matplotlib.colors as mcolors
 from scipy.spatial.distance import euclidean, cityblock, jensenshannon
@@ -135,6 +136,83 @@ class ProbDiffResults:
                 Regular UnComp Avg:\t\t{numpy.average(self.regular_uncomp_diff)}
                 '''
 
+class FidelityResults:
+    def __init__(self, valid_num_circuits):
+        self.exhaustive_comp_fidelity = numpy.zeros(valid_num_circuits)
+        self.exhaustive_uncomp_fidelity = numpy.zeros(valid_num_circuits)
+        # self.exhaustive_eq4 = numpy.zeros(valid_num_circuits)
+        # self.exhaustive_eq5 = numpy.zeros(valid_num_circuits)
+        # self.exhaustive_uncomp = numpy.zeros(valid_num_circuits)
+        
+
+        self.greedy_full_comp_fidelity = numpy.zeros(valid_num_circuits)
+        self.greedy_full_uncomp_fidelity = numpy.zeros(valid_num_circuits)
+        # self.greedy_full_eq4 = numpy.zeros(valid_num_circuits)
+        # self.greedy_full_eq5 = numpy.zeros(valid_num_circuits)
+        # self.greedy_full_uncomp = numpy.zeros(valid_num_circuits)
+        
+        self.greedy_partial_comp_fidelity = numpy.zeros(valid_num_circuits)
+        self.greedy_partial_uncomp_fidelity = numpy.zeros(valid_num_circuits)        
+        # self.greedy_partial_eq4 = numpy.zeros(valid_num_circuits)
+        # self.greedy_partial_eq5 = numpy.zeros(valid_num_circuits)
+        # self.greedy_partial_uncomp = numpy.zeros(valid_num_circuits)
+
+        self.regular_comp_fidelity = numpy.zeros(valid_num_circuits)
+        self.regular_uncomp_fidelity = numpy.zeros(valid_num_circuits)
+        # self.regular_eq4 = numpy.zeros(valid_num_circuits)
+        # self.regular_eq5 = numpy.zeros(valid_num_circuits)
+        # self.regular_uncomp = numpy.zeros(valid_num_circuits)
+
+    def add_to_exhaustive(self, eq4comp_eq5_fidelity, eq4uncomp_eq5_fidelity, idx):
+        self.exhaustive_comp_fidelity[idx] = eq4comp_eq5_fidelity
+        self.exhaustive_uncomp_fidelity[idx] = eq4uncomp_eq5_fidelity
+    
+    def add_to_greedy_full(self, eq4comp_eq5_fidelity, eq4uncomp_eq5_fidelity, idx):
+        self.greedy_full_comp_fidelity[idx] = eq4comp_eq5_fidelity
+        self.greedy_full_uncomp_fidelity[idx] = eq4uncomp_eq5_fidelity
+    
+    def add_to_greedy_partial(self, eq4comp_eq5_fidelity, eq4uncomp_eq5_fidelity, idx):
+        self.greedy_partial_comp_fidelity[idx] = eq4comp_eq5_fidelity
+        self.greedy_partial_uncomp_fidelity[idx] = eq4uncomp_eq5_fidelity
+    
+    def add_to_regular(self, eq4comp_eq5_fidelity, eq4uncomp_eq5_fidelity, idx):
+        self.regular_comp_fidelity[idx] = eq4comp_eq5_fidelity
+        self.regular_uncomp_fidelity[idx] = eq4uncomp_eq5_fidelity
+    
+    def __str__(self):
+        return f'''
+                Exhaustive Comp Avg:\t\t{numpy.average(self.exhaustive_comp_fidelity)}
+                Exhaustive UnComp Avg:\t\t{numpy.average(self.exhaustive_uncomp_fidelity)}
+                Greedy Full Comp Avg:\t\t{numpy.average(self.greedy_full_comp_fidelity)}
+                Greedy Full UnComp Avg:\t\t{numpy.average(self.greedy_full_uncomp_fidelity)}
+                Greedy Partial Comp Avg:\t{numpy.average(self.greedy_partial_comp_fidelity)}
+                Greedy Partial UnComp Avg:\t{numpy.average(self.greedy_partial_uncomp_fidelity)}
+                Regular Comp Avg:\t\t{numpy.average(self.regular_comp_fidelity)}
+                Regular UnComp Avg:\t\t{numpy.average(self.regular_uncomp_fidelity)}
+                '''
+    
+
+def get_fidelitys(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_q, num_a):
+    eq4_comp_statevector = Statevector(get_statevector(comp_circuit))
+    eq4_comp_densitymat_inq_pt = partial_trace(eq4_comp_statevector, range(num_q, num_q+num_a))
+
+    # logger.info(f'Comp Circuit {name_str} Eq4 Probability Distribution: \n{print_probs(eq4_comp_prob_dist)}')
+
+    eq5_comp_statevector = Statevector(zero_ancillas_in_statevector(eq4_comp_statevector, num_a))
+    eq5_comp_densitymat_inq_pt = partial_trace(eq5_comp_statevector, range(num_q, num_q+num_a))
+    
+    # logger.info(f'Comp Circuit {name_str} Eq5 Probability Distribution: \n{print_probs(eq5_comp_prob_dist)}')
+
+    eq4_uncomp_statevector = Statevector(get_statevector(uncomp_circuit))
+    eq4_uncomp_densitymat_inq_pt = partial_trace(eq4_uncomp_statevector, range(num_q, num_q+num_a))
+
+    fidelity_eq4comp_eq5 = state_fidelity(eq4_comp_densitymat_inq_pt, eq5_comp_densitymat_inq_pt, validate=False)
+    fidelity_eq4uncomp_eq5 = state_fidelity(eq4_uncomp_densitymat_inq_pt, eq5_comp_densitymat_inq_pt, validate=False)
+    
+    return fidelity_eq4comp_eq5, fidelity_eq4uncomp_eq5
+
+    
+    pass
         
 def get_difference_in_prob(comp_circuit: QuantumCircuit, uncomp_circuit:QuantumCircuit, num_q, num_a,
                      distance:Literal['euclidean', 'manhattan', 'wasserstein', 'jensenshannon']='manhattan',
@@ -431,12 +509,17 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
         # gp_comp_avg.append(numpy.average(x.greedy_partial_comp_diff))
         gp_uncomp_avg.append(numpy.mean(x.greedy_partial_uncomp_diff))
 
-    plt.figure(figsize=(8,6))
-    plt.plot(x_axis, ex_comp_avg, marker='o', linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['dodgerblue'])
-    plt.plot(x_axis, ex_uncomp_avg, marker='o', linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['orange'])
-    plt.plot(x_axis, gf_uncomp_avg, marker='o', linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
-    plt.plot(x_axis, gp_uncomp_avg, marker='o', linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['magenta'])
-
+        plt.figure(figsize=(8,6))
+        plt.plot(x_axis, ex_comp_avg, marker='o', markersize=12,
+                 linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['red'])
+        plt.plot(x_axis, ex_uncomp_avg, marker='o', markersize=12, 
+                linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['darkorange'])
+        plt.plot(x_axis, gf_uncomp_avg, marker='o', markersize=8,
+                linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
+        plt.plot(x_axis, gp_uncomp_avg, marker='o', markersize=4,
+                linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['mediumblue'])
+        plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+                ncol=5, mode="expand", borderaxespad=0)
     # xdiff = x_axis[1] - x_axis[0]
     # x_axis.append(x_axis[-1]+xdiff)
     # x_axis.insert(0, x_axis[0]-xdiff)
@@ -447,7 +530,7 @@ def plot_results(results_dict, figname='NEEDFIGNAME', image_write_path='NEED_IMA
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0)
     plt.xlabel(xlabel, fontsize=14)
-    plt.ylabel(ylabel)
+    plt.ylabel(ylabel, fontsize=14)
     # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
@@ -514,8 +597,10 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
             ncol=5, mode="expand", borderaxespad=0, fontsize=9)    
     
-    plt.xlabel(xlabel, fontsize=14)
-    plt.ylabel(ylabel, fontsize=14)
+    plt.xlabel(xlabel, fontsize=20)
+    plt.ylabel(ylabel, fontsize=16)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     # plt.title(title)
     # fig = plt.show()
     # plt.figure(figsize=)
