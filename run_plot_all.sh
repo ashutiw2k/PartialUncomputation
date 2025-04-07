@@ -59,7 +59,7 @@ run_for_all_config() {
 
 > "$OUT_TEXT_FILE"
 
-for j in {1..15}; do
+for j in {1..5}; do
     echo "Run: $j running"
     run_for_all_config >> $OUT_TEXT_FILE 
 done

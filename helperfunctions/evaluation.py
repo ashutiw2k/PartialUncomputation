@@ -1,3 +1,4 @@
+import os
 from typing import Literal
 import numpy
 from qiskit import QuantumCircuit
@@ -611,3 +612,66 @@ def plot_results_angles(results_dict, figname='NEEDFIGNAME', image_write_path='N
     plt.savefig(f'{image_write_path}/{figname}')
     plt.close()
     
+
+
+def plot_beautiful_ancilla_results_better(x_axis, ex_uncomp_avg, gf_uncomp_avg, gp_uncomp_avg, og=None, 
+                         figname='NEEDFIGNAME', image_write_path='NEEDIMAGEPATH',
+                 title='Number of Ancillas Uncomputed', 
+                 xlabel = 'Total Number of Ancillas', xfont=24,
+                 ylabel = 'Average Ancillae Uncomputed', yfont=24,
+                 legends=False):
+
+    fig, ax = plt.subplots(figsize=(8,6))
+
+    if og is not None:
+        ax.plot(x_axis, og, marker='o', markersize=12,
+                 linestyle='-', label='No Uncomputation', color=mcolors.CSS4_COLORS['red'])
+        ax.plot(x_axis, ex_uncomp_avg, marker='o', markersize=12, 
+                linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['darkorange'])
+        ax.plot(x_axis, gf_uncomp_avg, marker='o', markersize=8,
+                linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
+        ax.plot(x_axis, gp_uncomp_avg, marker='o', markersize=4,
+                linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['mediumblue'])
+        ax.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+                ncol=5, mode="expand", borderaxespad=0)
+
+    else:
+        ax.plot(x_axis, ex_uncomp_avg, marker='o', markersize=15, 
+             linestyle='-', label='Exhaustive', color=mcolors.CSS4_COLORS['darkorange'])
+        ax.plot(x_axis, gf_uncomp_avg, marker='o', markersize=10,
+             linestyle='-', label='Greedy-Full', color=mcolors.CSS4_COLORS['forestgreen'])
+        ax.plot(x_axis, gp_uncomp_avg, marker='o', markersize=5,
+             linestyle='-', label='Greedy-Partial', color=mcolors.CSS4_COLORS['mediumblue'])
+
+    # plt.xticks(numpy.arange(len(x_axis)), x_axis)
+    # plt.set_xticklabels(x_axis)
+
+    
+#     plt.xlabel(xlabel, fontsize=xfont)
+#     plt.ylabel(ylabel, fontsize=yfont)
+    plt.xticks(fontsize=24)
+    plt.yticks(fontsize=24)
+
+
+    ax.set_xlabel(xlabel, fontsize=xfont)
+    ax.set_ylabel(ylabel, fontsize=yfont)    # plt.title(title)
+    # ax.set_yticklabels(list(range(0,12)))
+#     ax.set_xticklabels()
+    # fig = plt.show()
+    # plt.figure(figsize=)
+#     plt.xlim(x_axis[0]-1, x_axis[-1]+1)
+#     plt.ticklabel_format('{x:.0f}')
+#     fig, ax = plt.subplots()
+#     ax.plot
+#     plt.autoscale(False, axis='x')
+    # plt.xscale('linear')
+    # if legends:
+    #     plt.legend(bbox_to_anchor=(0, 1.01, 1, 0.2), loc='lower left',
+    #         ncol=5, mode="expand", borderaxespad=0)
+    #     # fig, ax = plt.plot()
+        
+    plt.tight_layout()
+    plt.savefig(os.path.abspath(f'{image_write_path}/{figname}'))
+    plt.show()
+#     plt.close()
+

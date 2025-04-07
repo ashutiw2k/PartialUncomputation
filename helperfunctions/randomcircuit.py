@@ -6,7 +6,7 @@ from numpy import pi
 
 from tqdm import tqdm
 
-from helperfunctions.graphhelper import breakdown_qubit
+from .graphhelper import breakdown_qubit
 
 logger = logging.getLogger(__name__)
 
@@ -174,7 +174,9 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
     ca_gates = 0
     ac_gates = 0
     aa_gates = 0
-    
+
+    used_ancillas = []
+
     in_q = QuantumRegister(num_q, name='cq')
     an_q = QuantumRegister(num_a, name='aq')
     
@@ -196,6 +198,8 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
 
         control_q = in_q
         target_q = in_q
+        an_is_targ = False
+
 
         change_target_controls = random.random()
 
@@ -203,12 +207,14 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
             control_q = an_q
             target_q = an_q
             aa_gates += 1
+            an_is_targ = True
 
         elif change_target_controls > percent_cc_gates: 
             # control_q = in_q
             if random.random() > percent_switch_ca:
                 target_q = an_q
                 ca_gates += 1
+                an_is_targ = True
             else:
                 control_q = an_q
                 ac_gates += 1
@@ -217,20 +223,38 @@ def random_quantum_circuit_large_with_params(num_q=5, num_a=5, num_g=25,
             cc_gates += 1 
             
 
+        if an_is_targ:
+            # print('an is targ')
+            # print(in_q, an_q, target_q)
+            val_targ = [q for q in range(target_q.size) if q not in used_ancillas]
+            # print(target_q, val_targ)
+            # target_q = val_tar
+            # print(in_q, an_q, target_q)
+        else:
+            val_targ = list(range(target_q.size))
+        
+        if len(val_targ) == 0:
+            continue
+
         num_controls = 1 if control_q.size == 1 else random.randrange(1, control_q.size)
-        target = random.randrange(target_q.size) # Get target qubit
-        controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
+        # target = random.randrange(target_q.size) if isinstance(target_q, QuantumRegister) else random.choice(target_q) # Get target qubit
+        # controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
         # target = random.randrange(target_q.size) # Get target qubit
+        
+        target = random.choice(val_targ) # Get target qubit
         if control_q == target_q:
-            target = random.randrange(target_q.size) # Get target qubit
-            valid_controls = list(range(control_q.size))
+            valid_controls = list(range(target_q.size))
             valid_controls.remove(target)
             controls = random.sample(valid_controls, num_controls)  # Get control qubit/s
         else:
-            target = random.randrange(target_q.size) # Get target qubit
+            # target = random.randrange(len(target_q)) # Get target qubit
             controls = random.sample(range(control_q.size), num_controls)  # Get control qubit/s
-        
+        # print(controls, target, sep='--->')
         # print(num_controls, controls, target)
+
+        if an_is_targ:
+            used_ancillas.append(target)
+
         if random_cz > random.random():
             c = control_q[random.sample(controls,1)[0]]
             t = target_q[target]
